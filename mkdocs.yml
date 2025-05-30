@@ -8,7 +8,7 @@ theme:
   name: material
   language: fr
   palette:
-    - scheme: slate       # Thème sombre par défaut
+    - scheme: slate       # Thème sombre
       primary: black       # Couleur principale (sobre)
       accent: lime        # Couleur accent (flashy)
       toggle:
@@ -60,4 +60,6 @@ nav:
         - DNS: dns.md
         - Reverse Proxy: rproxy.md
         - Web: web.md
+  - Phase 3:
+    Phase 3: phase3.md
 
