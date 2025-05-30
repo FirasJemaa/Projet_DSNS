@@ -43,7 +43,6 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.emoji
   - pymdownx.keys
-  
 
 nav:
   - Accueil: index.md
