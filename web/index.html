@@ -1,0 +1,2387 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Projet de fin d'année - ITWay">
+      
+      
+        <meta name="author" content="Firase JEMAA & Najet BOUKADOUR">
+      
+      
+      
+        <link rel="prev" href="../rproxy/">
+      
+      
+        <link rel="next" href="../phase3/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Web - ITWay</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="lime">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#serveur-dmz-web-dmz-webitwayfr" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="ITWay" class="md-header__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ITWay
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Web
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/<ton-utilisateur>/<nom-du-repo>" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../phase1/" class="md-tabs__link">
+          
+  
+  
+  Phase 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../conception/" class="md-tabs__link">
+          
+  
+  
+  Phase 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../phase3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Phase 3
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ITWay" class="md-nav__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ITWay
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/<ton-utilisateur>/<nom-du-repo>" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accueil
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phase1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Doc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conception/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conception du projet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Routeurs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Routeurs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routeurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration des Routeurs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CORE-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dmz-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    DMZ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            DMZ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dmz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DNS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rproxy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reverse Proxy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Web
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-serveur-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Serveur Web
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Serveur Web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-cest-quoi-un-serveur-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 C’est quoi un serveur Web ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-pourquoi-un-serveur-web-dans-la-dmz" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Pourquoi un serveur Web dans la DMZ ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-structure-du-projet-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Structure du projet Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-variables-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Variables principales
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-role-et-organisation-des-playbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Rôle et organisation des playbooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Rôle et organisation des playbooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-fichier-principal-mainyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Fichier principal main.yml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-gestion-des-certificats-certyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Gestion des certificats cert.yml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-deploiement-de-wordpress-wordpressyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Déploiement de WordPress wordpress.yml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-gestion-du-certificat-tls-taskscertyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Gestion du certificat TLS (tasks/cert.yml)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Gestion du certificat TLS (tasks/cert.yml)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-detail-du-processus-automatise" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Détail du processus automatisé
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-schema-du-flux-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Schéma du flux PKI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-configuration-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Configuration Nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Configuration Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-nginxconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 nginx.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.1 nginx.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bloc-1-parametres-globaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 1 : Paramètres globaux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloc-2-gestion-des-connexions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 2 : Gestion des connexions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloc-3-bloc-http-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 3 : Bloc HTTP principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-defaultconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 default.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.2 default.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bloc-1-redirection-http-vers-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 1 : Redirection HTTP vers HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloc-2-virtualhost-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 2 : Virtualhost HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-ssl_paramsconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 ssl_params.conf.j2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-wp-configphpj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 wp-config.php.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4 wp-config.php.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-des-blocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication des blocs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-installation-durcissement-wordpress-wordpressyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Installation &amp; durcissement WordPress (wordpress.yml)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-securite-conformite" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Sécurité &amp; conformité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-tests-fonctionnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Tests fonctionnels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Tests fonctionnels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-redirection-http-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.1 Redirection HTTP → HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-page-daccueil-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.2 Page d’accueil WordPress
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-problemes-rencontres" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Problèmes rencontrés
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Liens utiles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phase3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-serveur-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Serveur Web
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Serveur Web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-cest-quoi-un-serveur-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 C’est quoi un serveur Web ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-pourquoi-un-serveur-web-dans-la-dmz" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Pourquoi un serveur Web dans la DMZ ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-structure-du-projet-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Structure du projet Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-variables-principales" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Variables principales
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-role-et-organisation-des-playbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Rôle et organisation des playbooks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Rôle et organisation des playbooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-fichier-principal-mainyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Fichier principal main.yml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-gestion-des-certificats-certyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Gestion des certificats cert.yml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-deploiement-de-wordpress-wordpressyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Déploiement de WordPress wordpress.yml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-gestion-du-certificat-tls-taskscertyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Gestion du certificat TLS (tasks/cert.yml)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Gestion du certificat TLS (tasks/cert.yml)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-detail-du-processus-automatise" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Détail du processus automatisé
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-schema-du-flux-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Schéma du flux PKI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-configuration-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Configuration Nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Configuration Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-nginxconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 nginx.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.1 nginx.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bloc-1-parametres-globaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 1 : Paramètres globaux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloc-2-gestion-des-connexions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 2 : Gestion des connexions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloc-3-bloc-http-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 3 : Bloc HTTP principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-defaultconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 default.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.2 default.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bloc-1-redirection-http-vers-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 1 : Redirection HTTP vers HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloc-2-virtualhost-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bloc 2 : Virtualhost HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-ssl_paramsconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 ssl_params.conf.j2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-wp-configphpj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 wp-config.php.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4 wp-config.php.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-des-blocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication des blocs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-installation-durcissement-wordpress-wordpressyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Installation &amp; durcissement WordPress (wordpress.yml)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-securite-conformite" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Sécurité &amp; conformité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-tests-fonctionnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Tests fonctionnels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Tests fonctionnels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-redirection-http-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.1 Redirection HTTP → HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-page-daccueil-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.2 Page d’accueil WordPress
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-problemes-rencontres" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Problèmes rencontrés
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Liens utiles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="serveur-dmz-web-dmz-webitwayfr">Serveur DMZ-WEB (<code>dmz-web.itway.fr</code>)<a class="headerlink" href="#serveur-dmz-web-dmz-webitwayfr" title="Permanent link">🔗</a></h1>
+<hr />
+<h2 id="1-objectifs">1. Objectifs<a class="headerlink" href="#1-objectifs" title="Permanent link">🔗</a></h2>
+<p>Mettre en place un <strong>serveur Web sécurisé</strong> dans la <strong>DMZ</strong>, accessible :</p>
+<ul>
+<li>Depuis Internet (site vitrine publique)</li>
+<li>Depuis tous les réseaux internes de confiance</li>
+</ul>
+<p>Ce serveur devra :</p>
+<ul>
+<li>Publier le site principal <strong>WordPress</strong> de l’entreprise : <code>https://itway.fr</code></li>
+<li>Servir le trafic en <strong>HTTPS</strong> (certificat signé par la <strong>PKI interne – SRV‑PKI</strong>)</li>
+<li>Reposer sur <strong>Nginx</strong> (choisi pour ses performances &amp; sa simplicité) sur <strong>Debian</strong></li>
+<li>Être entièrement <strong>automatisé</strong> via <strong>Ansible</strong> (rôle <code>dmz-web</code>)</li>
+</ul>
+<hr />
+<h2 id="2-serveur-web">2. Serveur Web<a class="headerlink" href="#2-serveur-web" title="Permanent link">🔗</a></h2>
+<h3 id="21-cest-quoi-un-serveur-web">2.1  C’est quoi un serveur Web ?<a class="headerlink" href="#21-cest-quoi-un-serveur-web" title="Permanent link">🔗</a></h3>
+<p>Un serveur Web (Apache, Nginx…) écoute sur un port HTTP(S) et <strong>renvoie des pages HTML</strong> aux navigateurs.</p>
+<h3 id="22-pourquoi-un-serveur-web-dans-la-dmz">2.2  Pourquoi un serveur Web dans la DMZ ?<a class="headerlink" href="#22-pourquoi-un-serveur-web-dans-la-dmz" title="Permanent link">🔗</a></h3>
+<table>
+<thead>
+<tr>
+<th>Besoin</th>
+<th>Rôle du serveur DMZ-WEB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Héberger le site vitrine</td>
+<td>Stocke le code WordPress et ses médias</td>
+</tr>
+<tr>
+<td>Sécurité réseau</td>
+<td>Placé dans la DMZ : isolation vis‑à‑vis du LAN</td>
+</tr>
+<tr>
+<td>Sécurité applicative</td>
+<td>Mises à jour WordPress / plugins via Ansible</td>
+</tr>
+<tr>
+<td>Chiffrement</td>
+<td>Terminaison TLS locale (certificat signé par SRV‑PKI)</td>
+</tr>
+<tr>
+<td>Haute disponibilité possible</td>
+<td>Peut être répliqué / load‑balancé par DMZ‑RPROXY (Nginx)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-justification-des-choix">3. Justification des choix<a class="headerlink" href="#3-justification-des-choix" title="Permanent link">🔗</a></h2>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix effectué</th>
+<th>Justification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur HTTP</td>
+<td><strong>Nginx</strong></td>
+<td>Léger, performant, configuration claire (reverse proxy + static)</td>
+</tr>
+<tr>
+<td>CMS</td>
+<td><strong>WordPress 6.8.1</strong></td>
+<td>Facile à utiliser pour un site vitrine, plugins &amp; thèmes nombreux</td>
+</tr>
+<tr>
+<td>Base de données</td>
+<td><strong>MariaDB</strong></td>
+<td>Remplaçant libre / performant de MySQL</td>
+</tr>
+<tr>
+<td>PHP</td>
+<td><strong>PHP‑FPM 8.3</strong></td>
+<td>Compatible WP ; isolé du serveur Web</td>
+</tr>
+<tr>
+<td>Certificats</td>
+<td><strong>PKI interne (SRV‑PKI)</strong></td>
+<td>Conformité, contrôle complet, pas de dépendance externe</td>
+</tr>
+<tr>
+<td>Automatisation</td>
+<td><strong>Ansible</strong> + rôles réutilisables</td>
+<td>Déploiement idempotent, versionnage Git</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-structure-du-projet-ansible">4. Structure du projet Ansible<a class="headerlink" href="#4-structure-du-projet-ansible" title="Permanent link">🔗</a></h2>
+<div class="highlight"><pre><span></span><code>├── inventory/
+|   ├── hosts.ini
+│   └── group_vars/
+│       └── dmz-web/
+│           ├── main.yml 
+│           └── vault.yml 
+├── roles/
+│   └── dmz-web/
+│       ├── files/
+│       │   ├── functions.php
+│       │   ├── footer.php
+│       │   ├── header.php
+│       │   ├── index.php
+│       │   ├── main.js
+│       │   └── style.css
+│       ├── handlers/
+│       │   └── main.yml
+│       ├── tasks/
+│       │   ├── main.yml
+│       │   ├── wordpress.yml
+│       │   └── cert.yml
+│       ├── templates/
+│       │   ├── default.conf.j2
+│       │   ├── nginx.conf.j2
+│       │   ├── ssl_params.conf.j2
+│       │   └── wp-config.php.j2
+│       └── vars/
+│           └── main.yml
+</code></pre></div>
+<blockquote>
+<p>Les rôles sont <strong>isolés</strong>, facilitant les réutilisations et les mises à jour.</p>
+</blockquote>
+<hr />
+<h2 id="5-variables-principales">5. Variables principales<a class="headerlink" href="#5-variables-principales" title="Permanent link">🔗</a></h2>
+<p>Extrait de <code>roles/dmz-web/vars/main.yml</code> :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ports &amp; chemins</span>
+<span class="nt">dmz_web_port_http</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="nt">dmz_web_port_https</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+<span class="nt">dmz_web_ssl_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/etc/nginx/ssl&quot;</span>
+
+<span class="c1"># FQDN &amp; SAN</span>
+<span class="nt">dmz_web_fqdn</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dmz-web.itway.fr&quot;</span>
+<span class="nt">dmz_web_alt_names</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">itway.fr</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dmz-web.itway.fr</span>
+
+<span class="c1"># Versions logicielles</span>
+<span class="nt">wp_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;6.8.1&quot;</span>
+<span class="nt">php_fpm_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8.3&quot;</span>
+</code></pre></div>
+<p>Variables sensibles (mots de passe DB, etc.) sont stockées dans <strong><code>group_vars/dmz-web/vault.yml</code></strong> (chiffré avec <strong>Ansible Vault</strong>).</p>
+<hr />
+<h2 id="6-role-et-organisation-des-playbooks">6. Rôle et organisation des playbooks<a class="headerlink" href="#6-role-et-organisation-des-playbooks" title="Permanent link">🔗</a></h2>
+<p>Ce rôle Ansible <code>dmz-web</code> est structuré autour de plusieurs fichiers de tâches qui définissent clairement les différentes étapes du déploiement.</p>
+<h3 id="61-fichier-principal-mainyml">6.1 Fichier principal <code>main.yml</code><a class="headerlink" href="#61-fichier-principal-mainyml" title="Permanent link">🔗</a></h3>
+<p>Ce fichier constitue le point d'entrée du rôle <code>dmz-web</code>. Il orchestre l'exécution des sous-tâches suivantes :</p>
+<ol>
+<li>Installation de Nginx via le module apt</li>
+<li>Importation du rôle de gestion de certificat TLS (<code>cert.yml</code>)</li>
+<li>Importation du rôle de déploiement WordPress (<code>wordpress.yml</code>)</li>
+<li>Déclenchement conditionnel des handlers si nécessaire</li>
+</ol>
+<h3 id="62-gestion-des-certificats-certyml">6.2 Gestion des certificats <code>cert.yml</code><a class="headerlink" href="#62-gestion-des-certificats-certyml" title="Permanent link">🔗</a></h3>
+<p>Ce fichier permet de gérer le cycle de vie complet du certificat TLS signé par la <strong>PKI interne</strong> :</p>
+<ol>
+<li>Génération de la clé privée locale</li>
+<li>Création de la CSR (Certificate Signing Request)</li>
+<li>Transfert vers le serveur SRV-PKI via <code>delegate_to</code></li>
+<li>Récupération et déploiement du certificat signé (CRT + chaîne)</li>
+<li>Placement dans le bon répertoire {{ dmz_web_ssl_dir }} sur la cible</li>
+</ol>
+<h3 id="63-deploiement-de-wordpress-wordpressyml">6.3 Déploiement de WordPress <code>wordpress.yml</code><a class="headerlink" href="#63-deploiement-de-wordpress-wordpressyml" title="Permanent link">🔗</a></h3>
+<p>Ce fichier automatise l’installation et le durcissement de <strong>WordPress</strong> :</p>
+<ol>
+<li>Installation de MariaDB, PHP-FPM et dépendances WP</li>
+<li>Téléchargement de WordPress et du CLI associé (wp-cli)</li>
+<li>Création de la base de données et des utilisateurs MariaDB</li>
+<li>Déploiement des fichiers du site vitrine (thème, config, index…)</li>
+<li>Génération du wp-config.php avec clés aléatoires</li>
+<li>Installation automatique du site (titre, URL, admin, etc.)</li>
+<li>Sécurisation des accès (DISALLOW_FILE_EDIT, xmlrpc, wp-config)</li>
+<li>Fixation des permissions correctes (chown www-data)</li>
+</ol>
+<hr />
+<h2 id="7-gestion-du-certificat-tls-taskscertyml">7. Gestion du certificat TLS (<code>tasks/cert.yml</code>)<a class="headerlink" href="#7-gestion-du-certificat-tls-taskscertyml" title="Permanent link">🔗</a></h2>
+<h3 id="71-detail-du-processus-automatise">7.1 Détail du processus automatisé<a class="headerlink" href="#71-detail-du-processus-automatise" title="Permanent link">🔗</a></h3>
+<p>Ce rôle met en œuvre un processus complet et sécurisé d'obtention de certificat via notre PKI interne. Voici les étapes détaillées :</p>
+<ol>
+<li><strong>Génération de la clé privée &amp; CSR sur DMZ-WEB</strong><ul>
+<li>La cible DMZ-WEB génère localement une clé privée RSA (2048 bits) avec <code>openssl genrsa</code></li>
+<li>Une CSR (Certificate Signing Request) est générée à partir de cette clé avec <code>openssl req -new</code></li>
+<li>Ces fichiers sont créés localement sur la cible pour éviter toute fuite de la clé privée</li>
+</ul>
+</li>
+<li><strong>Récupération de la CSR par le contrôleur Ansible</strong><ul>
+<li>Le fichier <code>.csr</code> est récupéré grâce au module fetch, ce qui copie le fichier depuis <strong>DMZ-WEB</strong> vers le contrôleur (machine Ansible)</li>
+</ul>
+</li>
+<li><strong>Signature par la PKI interne via <code>delegate_to</code></strong><ul>
+<li>Le playbook exécute une commande de signature X.509 sur le serveur <code>SRV-PKI</code> grâce à <code>delegate_to</code></li>
+<li>Typiquement : <code>openssl ca -in csr.pem -out cert.crt -config /etc/pki/openssl.cn</code></li>
+<li>La PKI utilise une CA locale, et signe avec sa propre clé, en respectant les contraintes du domaine <strong>itway.fr</strong></li>
+</ul>
+</li>
+<li><strong>Récupération du certificat signé + certificat de la CA</strong><ul>
+<li>Une fois le certificat signé par SRV-PKI, le contrôleur Ansible récupère les fichiers <code>cert.crt</code> et <code>ca.crt</code></li>
+<li>Ces deux fichiers sont nécessaires pour constituer une chaîne de confiance complète (<code>fullchain</code>)</li>
+</ul>
+</li>
+<li><strong>Déploiement sur DMZ-WEB</strong><ul>
+<li>Les fichiers sont ensuite copiés sur <strong>DMZ-WEB</strong> avec <code>copy/template</code></li>
+<li>Le certificat client (<code>cert.crt</code>) est concaténé avec <code>ca.crt</code> pour produire un <code>fullchain.crt</code> utilisé par Nginx</li>
+<li>Les droits sont fixés pour être lisibles uniquement par <code>www-data</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="72-schema-du-flux-pki">7.2 Schéma du flux PKI<a class="headerlink" href="#72-schema-du-flux-pki" title="Permanent link">🔗</a></h3>
+<div class="highlight"><pre><span></span><code>sequenceDiagram
+    participant A as DMZ-WEB (cible)
+    participant B as Contrôleur Ansible
+    participant C as SRV-PKI
+
+    A-&gt;&gt;A: Génère clé privée + CSR
+    A--&gt;&gt;B: fetch CSR
+    B-&gt;&gt;C: Délègue la signature de la CSR
+    C--&gt;&gt;B: Retourne le certificat signé (CRT) + ca.crt
+    B--&gt;&gt;A: Copie fullchain.crt sur DMZ-WEB
+</code></pre></div>
+<blockquote>
+<p>Aucun flux direct DMZ ↔ PKI : tout est orchestré par Ansible via delegate_to, avec un contrôle total du processus et une sécurité maximale.</p>
+</blockquote>
+<hr />
+<h2 id="8-configuration-nginx">8. Configuration Nginx<a class="headerlink" href="#8-configuration-nginx" title="Permanent link">🔗</a></h2>
+<p>La configuration Nginx est entièrement générée via <strong>templates Jinja2</strong> dans Ansible. Chaque fichier <code>.j2</code> est automatiquement rendu avec les variables personnalisées et copié dans <code>/etc/nginx/</code>.</p>
+<hr />
+<h3 id="81-nginxconfj2">8.1 <code>nginx.conf.j2</code><a class="headerlink" href="#81-nginxconfj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier <code>nginx.conf.j2</code> correspond à la configuration <strong>globale</strong> de Nginx. Il est responsable des comportements principaux du serveur :</p>
+<h4 id="bloc-1-parametres-globaux">Bloc 1 : Paramètres globaux<a class="headerlink" href="#bloc-1-parametres-globaux" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">user</span><span class="w">  </span><span class="s">www-data</span><span class="p">;</span>
+<span class="k">worker_processes</span><span class="w"> </span><span class="s">auto</span><span class="p">;</span>
+<span class="k">pid</span><span class="w"> </span><span class="s">/run/nginx.pid</span><span class="p">;</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user www-data;</code></td>
+<td>Définit l’utilisateur système utilisé par Nginx</td>
+</tr>
+<tr>
+<td><code>worker_processes auto;</code></td>
+<td>Nombre de processus géré automatiquement selon les cœurs CPU</td>
+</tr>
+<tr>
+<td><code>pid /run/nginx.pid;</code></td>
+<td>PID stocké dans ce fichier pour gérer le service</td>
+</tr>
+</tbody>
+</table>
+<h4 id="bloc-2-gestion-des-connexions">Bloc 2 : Gestion des connexions<a class="headerlink" href="#bloc-2-gestion-des-connexions" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">events</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">worker_connections</span><span class="w"> </span><span class="mi">768</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>worker_connections 768;</code></td>
+<td>Nombre max de connexions simultanées par worker</td>
+</tr>
+</tbody>
+</table>
+<h4 id="bloc-3-bloc-http-principal">Bloc 3 : Bloc HTTP principal<a class="headerlink" href="#bloc-3-bloc-http-principal" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kn">include</span><span class="w">       </span><span class="s">/etc/nginx/mime.types</span><span class="p">;</span>
+<span class="w">  </span><span class="kn">default_type</span><span class="w">  </span><span class="s">application/octet-stream</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kn">sendfile</span><span class="w">      </span><span class="no">on</span><span class="p">;</span>
+<span class="w">  </span><span class="kn">keepalive_timeout</span><span class="w"> </span><span class="mi">65</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kn">access_log</span><span class="w"> </span><span class="s">/var/log/nginx/access.log</span><span class="p">;</span>
+<span class="w">  </span><span class="kn">error_log</span><span class="w">  </span><span class="s">/var/log/nginx/error.log</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kn">include</span><span class="w"> </span><span class="s">/etc/nginx/conf.d/*.conf</span><span class="p">;</span>
+<span class="w">  </span><span class="kn">include</span><span class="w"> </span><span class="s">/etc/nginx/sites-enabled/*</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>include /etc/nginx/mime.types;</code></td>
+<td>Types MIME standards (html, jpg, pdf…)</td>
+</tr>
+<tr>
+<td><code>default_type application/octet-stream;</code></td>
+<td>Type par défaut en absence de détection</td>
+</tr>
+<tr>
+<td><code>sendfile on;</code></td>
+<td>Optimisation pour fichiers statiques</td>
+</tr>
+<tr>
+<td><code>keepalive_timeout 65;</code></td>
+<td>Délai d’inactivité avant fermeture de connexion</td>
+</tr>
+<tr>
+<td><code>access_log</code>, <code>error_log</code></td>
+<td>Fichiers journaux pour les accès / erreurs</td>
+</tr>
+<tr>
+<td><code>include conf.d/*.conf</code></td>
+<td>Inclut configs supplémentaires (SSL…)</td>
+</tr>
+<tr>
+<td><code>include sites-enabled/*</code></td>
+<td>Charge les virtualhosts (dont celui du site WordPress)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="82-defaultconfj2">8.2 <code>default.conf.j2</code><a class="headerlink" href="#82-defaultconfj2" title="Permanent link">🔗</a></h3>
+<p>Ce fichier est le <strong>virtualhost principal</strong> de Nginx qui sert le site WordPress. Il force la redirection HTTPS et configure tous les chemins nécessaires à l’exécution du CMS.</p>
+<h4 id="bloc-1-redirection-http-vers-https">Bloc 1 : Redirection HTTP vers HTTPS<a class="headerlink" href="#bloc-1-redirection-http-vers-https" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="s">[::]:80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">itway.fr</span><span class="w"> </span><span class="s">dmz-web.itway.fr</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">301</span><span class="w"> </span><span class="s">https://</span><span class="nv">$host$request_uri</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listen 80;</code> / <code>listen [::]:80;</code></td>
+<td>Écoute en IPv4/IPv6 sur le port HTTP</td>
+</tr>
+<tr>
+<td><code>server_name</code></td>
+<td>FQDN du serveur (site principal + alias DMZ)</td>
+</tr>
+<tr>
+<td><code>return 301 https://...</code></td>
+<td>Redirige tout le trafic vers HTTPS</td>
+</tr>
+</tbody>
+</table>
+<h4 id="bloc-2-virtualhost-https">Bloc 2 : Virtualhost HTTPS<a class="headerlink" href="#bloc-2-virtualhost-https" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="s">[::]:443</span><span class="w"> </span><span class="s">ssl</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">itway.fr</span><span class="w"> </span><span class="s">dmz-web.itway.fr</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">     </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">dmz_web_ssl_dir</span><span class="w"> </span><span class="err">}}</span><span class="s">/fullchain.crt</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">dmz_web_ssl_dir</span><span class="w"> </span><span class="err">}}</span><span class="s">/</span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">dmz_web_key_filename</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="s">/etc/nginx/snippets/ssl_params.conf</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">root</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">wp_root</span><span class="w"> </span><span class="err">}}</span><span class="s">/wordpress</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">index</span><span class="w"> </span><span class="s">index.php</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">client_max_body_size</span><span class="w"> </span><span class="s">32M</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">try_files</span><span class="w"> </span><span class="nv">$uri</span><span class="w"> </span><span class="nv">$uri/</span><span class="w"> </span><span class="s">/index.php?</span><span class="nv">$args</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">\\.php$</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">include</span><span class="w"> </span><span class="s">snippets/fastcgi-php.conf</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">fastcgi_pass</span><span class="w"> </span><span class="s">unix:/run/php/php</span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">php_fpm_version</span><span class="w"> </span><span class="err">}}</span><span class="s">-fpm.sock</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="sr">*</span><span class="w"> </span><span class="s">wp-config\\.php</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kn">deny</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">/xmlrpc.php</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="kn">deny</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="sr">*</span><span class="w"> </span><span class="s">\\.(jpg|jpeg|gif|png|css|js|ico|webp)</span>$<span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">expires</span><span class="w"> </span><span class="s">365d</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">access_log</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssl_certificate / ssl_key</code></td>
+<td>Chemins vers les certificats TLS</td>
+</tr>
+<tr>
+<td><code>include ssl_params.conf</code></td>
+<td>Paramètres de chiffrement à part</td>
+</tr>
+<tr>
+<td><code>root</code> + <code>index</code></td>
+<td>Répertoire WordPress et fichier par défaut</td>
+</tr>
+<tr>
+<td><code>location /</code></td>
+<td>Route par défaut qui relance vers <code>index.php</code></td>
+</tr>
+<tr>
+<td><code>location ~ \\.php$</code></td>
+<td>Exécution sécurisée des fichiers PHP via FPM</td>
+</tr>
+<tr>
+<td><code>deny all</code></td>
+<td>Sécurité : empêche l’accès à <code>wp-config.php</code> et <code>xmlrpc.php</code></td>
+</tr>
+<tr>
+<td><code>expires 365d</code></td>
+<td>Cache long pour les ressources statiques</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="83-ssl_paramsconfj2">8.3 <code>ssl_params.conf.j2</code><a class="headerlink" href="#83-ssl_paramsconfj2" title="Permanent link">🔗</a></h3>
+<p>Ce fichier contient les <strong>paramètres TLS</strong> appliqués à tous les serveurs <code>ssl</code> de Nginx.</p>
+<div class="highlight"><pre><span></span><code><span class="k">ssl_protocols</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">dmz_web_ssl_protocols</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+<span class="kn">ssl_ciphers</span><span class="w">   </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">dmz_web_ssl_ciphers</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+<span class="kn">ssl_prefer_server_ciphers</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="kn">ssl_session_cache</span><span class="w"> </span><span class="s">shared:SSL:10m</span><span class="p">;</span>
+<span class="kn">ssl_session_timeout</span><span class="w"> </span><span class="mi">10m</span><span class="p">;</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssl_protocols</code></td>
+<td>Protocoles acceptés (ex. TLSv1.2, TLSv1.3)</td>
+</tr>
+<tr>
+<td><code>ssl_ciphers</code></td>
+<td>Liste de suites cryptographiques autorisées</td>
+</tr>
+<tr>
+<td><code>ssl_prefer_server_ciphers on</code></td>
+<td>Privilégie les choix du serveur sur ceux du client</td>
+</tr>
+<tr>
+<td><code>ssl_session_cache</code></td>
+<td>Cache partagé pour les connexions SSL</td>
+</tr>
+<tr>
+<td><code>ssl_session_timeout</code></td>
+<td>Durée de validité d’une session TLS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="84-wp-configphpj2">8.4 <code>wp-config.php.j2</code><a class="headerlink" href="#84-wp-configphpj2" title="Permanent link">🔗</a></h3>
+<p>Ce fichier est le <strong>template principal de configuration WordPress</strong>, généré dynamiquement avec Ansible. Il permet de connecter WordPress à la base de données, d’activer certaines sécurités, et d’injecter automatiquement les clés de salage.</p>
+<h4 id="contenu-du-template">Contenu du template<a class="headerlink" href="#contenu-du-template" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// Définition des informations de connexion à la base de données</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;{{ wp_db_name }}&#39;</span><span class="p">);</span>           <span class="c1">// Nom de la base de données</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;{{ wp_db_user }}&#39;</span><span class="p">);</span>           <span class="c1">// Nom d&#39;utilisateur de la base</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">,</span> <span class="s1">&#39;{{ wp_db_pass }}&#39;</span><span class="p">);</span>       <span class="c1">// Mot de passe utilisateur</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">);</span>                  <span class="c1">// Adresse du serveur MariaDB</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_CHARSET&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8mb4&#39;</span><span class="p">);</span>                 <span class="c1">// Encodage pour WordPress</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_COLLATE&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>                        <span class="c1">// Collation (vide = valeur par défaut)</span>
+
+<span class="c1">// Sécurité : forcer l&#39;administration en HTTPS</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;FORCE_SSL_ADMIN&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>                 <span class="c1">// Accès au dashboard uniquement en HTTPS</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DISALLOW_FILE_EDIT&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>              <span class="c1">// Désactive l&#39;éditeur de thème/plugin depuis l&#39;admin WP</span>
+
+<span class="c1">// Préfixe des tables WordPress dans la base</span>
+<span class="nv">$table_prefix</span> <span class="o">=</span> <span class="s1">&#39;wp_&#39;</span><span class="p">;</span>                           <span class="c1">// Personnalisable pour plus de sécurité</span>
+
+<span class="cm">/* Clés de salage WordPress – utilisées pour sécuriser les sessions et cookies */</span>
+<span class="c1">// Ces clés sont générées dynamiquement via Ansible</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nb">key</span> <span class="nx">in</span> <span class="p">[</span><span class="s1">&#39;AUTH_KEY&#39;</span><span class="p">,</span><span class="s1">&#39;SECURE_AUTH_KEY&#39;</span><span class="p">,</span><span class="s1">&#39;LOGGED_IN_KEY&#39;</span><span class="p">,</span><span class="s1">&#39;NONCE_KEY&#39;</span><span class="p">,</span><span class="s1">&#39;AUTH_SALT&#39;</span><span class="p">,</span><span class="s1">&#39;SECURE_AUTH_SALT&#39;</span><span class="p">,</span><span class="s1">&#39;LOGGED_IN_SALT&#39;</span><span class="p">,</span><span class="s1">&#39;NONCE_SALT&#39;</span><span class="p">]</span> <span class="o">%</span><span class="p">}</span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;{{ key }}&#39;</span><span class="p">,</span> <span class="s1">&#39;{{ lookup(&quot;password&quot;, &quot;/dev/null length=64 chars=ascii_letters,digits&quot;) }}&#39;</span><span class="p">);</span> <span class="c1">// Clé {{ key }}</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">endfor</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="c1">// Désactive le mode debug </span>
+<span class="nb">define</span><span class="p">(</span><span class="s1">&#39;WP_DEBUG&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+
+<span class="c1">// Définition du chemin absolu vers WordPress</span>
+<span class="k">if</span> <span class="p">(</span> <span class="o">!</span> <span class="nb">defined</span><span class="p">(</span><span class="s1">&#39;ABSPATH&#39;</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nb">define</span><span class="p">(</span><span class="s1">&#39;ABSPATH&#39;</span><span class="p">,</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/&#39;</span><span class="p">);</span>            <span class="c1">// Définit le dossier racine de WP</span>
+<span class="p">}</span>
+
+<span class="c1">// Chargement des fichiers principaux de WordPress</span>
+<span class="k">require_once</span> <span class="nx">ABSPATH</span> <span class="o">.</span> <span class="s1">&#39;wp-settings.php&#39;</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="explication-des-blocs">Explication des blocs<a class="headerlink" href="#explication-des-blocs" title="Permanent link">🔗</a></h4>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DB_NAME</code>, <code>DB_USER</code>, etc.</td>
+<td>Variables injectées depuis Ansible pour connecter WordPress à MariaDB</td>
+</tr>
+<tr>
+<td><code>FORCE_SSL_ADMIN</code></td>
+<td>Force l'accès à l'interface admin via HTTPS uniquement</td>
+</tr>
+<tr>
+<td><code>DISALLOW_FILE_EDIT</code></td>
+<td>Désactive l’éditeur de thème/plugin via le tableau de bord (sécurité)</td>
+</tr>
+<tr>
+<td><code>$table_prefix</code></td>
+<td>Préfixe des tables WP, personnalisable pour éviter les injections</td>
+</tr>
+<tr>
+<td>Clés <code>AUTH_KEY</code> ... <code>NONCE_SALT</code></td>
+<td>Clés de sécurité générées dynamiquement (aléatoires à chaque déploiement)</td>
+</tr>
+<tr>
+<td><code>WP_DEBUG</code></td>
+<td>Debug désactivé en production</td>
+</tr>
+<tr>
+<td><code>ABSPATH</code> + <code>wp-settings.php</code></td>
+<td>Démarre le cœur WordPress</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-installation-durcissement-wordpress-wordpressyml">9. Installation &amp; durcissement WordPress (<code>wordpress.yml</code>)<a class="headerlink" href="#9-installation-durcissement-wordpress-wordpressyml" title="Permanent link">🔗</a></h2>
+<table>
+<thead>
+<tr>
+<th>Étape</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Installation paquets <strong>PHP‑FPM</strong>, <strong>MariaDB</strong>, bibliothèques indispensables</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Téléchargement &amp; installation <strong>WP‑CLI</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Démarrage <strong>MariaDB</strong> (service) + création comptes / base</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Téléchargement et extraction <strong>WordPress</strong> <code>{{ wp_version }}</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Génération <strong>wp‑config.php</strong> (salts uniques)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Installation WP en ligne de commande (titre, admin, URL)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Déploiement du <strong>thème ITWay</strong> (files/style.css, etc.)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Fixation des <strong>permissions</strong> (www‑data)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Plus de sécurité</strong> : <code>DISALLOW_FILE_EDIT</code> dans <code>wp‑config.php</code> désactive l’éditeur de code WordPress côté admin.</p>
+</blockquote>
+<hr />
+<h2 id="10-securite-conformite">10. Sécurité &amp; conformité<a class="headerlink" href="#10-securite-conformite" title="Permanent link">🔗</a></h2>
+<table>
+<thead>
+<tr>
+<th>Mesure appliquée</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chiffrement forcé (301 → HTTPS)</td>
+<td>Aucune page en clair</td>
+</tr>
+<tr>
+<td>TLS 1.2/1.3 uniquement</td>
+<td><code>ssl_protocols</code></td>
+</tr>
+<tr>
+<td>Ciphers forts</td>
+<td><code>ssl_ciphers</code></td>
+</tr>
+<tr>
+<td>Headers de sécurité</td>
+<td><code>X‑Frame‑Options</code>, <code>X‑Content‑Type‑Options</code>, HSTS (optionnel)</td>
+</tr>
+<tr>
+<td>Isolation réseau</td>
+<td>Serveur placé en DMZ, non joignable depuis Internet en SSH</td>
+</tr>
+<tr>
+<td>WP hardening</td>
+<td><code>xmlrpc.php</code> bloqué, <code>wp‑config.php</code> inaccessible, mises à jour</td>
+</tr>
+<tr>
+<td>Least privilege</td>
+<td>Service <code>www-data</code>, pas de root</td>
+</tr>
+<tr>
+<td>Healthcheck automatisé</td>
+<td>Échec = alerte dans le playbook Ansible</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-tests-fonctionnels">11. Tests fonctionnels<a class="headerlink" href="#11-tests-fonctionnels" title="Permanent link">🔗</a></h2>
+<h3 id="111-redirection-http-https">11.1 Redirection HTTP → HTTPS<a class="headerlink" href="#111-redirection-http-https" title="Permanent link">🔗</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span>http://itway.fr
+<span class="c1"># HTTP/1.1 301 Moved Permanently</span>
+</code></pre></div>
+<h3 id="112-page-daccueil-wordpress">11.2 Page d’accueil WordPress<a class="headerlink" href="#112-page-daccueil-wordpress" title="Permanent link">🔗</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-k<span class="w"> </span>https://itway.fr<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;&lt;title&gt;&quot;</span>
+<span class="c1"># &lt;title&gt;ITWay – Just another WordPress site&lt;/title&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="12-problemes-rencontres">12. Problèmes rencontrés<a class="headerlink" href="#12-problemes-rencontres" title="Permanent link">🔗</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problème</th>
+<th>Résolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>service nginx start</code> indisponible (systemd)</td>
+<td>Utiliser <code>nginx -s reload</code> via handler</td>
+</tr>
+<tr>
+<td>MariaDB ne démarre pas dans le conteneur</td>
+<td>Lancer <code>service mariadb start</code> + socket <code>/run/mysqld</code></td>
+</tr>
+<tr>
+<td>Erreur "test failed" <code>nginx -t</code></td>
+<td>Vérifier présence du <strong>CRT</strong> avant le test (<code>stat</code>)</td>
+</tr>
+<tr>
+<td>WP‑CLI timeouts (DNS)</td>
+<td>Forcer <code>--path</code> + désactiver validation certs si besoin</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-liens-utiles">13. Liens utiles<a class="headerlink" href="#13-liens-utiles" title="Permanent link">🔗</a></h2>
+<ul>
+<li><a href="#structure-du-projet-ansible">Playbook complet Ansible et rôles</a></li>
+<li><a href="https://nginx.org/en/docs/http/configuring_https_servers.html">Référence officielle Nginx TLS</a></li>
+<li><a href="https://wordpress.org/support/article/hardening-wordpress/">Documentation WordPress Hardening</a></li>
+</ul>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">🔗</a></h2>
+<p>La mise en place de <strong>DMZ‑WEB</strong> assure la <strong>publication sécurisée</strong> du site vitrine : certificat interne, CMS WordPress à jour, rôle Ansible idempotent. Placé derrière <strong>DMZ‑RPROXY</strong>, le serveur profite d’une <strong>double couche</strong> : filtrage du reverse proxy et durcissement applicatif local.</p>
+<p>Grâce à cette architecture, l’entreprise garantit :</p>
+<ul>
+<li><strong>Disponibilité</strong> du site (DMZ dédiée, supervision Healthcheck)</li>
+<li><strong>Confidentialité &amp; intégrité</strong> (TLS 1.3, ciphers forts)</li>
+<li><strong>Facilité d’exploitation</strong> (Ansible + PKI interne)</li>
+</ul>
+<p>Le rôle <code>dmz-web</code> peut être ré‑exécuté à tout moment pour appliquer des mises à jour ou déployer de nouvelles instances.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.highlight", "search.suggest", "content.code.annotate", "content.tabs.link", "content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
