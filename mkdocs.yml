@@ -1,0 +1,64 @@
+site_name: ITWay
+site_description: Projet de fin d'année - ITWay
+site_author: Firase JEMAA & Najet BOUKADOUR
+repo_url: https://github.com/<ton-utilisateur>/<nom-du-repo>  # Remplace aussi
+repo_name: GitHub
+
+theme:
+  name: material
+  language: fr
+  palette:
+    - scheme: slate       # Thème sombre par défaut
+      primary: black       # Couleur principale (sobre)
+      accent: lime        # Couleur accent (flashy)
+      toggle:
+        icon: material/weather-sunny
+        name: Passer en mode clair
+    - scheme: default     # Thème clair (optionnel)
+      primary: black
+      accent: lime
+      toggle:
+        icon: material/weather-night
+        name: Passer en mode sombre
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.annotate
+    - content.tabs.link
+    - content.code.copy
+
+markdown_extensions:
+  - toc:
+      permalink: 🔗
+  - admonition
+  - codehilite
+  - footnotes
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.inlinehilite
+  - pymdownx.emoji
+  - pymdownx.keys
+  
+
+nav:
+  - Accueil: index.md
+  - Phase 1:
+    - Doc: phase1.md
+  - Phase 2:
+    - Conception du projet: conception.md
+    - Infrastructure: infra.md
+    - Routeurs: 
+        - Configuration des Routeurs: routeurs.md
+        - CORE-RT: core-rt.md
+        - DMZ-RT: dmz-rt.md
+    - DMZ: 
+        - Objectif: dmz.md
+        - DNS: dns.md
+        - Reverse Proxy: rproxy.md
+        - Web: web.md
+
