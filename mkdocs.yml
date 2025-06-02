@@ -24,6 +24,7 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.top
+    - navigation.footer
     - search.highlight
     - search.suggest
     - content.code.annotate
@@ -47,19 +48,25 @@ markdown_extensions:
 nav:
   - Accueil: index.md
   - Phase 1:
-    - Doc: phase1.md
+    - Présentation: phase1.md
   - Phase 2:
+    - Présentation: phase2.md
     - Conception du projet: conception.md
     - Infrastructure: infra.md
+    - Prérequis: prerequis.md
     - Routeurs: 
         - Configuration des Routeurs: routeurs.md
         - CORE-RT: core-rt.md
         - DMZ-RT: dmz-rt.md
+    - SRV:
+        - SRV-PKI: ./srv/pki.md
+        - SRV-MAIL: ./srv/mail.md
     - DMZ: 
-        - Objectif: dmz.md
-        - DNS: dns.md
-        - Reverse Proxy: rproxy.md
-        - Web: web.md
+        - Objectif: ./dmz/dmz.md
+        - DMZ-DNS: ./dmz/dns.md
+        - DMZ-RPROXY: ./dmz/rproxy.md
+        - DMZ-WEB: ./dmz/web.md
+        - DMZ-SMTP: ./dmz/smtp.md
   - Phase 3:
     Phase 3: phase3.md
 

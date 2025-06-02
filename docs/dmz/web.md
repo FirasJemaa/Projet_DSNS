@@ -71,6 +71,7 @@ Un serveur Web (Apache, Nginx…) écoute sur un port HTTP(S) et **renvoie des
 │       ├── tasks/
 │       │   ├── main.yml
 │       │   ├── wordpress.yml
+│       │   ├── php-fpm.yml
 │       │   └── cert.yml
 │       ├── templates/
 │       │   ├── default.conf.j2

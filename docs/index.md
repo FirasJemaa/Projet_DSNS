@@ -1,56 +1,32 @@
-# Projet de Fin d'Année – ITWay
+# ITWAY
 
-## Présentation générale
+## Présentation Générale du Projet
 
-Bienvenue sur la documentation du projet **ITWay**, réalisé dans le cadre du projet de fin d'année de notre formation **DSNS – option Cybersécurité**.
+Ce projet a été réalisé dans le cadre du **parcours DSNS (Développement de solutions numériques sécurisées)**, option **Cybersécurité**, proposé par la **CCI d’Avignon**.
 
-Ce projet a été mené par deux étudiants dans le but de concevoir, développer et documenter une **infrastructure système et réseau sécurisée** pour une entreprise fictive nommée *ITWay SAS*.
-
-Nous avons travaillé à partir d’un **cahier des charges technique** strict et détaillé, et avons utilisé l’outil **GNS3** pour **simuler l’infrastructure complète**, incluant routeurs, serveurs, services critiques et DMZ. Cela nous a permis de configurer, tester et sécuriser chaque composant dans un environnement virtuel réaliste.
+Il s’inscrit dans un cycle de formation visant à développer des compétences avancées en conception, déploiement et sécurisation d’infrastructures réseau et système. L’objectif final est de maîtriser la mise en œuvre de solutions techniques robustes, en adéquation avec les standards actuels de sécurité, de performance et de conformité.
 
 ---
 
-## Cahier des charges
+## Participants
 
-L’entreprise *ITWay SAS* souhaite refondre son infrastructure afin qu’elle soit conforme à l’état de l’art en matière d'efficacité, d'accessibilité et de sécurité. Les éléments clés du projet incluent :
+Ce travail a été réalisé en binôme, par :
 
-- Segmentation en sous-réseaux sécurisés (CORE, IT, SRV, DMZ...),
-- Mise en place de services critiques : Active Directory, PKI, Mail, Intranet, Supervision,
-- Déploiement VPN avec authentification forte,
-- Gestion des utilisateurs via LDAP / AD et application des GPO,
-- Surveillance continue avec Grafana / Prometheus,
-- Sauvegardes et procédures de maintenance documentées.
+* **Firas JEMAA**
+* **Najet BOUKADOUR**
+
+Le choix de travailler en binôme a permis un partage équitable des tâches, une complémentarité des compétences et un enrichissement mutuel sur tous les aspects du projet, depuis l’analyse initiale jusqu'à la conception d’une solution technique complète.
 
 ---
 
-## Objectifs de la Phase 2
+## Déroulement du projet
+Le projet se structure en trois phases principales : [Consulté les 3 phases ici](./others/document.pdf).
 
-Durant cette phase, nous avions pour missions :
+### [Phase 1 – Analyse du Cahier des Charges](./phase1.md)
+Étude approfondie des besoins de l’entreprise ITWay, évaluation des solutions techniques (virtualisation, conteneurisation, sécurité), élaboration d’une première architecture, et planification du projet.
 
-- Concevoir l’architecture complète de l’infrastructure sur **GNS3**,
-- Implémenter tous les services réseau et systèmes en environnement Debian et Windows,
-- Intégrer les principes de cybersécurité (filtrage, authentification, SSL, IPSec...),
-- Tester, corriger et documenter chaque composant du système,
-- Préparer un environnement stable prêt à être utilisé en production simulée.
+### [Phase 2 – Conception, Déploiement et Maintenance](./phase2.md)
+Réalisation concrète de l’infrastructure : choix des technologies, déploiement des services (réseau, sécurité, communication), configuration des outils, et documentation technique complète.
 
-Les livrables incluent :
-- Scripts et configurations des services,
-- Plans d'adressage, schémas réseau,
-- Procédures de tests, maintenance et déploiement,
-- Documentation technique et utilisateur.
-
----
-
-## Présentation des étudiants
-
-Ce projet a été réalisé par deux étudiants en cybersécurité :
-
-- **[Firase JEMAA](https://github.com/etudiant1)**
-- **[Najet BOUKADOUR](https://github.com/etudiant2)**
-
-Notre collaboration s’est appuyée sur une bonne répartition des tâches, un travail d’équipe structuré, et une approche rigoureuse orientée production.
-
----
-
-Merci de consulter notre documentation !  
-👉 Retrouvez tous les détails techniques dans la section ["Write-up du projet"](/write-up/).
+### [Phase 3 – Modernisation et Renforcement de la Sécurité](./phase3.md)
+Intégration de technologies avancées (SIEM, supervision, MFA...), durcissement de la sécurité, mise à jour de la documentation et sensibilisation des utilisateurs aux bonnes pratiques.
