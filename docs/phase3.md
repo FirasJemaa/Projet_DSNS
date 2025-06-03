@@ -77,7 +77,12 @@ bash wazuh-install.sh -a
 
 **Fin de l’installation** :
 Voici la confirmation de l’achèvement de l’installation et les identifiants de connexion
-
+```sh
+29/05/2025 08:18:12 INFO: You can access the web interface https://<wazuh-dashboard-ip>:443
+    User: admin
+    Password: **********
+29/05/2025 08:18:12 INFO: Installation finished.
+```
 ---
 
 ## 5. Connexion à l’interface web
@@ -135,29 +140,40 @@ Cette commande utilise le gestionnaire de paquets apt pour installer GNU Privacy
 curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | \  
 gpg --no-default-keyring --keyring gnupg-ring:/tmp/wazuh.gpg --import
 ```
+Cette commande télécharge la clé GPG publique de Wazuh depuis leur site officiel à l'aide de `curl -s` (en mode silencieux). La clé est ensuite importée dans un trousseau temporaire nommé `/tmp/wazuh.gpg` en utilisant gpg. L'option `--no-default-keyring` empêche l'utilisation du trousseau par défaut, et `--keyring gnupg-ring:/tmp/wazuh.gpg` spécifie un fichier temporaire pour stocker la clé importée.
 
 ### c. Déplacement et permission de la clé
 ```sh
 mv /tmp/wazuh.gpg /usr/share/keyrings/wazuh.gpg  
+```
+Cette commande déplace le fichier temporaire `/tmp/wazuh.gpg` vers un emplacement standard pour les clés GPG, `/usr/share/keyrings/wazuh.gpg`, afin qu'il soit utilisé par le système pour vérifier les paquets du dépôt Wazuh.
+```sh
 chmod 644 /usr/share/keyrings/wazuh.gpg
 ```
+Le `chmod` permet d’appliquer les permissions 644 (lecture/écriture pour le propriétaire, lecture seule pour le groupe et les autres) pour garantir que le fichier est accessible de manière sécurisée par le système.
 
 ### d. Ajout du dépôt Wazuh
 ```sh
 echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" \  
 | tee /etc/apt/sources.list.d/wazuh.list
 ```
+Cette commande ajoute le dépôt Wazuh à la liste des sources de paquets du système. La ligne `deb [signed-by=/usr/share/keyrings/wazuh.gpg]` spécifie que les paquets du dépôt doivent être vérifiés avec la clé GPG stockée dans `/usr/share/keyrings/wazuh.gpg`. L'URL `https://packages.wazuh.com/4.x/apt/` stable main indique la source des paquets Wazuh pour la version 4.x. La commande tee écrit cette configuration dans le fichier /etc/apt/sources.list.d/wazuh.list.
 
 ### e. Mise à jour des dépôts et installation de l’agent
 ```sh
 apt update  
+```
+Mise à jour de la liste des paquets disponibles à partir de tous les dépôts configurés, y compris le dépôt Wazuh nouvellement ajouté.
+```sh
 WAZUH_MANAGER="172.16.60.4" apt-get install wazuh-agent
 ```
+Cette commande définit la variable d’environnement WAZUH\_MANAGER avec l’adresse IP du serveur Wazuh (172.16.60.4), qui sera utilisée par l’agent Wazuh pour communiquer avec le serveur. Ensuite, apt-get install wazuh-agent installe l’agent Wazuh, qui permet la surveillance de sécurité et la collecte de journaux sur ce poste Linux.
 
 ### f. Activation du service
 ```sh
 service wazuh-agent start
 ```
+Cette commande démarre le service de l’agent Wazuh sur le système. Une fois démarré, l’agent commence à collecter des informations (journaux, événements) et à communiquer avec le serveur Wazuh spécifié dans la configuration. Cela active la surveillance en temps réel.
 
 ### g. Ajout du module docker-listener 
 
@@ -172,10 +188,15 @@ nano /var/ossec/etc/ossec.conf
 Ajouter à la fin du fichier :
 ```conf
 <ossec_config>  
+  #active le module de surveillance des conteneurs Docker 
   <wodle name="docker-listener">
-    <interval>10m</interval>  
+    #définit la fréquence de vérification des conteneurs toutes les 10 minutes
+    <interval>10m</interval>
+    #indique que Wazuh tentera 5 fois de se connecter à l’API Docker en cas d’échec  
     <attempts>5</attempts>
+    #lance le module dès le démarrage de l’agent
     <run_on_start>yes</run_on_start>  
+    #active explicitement le module
     <disabled>no</disabled>  
   </wodle>  
 </ossec_config>  

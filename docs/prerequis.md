@@ -1,6 +1,6 @@
 # Configuration des postes avant déploiement
 
-Cette phase est importante pour que chaque poste fonctionne correctement. Avant de commencer, il faut respecter le tableau d'adressage présenté dans la partie [Infrastructure](./infra.md) pour ne pas avoir des conflits dans les adressages IP.
+Cette phase est essentielle pour garantir le bon fonctionnement de chaque poste. Avant de commencer, il est important de respecter le plan d’adressage défini dans la section [Infrastructure](./infra.md), afin d’éviter tout conflit d’adresses IP. 
 
 ## Configuration d'une adresse IP statique sur chaque machine
 Chaque machine de la DMZ doit être configurée avec une adresse IP statique pour assurer une connectivité stable.
@@ -12,7 +12,7 @@ Chaque machine de la DMZ doit être configurée avec une adresse IP statique pou
     - Descendre jusqu’à **Network configuration** et cliquer sur **Edit**.
 ### 2. Modification du fichier de configuration réseau
 **Ouvrir le fichier de configuration réseau** et activer l’IP statique, comme dans l'exemple ci-dessous :
-```sh
+```conf
 iface eth0 inet static
 	address 10.10.10.2         # Adresse IP de la machine
 	netmask 255.255.255.240    # Masque de sous-réseau
@@ -175,7 +175,7 @@ Ce fichier permet de **préconfigurer des connexions SSH**, en donnant un **nom 
 ### 1. Créé et remplir le fichier `config` 
 J'écris dans `~/.ssh/config` (sur la machine **IT-ANSIBLE**) :
 
-```ssh
+```config
 Host dmz-smtp
   HostName 10.10.10.2
   User ansible

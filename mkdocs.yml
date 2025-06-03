@@ -1,7 +1,7 @@
 site_name: ITWay
 site_description: Projet de fin d'année - ITWay
 site_author: Firase JEMAA & Najet BOUKADOUR
-repo_url: https://github.com/<ton-utilisateur>/<nom-du-repo>  # Remplace aussi
+repo_url: https://https://github.com/FirasJemaa/Projet_DSNS_playbook  
 repo_name: GitHub
 
 theme:
@@ -59,6 +59,8 @@ nav:
         - CORE-RT: core-rt.md
         - DMZ-RT: dmz-rt.md
     - SRV:
+        - Objectif: ./srv/srv.md
+        - SRV-AD: ./srv/ad.md
         - SRV-PKI: ./srv/pki.md
         - SRV-MAIL: ./srv/mail.md
     - DMZ: 
@@ -67,6 +69,9 @@ nav:
         - DMZ-RPROXY: ./dmz/rproxy.md
         - DMZ-WEB: ./dmz/web.md
         - DMZ-SMTP: ./dmz/smtp.md
+    - IT:
+        - IT-ANSIBLE: ./it/ansible.md
+        - IT-GRAFANA: ./it/granfana.md
   - Phase 3:
     Phase 3: phase3.md
 
