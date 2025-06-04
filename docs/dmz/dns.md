@@ -31,7 +31,9 @@ Il sert à :
 | `dmz-web.int.itway.fr` | IP du serveur web privé     | **uniquement réseau interne** |
 | `dmz-rt.int.itway.fr`  | IP du routeur privé         | **uniquement interne**        |
 
-### 2.3 Son rôle
+---
+
+## 3 Ce que fait le DMZ-DNS dans ITWAY
 1. Répondre aux requêtes DNS publiques pour itway.fr (serveur dans DMZ)
 2. Répondre aux requêtes DNS privées pour int.itway.fr (mais uniquement pour les internes)
 3. Ne pas laisser les zones internes visibles depuis Internet
@@ -39,8 +41,7 @@ Il sert à :
 
 ---
 
-
-## 3. Justification des choix
+## 4. Justification des choix
 
 | Élément        | Choix effectué                                                     | Raisons                                               |
 | -------------- | ------------------------------------------------------------------ | ----------------------------------------------------- |
@@ -51,7 +52,7 @@ Il sert à :
 
 ---
 
-## 4. Structure du projet Ansible
+## 5. Structure du projet Ansible
 
 ```
 .
@@ -75,7 +76,7 @@ Il sert à :
 
 ---
 
-## 5. Ce que le Playbook execute dans la `dmz-dns` 
+## 6. Ce que le Playbook execute dans `dmz-dns` 
 Vous pouvez visiter les playbook [ici](link).
 
 ### Explication du rôle du playbook étape par étape
@@ -91,9 +92,9 @@ Vous pouvez visiter les playbook [ici](link).
 
 ---
 
-## 6. Fichiers de configuration
+## 7. Fichiers de configuration
 
-### 6.1 `named.conf.options.j2`
+### 7.1 `named.conf.options.j2`
 Le fichier `named.conf.options.j2` définit les options globales de configuration du serveur BIND.
 Il est utilisé pour régler des paramètres généraux comme :
 
@@ -144,7 +145,7 @@ options {
 | `listen-on { any; };`               | Interfaces IPv4   | Le serveur DNS écoute sur **toutes les interfaces réseau IPv4**.                                                                                         |
 | `listen-on-v6 { any; };`            | Interfaces IPv6   | Idem pour IPv6.                                                                                                                                          |
 
-### 6.2 `named.conf.local.j2`
+### 7.2 `named.conf.local.j2`
 Le fichier `named.conf.local.j2` contient la déclaration des zones DNS dont le serveur BIND est maître (master).
 C’est ici qu'on lies chaque domaine DNS à son fichier de données (fichier de zone).
 
@@ -224,7 +225,7 @@ Par exemple : **db.itway.fr** est le fichier de zone pour le domaine **itway.fr*
 - Interdire les transferts de zone, pour des raisons de sécurité.
 - Il est indispensable pour que BIND sache comment et quoi servir en tant que DNS maître.
 
-### 6.3 `db.itway.fr.j2`
+### 7.3 `db.itway.fr.j2`
 Le fichier `db.itway.fr.j2` est un élément central dans la configuration DNS. 
 
 ##### Le contenu du fichier :
@@ -289,7 +290,7 @@ C’est ici que l’on associe les noms des machines (hostnames) à leurs adress
 >SPF = Sender Policy Framework
 C’est un mécanisme de protection contre le spoofing (falsification d’expéditeur dans les emails). Il indique quels serveurs ont le droit d’envoyer des emails au nom du domaine.
 
-### 6.4 `db.int.itway.fr.j2`
+### 7.4 `db.int.itway.fr.j2`
 Le fichier **db.int.itway.fr.j2** définit une zone DNS privée, non accessible depuis Internet.
 Il est utilisé pour la résolution des noms internes à l’entreprise, notamment ceux qui ne doivent être visibles que depuis les réseaux internes de confiance.
 
@@ -319,7 +320,7 @@ La séparation permet une meilleure sécurité, une meilleure organisation, et r
 >   Il ne faut pas oublier qu'on à déclarer deux zones dans [`named.conf.local.j2`](#namedconflocalj2) et on limite les requêtes récursives dans dans [`named.conf.options.j2`](#namedconfoptionsj2).
 
 
-### 6.5 `db.10.10.10.rev.j2`
+### 7.5 `db.10.10.10.rev.j2`
 Ce fichier est une zone de résolution inverse (reverse DNS).
 Il permet de faire l’inverse de ce que fait un enregistrement A :
 Au lieu de traduire un nom en IP, il traduit une IP en nom.
