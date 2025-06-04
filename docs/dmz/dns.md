@@ -1,5 +1,7 @@
 # Serveur DNS (`dmz-dns.itway.fr`)
 
+[Playbook Ansible complet](playbookici)
+
 ## 1. Objectifs
 
 L'objectif du DNS dans le projet :
@@ -303,13 +305,19 @@ Dans notre cas, cette zone couvre le domaine **int.itway.fr**, utilisé pour dé
 ```jinja
 $TTL 1h
 @   IN  SOA ns1.int.itway.fr. admin.itway.fr. (
-        {{ ansible_date_time.date | regex_replace('-','') }}01
-        1h 15m 1w 1h )
-        IN  NS  ns1.int.itway.fr.
+        {{ ansible_date_time.date | regex_replace('-', '') }}01 ; Serial
+        1h   ; Refresh
+        15m  ; Retry
+        1w   ; Expire
+        1h ) ; Neg TTL
 
-ns1     IN  A   10.10.10.4
-dmz-web IN  A   10.10.10.2
-dmz-rt  IN  A   10.10.10.5
+    IN  NS  ns1.int.itway.fr.
+
+ns1         IN  A   10.10.10.4
+dmz-web     IN  A   10.10.10.2
+dmz-rt      IN  A   10.10.10.1
+dmz-rproxy  IN  A   10.10.10.5
+
 ```
 
 #### Pourquoi faire un deuxième fichier au lieu de tout mettre dans un seul ?
@@ -356,13 +364,7 @@ x.x.x.in-addr.arpa
 
 ---
 
-## 8. Liens utiles
-
-* [Playbook complet Ansible et rôles](#structure-du-projet-ansible)
-
----
-
-## 9. Problème rencontré : permissions `sudo` brisées
+## 8. Problème rencontré : permissions `sudo` brisées
 
 ### Solution appliquée :
 

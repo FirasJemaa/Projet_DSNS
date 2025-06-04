@@ -390,6 +390,13 @@ curl -k https://itway.fr
 # Affiche la page web servie par DMZ-RPROXY
 ```
 
+### Test HTTPS `webmail.itway.fr` :
+
+```sh
+curl -vk https://webmail.itway.fr
+# Connexion TLS OK
+```
+
 ---
 
 ### Test en externe (Internet)

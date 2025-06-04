@@ -8,13 +8,14 @@ theme:
   name: material
   language: fr
   palette:
-    - scheme: slate       # Thème sombre
-      primary: black       # Couleur principale (sobre)
-      accent: lime        # Couleur accent (flashy)
+    - scheme: default       
+      primary: black       
+      accent: lime        
       toggle:
         icon: material/weather-sunny
         name: Passer en mode clair
-    - scheme: default     # Thème clair (optionnel)
+
+    - scheme: salte    
       primary: black
       accent: lime
       toggle:
@@ -70,6 +71,7 @@ nav:
         - DMZ-WEB: ./dmz/web.md
         - DMZ-SMTP: ./dmz/smtp.md
     - IT:
+        - Objectif: ./it/it.md
         - IT-ANSIBLE: ./it/ansible.md
         - IT-GRAFANA: ./it/granfana.md
   - Phase 3:

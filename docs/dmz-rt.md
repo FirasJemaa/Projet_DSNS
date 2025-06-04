@@ -17,7 +17,7 @@ Le routeur DMZ-RT est dédié à l’isolation de la zone DMZ. Il permet la comm
 ## Configuration initiale
 
 - Adresse IP : `192.168.86.2/24`
-- Accès administrateur : `admin / FifiNana84+`
+- Accès administrateur : `admin / *********`
 - Interface Web activée pour supervision via un poste Ubuntu
 - Connexion testée depuis le réseau DMZ avec succès
 
