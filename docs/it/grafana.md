@@ -1,5 +1,7 @@
 ## **IT-GRAFANA** (`it-graphana.itway.local`)
 
+[Playbook Ansible complet](https://github.com/FirasJemaa/Projet_DSNS_playbook)
+
 ### **Cahier des charges**
 
 Le serveur IT-GRAFANA est un serveur de monitoring qui assure la supervision de l’ensemble des équipements de l’entreprise. Il est accessible pour son interface WEB depuis le réseau IT uniquement. Il est configuré pour superviser l’ensemble des équipements de l’entreprise

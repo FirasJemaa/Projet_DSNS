@@ -1,6 +1,6 @@
 # Serveur DNS (`dmz-dns.itway.fr`)
 
-[Playbook Ansible complet](playbookici)
+[Playbook Ansible complet](https://github.com/FirasJemaa/Projet_DSNS_playbook)
 
 ## 1. Objectifs
 

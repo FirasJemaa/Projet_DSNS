@@ -1,5 +1,7 @@
 # IT-ANSIBLE (`it-ansible.itway.local`)
 
+[Playbook Ansible complet](https://github.com/FirasJemaa/Projet_DSNS_playbook)
+
 ## Objectif
 
 Configurer et administrer la machine **IT-ANSIBLE** (`it-ansible.itway.local`), en tant que **serveur d’automatisation Ansible** pour déployer, configurer et maintenir les services de l'infrastructure IT-WAY de manière centralisée, sécurisée et reproductible.

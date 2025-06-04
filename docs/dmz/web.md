@@ -1,6 +1,6 @@
 # Serveur DMZ-WEB (`dmz-web.itway.fr`)
 
----
+[Playbook Ansible complet](https://github.com/FirasJemaa/Projet_DSNS_playbook)
 
 ## 1. Objectifs
 
