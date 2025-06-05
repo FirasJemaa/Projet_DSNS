@@ -1,0 +1,2657 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Projet de fin d'année - ITWay">
+      
+      
+        <meta name="author" content="Firase JEMAA & Najet BOUKADOUR">
+      
+      
+      
+        <link rel="prev" href="../ad/">
+      
+      
+        <link rel="next" href="../mail/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>SRV-PKI - ITWay</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="lime">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#srv-pki-srv-pkiitwaylocal" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="ITWay" class="md-header__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ITWay
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SRV-PKI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="salte" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FirasJemaa/Projet_DSNS_playbook" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../phase1/" class="md-tabs__link">
+          
+  
+  
+  Phase 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../phase2/" class="md-tabs__link">
+          
+  
+  
+  Phase 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../phase3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Phase 3
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ITWay" class="md-nav__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ITWay
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FirasJemaa/Projet_DSNS_playbook" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accueil
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conception/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conception du projet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prérequis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Routeurs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Routeurs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../routeurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration des Routeurs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CORE-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    SRV
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            SRV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../srv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-AD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    SRV-PKI
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-PKI
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-presentation-du-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Présentation du service
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Présentation du service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-quest-ce-quune-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Qu'est-ce qu'une PKI ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-les-composants-dune-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Les composants d'une PKI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-cycle-de-vie-dun-certificat" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Cycle de vie d’un certificat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-structure-du-pki-dans-mon-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Structure du PKI dans mon projet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-differents-dossiers-et-commandes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Différents dossiers et commandes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-rappels-des-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Rappels des extensions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-resume-des-taches-du-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Résumé des tâches du PKI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ce-que-fait-le-serveur-srv-pki-dans-itway" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Ce que fait le serveur SRV-PKI dans ITWay
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-structure-du-projet-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Structure du projet Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ce-que-le-playbook-execute-dans-srv-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Ce que le Playbook execute dans SRV-PKI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Ce que le Playbook execute dans SRV-PKI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configuration-des-variables-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuration des variables PKI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deploiement-automatise-avec-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Déploiement automatisé avec Ansible
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fichiers-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Fichiers de configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Fichiers de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ ca ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ca_default" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ CA_default ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy_match" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ policy_match ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v3_ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ v3_ca ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v3_server" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ v3_server ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v3_client" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ v3_client ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alt_names" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ alt_names ]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-securite-conformite" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Sécurité &amp; conformité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-problemes-rencontres-et-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Problèmes rencontrés et solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Problèmes rencontrés et solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-probleme-dencodage-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Problème d'encodage YAML
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-erreur-missing-sudo-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Erreur Missing sudo password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-probleme-permissions-usrbinsudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Problème permissions /usr/bin/sudo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-erreur-de-certificat-hsts-avec-dmz-smtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Erreur de certificat HSTS avec DMZ-SMTP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-MAIL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    DMZ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            DMZ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/dmz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-DNS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/rproxy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RPROXY
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-WEB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/smtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-SMTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    IT
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            IT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/it/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IT-ANSIBLE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IT-GRAFANA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-presentation-du-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Présentation du service
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Présentation du service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-quest-ce-quune-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Qu'est-ce qu'une PKI ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-les-composants-dune-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Les composants d'une PKI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-cycle-de-vie-dun-certificat" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Cycle de vie d’un certificat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-structure-du-pki-dans-mon-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Structure du PKI dans mon projet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-differents-dossiers-et-commandes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Différents dossiers et commandes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-rappels-des-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Rappels des extensions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-resume-des-taches-du-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Résumé des tâches du PKI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ce-que-fait-le-serveur-srv-pki-dans-itway" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Ce que fait le serveur SRV-PKI dans ITWay
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-structure-du-projet-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Structure du projet Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ce-que-le-playbook-execute-dans-srv-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Ce que le Playbook execute dans SRV-PKI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Ce que le Playbook execute dans SRV-PKI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configuration-des-variables-pki" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuration des variables PKI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deploiement-automatise-avec-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Déploiement automatisé avec Ansible
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fichiers-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Fichiers de configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Fichiers de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ ca ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ca_default" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ CA_default ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy_match" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ policy_match ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v3_ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ v3_ca ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v3_server" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ v3_server ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v3_client" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ v3_client ]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alt_names" class="md-nav__link">
+    <span class="md-ellipsis">
+      [ alt_names ]
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-securite-conformite" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Sécurité &amp; conformité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-problemes-rencontres-et-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Problèmes rencontrés et solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Problèmes rencontrés et solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-probleme-dencodage-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Problème d'encodage YAML
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-erreur-missing-sudo-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Erreur Missing sudo password
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-probleme-permissions-usrbinsudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Problème permissions /usr/bin/sudo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-erreur-de-certificat-hsts-avec-dmz-smtp" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Erreur de certificat HSTS avec DMZ-SMTP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="srv-pki-srv-pkiitwaylocal"><strong>SRV-PKI</strong> (<code>srv-pki.itway.local</code>)<a class="headerlink" href="#srv-pki-srv-pkiitwaylocal" title="Permanent link">🔗</a></h1>
+<p><a href="https://github.com/FirasJemaa/Projet_DSNS_playbook">Playbook Ansible complet</a></p>
+<h2 id="1-objectifs">1. Objectifs<a class="headerlink" href="#1-objectifs" title="Permanent link">🔗</a></h2>
+<p>Le serveur <strong>SRV-PKI</strong> a pour rôle d’être <strong>l’autorité de certification interne</strong> de l’entreprise ITWay. Il est chargé :</p>
+<ul>
+<li>Générer des certificats numériques (SSL/TLS),</li>
+<li>Signer les demandes de certificats pour les services internes (VPN, Webmail, etc.),</li>
+<li>Publier des Listes de Révocation de Certificats (CRL).</li>
+</ul>
+<hr />
+<h2 id="2-presentation-du-service">2. Présentation du service<a class="headerlink" href="#2-presentation-du-service" title="Permanent link">🔗</a></h2>
+<h3 id="21-quest-ce-quune-pki">2.1 Qu'est-ce qu'une PKI ?<a class="headerlink" href="#21-quest-ce-quune-pki" title="Permanent link">🔗</a></h3>
+<p>Une PKI (Infrastructure à Clés Publiques) est un système cryptographique utilisé pour :</p>
+<ul>
+<li>Authentifier l’identité des utilisateurs et des machines,</li>
+<li>Chiffrer les communications pour les sécuriser,</li>
+<li>Signer numériquement les échanges (garantie d’intégrité et non-répudiation).</li>
+</ul>
+<p>Elle repose sur l’utilisation de paires de clés :</p>
+<ul>
+<li>Une clé privée : conservée secrètement,</li>
+<li>Une clé publique : diffusée librement.</li>
+</ul>
+<p>L’objectif principal : fournir des certificats numériques valides aux entités internes pour sécuriser les services (HTTPS, VPN, authentification, etc.).</p>
+<p>Le serveur gère aussi :</p>
+<ul>
+<li>Les <strong>CSR</strong> (Certificate Signing Requests), qui sont des demandes de certificats créées par les services,</li>
+<li>Les <strong>SAN</strong> (Subject Alternative Name), qui permettent d’avoir plusieurs noms DNS dans un même certificat.</li>
+</ul>
+<h3 id="22-les-composants-dune-pki">2.2 Les composants d'une PKI<a class="headerlink" href="#22-les-composants-dune-pki" title="Permanent link">🔗</a></h3>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Rôle principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CA (Certificate Authority)</strong></td>
+<td>Entité de confiance qui signe les certificats</td>
+</tr>
+<tr>
+<td><strong>CRL (Certificate Revocation List)</strong></td>
+<td>Liste des certificats révoqués</td>
+</tr>
+<tr>
+<td><strong>Certificats</strong></td>
+<td>Fichiers d'identité numériques pour utilisateurs/machines</td>
+</tr>
+<tr>
+<td><strong>Clé privée</strong></td>
+<td>Secrète, utilisée pour signer ou décrypter</td>
+</tr>
+<tr>
+<td><strong>Clé publique</strong></td>
+<td>Accessible, utilisée pour vérifier une signature ou chiffrer</td>
+</tr>
+<tr>
+<td><strong>CSR (Certificate Signing Request)</strong></td>
+<td>Demande de certificat signée par une entité</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-cycle-de-vie-dun-certificat">2.3 Cycle de vie d’un certificat<a class="headerlink" href="#23-cycle-de-vie-dun-certificat" title="Permanent link">🔗</a></h3>
+<ol>
+<li>Génération d’une clé privée/publique</li>
+<li>Création d’une CSR</li>
+<li>Signature de la CSR par la CA → création du certificat</li>
+<li>Utilisation du certificat par un serveur (ex : HTTPS, VPN, RDP…)</li>
+<li>Révocation (si compromission, départ, etc.) → ajout à la CRL</li>
+<li>Renouvellement avant expiration</li>
+</ol>
+<h3 id="24-structure-du-pki-dans-mon-projet">2.4 Structure du PKI dans mon projet<a class="headerlink" href="#24-structure-du-pki-dans-mon-projet" title="Permanent link">🔗</a></h3>
+<div class="highlight"><pre><span></span><code>/etc/pki/
+├── certs/        ← Certificats délivrés
+├── private/      ← Clés privées (permissions strictes)
+├── crl/          ← Listes de révocation
+├── newcerts/     ← Certificats récemment signés
+├── index.txt     ← Historique des certificats
+├── serial        ← Numéro de série courant
+├── openssl.cnf   ← Fichier de configuration central
+</code></pre></div>
+<h3 id="25-differents-dossiers-et-commandes">2.5 Différents dossiers et commandes<a class="headerlink" href="#25-differents-dossiers-et-commandes" title="Permanent link">🔗</a></h3>
+<p>➤ <code>/etc/pki/certs/</code></p>
+<p>Il contient tous les certificats délivrés par la <strong>CA</strong>, y compris le certificat de la <strong>CA</strong> (<code>ca.crt</code>). Et les certificats signés pour les services (<code>webmail.itway.fr.crt</code> et autre).</p>
+<p><strong>Création manuelle :</strong>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/pki/certs
+chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>/etc/pki/certs
+</code></pre></div>
+Mode <code>0755</code> : Lecture/exec publique. Parfait pour des dossiers standards.</p>
+<p>➤ <code>certs/ca.crt</code>
+C'est un certificat d’autorité (CA) auto-signé, ce qui est souvent la première étape pour mettre en place une infrastructure PKI interne.</p>
+<p>Commande pour générer un certificat auto-signé de la CA : 
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>/etc/pki/private/ca.key<span class="w"> </span>-sha256<span class="w"> </span>-days<span class="w"> </span><span class="m">3650</span><span class="w"> </span>-config<span class="w"> </span>/etc/ssl/openssl.cnf<span class="w"> </span>-extensions<span class="w"> </span>v3_ca<span class="w"> </span>-out<span class="w"> </span>/etc/pki/certs/ca.crt
+</code></pre></div></p>
+<p>➤ <code>/etc/pki/private/</code></p>
+<p>Il contient les <strong>clés privées</strong>, qui sont strictement confidentielles. Par exemple (<code>ca.key</code> ou <code>webmail.itway.fr.key</code> )</p>
+<p><strong>Création manuelle :</strong>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/pki/private
+chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>/etc/pki/private
+</code></pre></div>
+Mode <code>0700</code> : Privé (admin seulement). Dossier private/, accès restreint.</p>
+<p>➤ <code>/etc/pki/private/ca.key</code>
+C'est le fichier qui contient la clé de déchiffrement.</p>
+<p>C'est la clé privé, la commande suivante permet d'en créé une : 
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>/etc/pki/private/ca.key<span class="w"> </span><span class="m">4096</span>
+</code></pre></div></p>
+<p>➤ <code>/etc/pki/crl/</code></p>
+<p>C'est le stocke des <strong>listes de Révocation de Certificats</strong> (CRL), le fichier principal est le <strong><code>crl.pem</code></strong>.</p>
+<p>La commande de création de la CRL :
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>ca<span class="w"> </span>-gencrl<span class="w"> </span>-config<span class="w"> </span>/etc/ssl/openssl.cnf<span class="w"> </span>-out<span class="w"> </span>/etc/pki/crl/crl.pem
+</code></pre></div></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ca</code></td>
+<td>Utilise le mode "CA" d'OpenSSL (autorité de certification)</td>
+</tr>
+<tr>
+<td><code>-gencrl</code></td>
+<td>Génére une liste de révocation (CRL)</td>
+</tr>
+<tr>
+<td><code>-config</code></td>
+<td>Utilise le fichier <code>openssl.cnf</code></td>
+</tr>
+<tr>
+<td><code>-out</code></td>
+<td>Où stocker la CRL générée</td>
+</tr>
+</tbody>
+</table>
+<p>➤ <code>crl/crl.pem</code>
+C'est un fichier de liste de révocation de certificats, c'est une liste CRL (Certificate Revocation List), c’est-à-dire une liste de certificats révoqués par une autorité de certification (CA). 
+La commande suivante permet d'en créé une :<br />
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>ca<span class="w"> </span>-gencrl<span class="w"> </span>-config<span class="w"> </span>/etc/ssl/openssl.cnf<span class="w"> </span>-out<span class="w"> </span>/etc/pki/crl/crl.pem
+</code></pre></div></p>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>openssl</code></td>
+<td>Outil en ligne de commande pour la cryptographie (librairie OpenSSL).</td>
+</tr>
+<tr>
+<td><code>ca</code></td>
+<td>Sous-commande pour gérer une <strong>autorité de certification</strong>.</td>
+</tr>
+<tr>
+<td><code>-gencrl</code></td>
+<td>Demande de <strong>générer une CRL</strong> (liste de révocation).</td>
+</tr>
+<tr>
+<td><code>-config /etc/ssl/openssl.cnf</code></td>
+<td>Fichier de configuration contenant les infos de la CA (chemins, politiques, etc.).</td>
+</tr>
+<tr>
+<td><code>-out /etc/pki/crl/crl.pem</code></td>
+<td>Fichier de sortie de la CRL générée, au format <strong>PEM</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p>➤ <code>/etc/pki/newcerts/</code></p>
+<p>Il contient les <strong>certificats générés récemment</strong>, avec des noms de fichiers numérotés automatiquement (par le fichier <code>serial</code>).</p>
+<p><strong>Création manuelle :</strong>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/pki/newcerts
+chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>/etc/pki/newcerts
+</code></pre></div></p>
+<p>➤ <code>/etc/pki/serial</code></p>
+<p>Il contient le numéro de série courant à attribuer au prochein certificat signé. Il commence généralement à <code>1</code>.</p>
+<p><strong>Création manuelle :</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="m">01</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/pki/serial
+chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/etc/pki/serial
+</code></pre></div></p>
+<p>➤ <code>/etc/pki/index.txt</code></p>
+<p>C’est la base de données des certificats. Elle garde une trace de tous les certificats signés par la CA, avec leurs état (Validés, Expirés, Révoqués).</p>
+<p><strong>Création manuelle :</strong>
+<div class="highlight"><pre><span></span><code>touch<span class="w"> </span>/etc/pki/index.txt
+chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/etc/pki/index.txt
+</code></pre></div>
+Mode <code>0644</code> : Lecture pour tous. Pour les certificats <code>.crt</code>.</p>
+<p>Au départ le contenu il est vide et ensuite il est rempli automatiquement par <code>openssl ca</code>.</p>
+<p>➤ <code>/etc/pki/crlnumber</code></p>
+<p>Le fichier crlnumber est utilisé pour versionner chaque CRL qu'on émets. C’est comme un numéro de série spécifique aux listes de révocation. Il est obligatoire pour être conforme à la norme <code>X.509</code> et à chaque nouvelle CRL (le numéro est incrémenté automatiquement).</p>
+<p><strong>Exemple de génération une CRL</strong> : 
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>ca<span class="w"> </span>-gencrl<span class="w"> </span>-config<span class="w"> </span>/etc/ssl/openssl.cnf<span class="w"> </span>-out<span class="w"> </span>/etc/pki/crl/crl.pem
+</code></pre></div></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ca</code></td>
+<td>Utilise le mode "CA" d'OpenSSL (autorité de certification)</td>
+</tr>
+<tr>
+<td><code>-gencrl</code></td>
+<td>Génére une liste de révocation (CRL)</td>
+</tr>
+<tr>
+<td><code>-config</code></td>
+<td>Utilise le fichier <code>openssl.cnf</code></td>
+</tr>
+<tr>
+<td><code>-out</code></td>
+<td>Où stocker la CRL générée</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Création manuelle :</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="m">01</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/pki/crlnumber
+chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/etc/pki/crlnumber
+</code></pre></div></p>
+<p>➤ <code>reqs/*.csr</code>
+C'est un fichier généré lorsqu’on souhaite obtenir un certificat numérique signé par une autorité de certification (CA).</p>
+<p>Demande de certificat pour un service (ex: Webmail) :
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>/etc/pki/private/webmail.itway.fr.key<span class="w"> </span>-out<span class="w"> </span>/etc/pki/reqs/webmail.itway.fr.csr<span class="w"> </span>-config<span class="w"> </span>/etc/pki/openssl_webmail.cnf
+</code></pre></div></p>
+<p>➤ <code>certs/*.fullchain.crt</code>
+Certificat du service + certificat de la CA (chaîne complète), ce contient la chaîne complète de certificats, ce qui est essentiel pour assurer la confiance du client (navigateur, OS, etc.) lors d'une connexion HTTPS. Ce fichier contient plusieurs certificats empilés.
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>webmail.itway.fr.crt<span class="w"> </span>ca.crt<span class="w"> </span>&gt;<span class="w"> </span>webmail.itway.fr.fullchain.crt
+</code></pre></div></p>
+<p><strong>Pourquoi on concatène un certificat</strong> :
+Lorsqu’un client (navigateur, système, application) se connecte à un site HTTPS :</p>
+<ul>
+<li>Il reçoit le certificat du serveur (ex. : itway.fr)</li>
+<li>Il doit vérifier l’authenticité de ce certificat via une chaîne de confiance :<ul>
+<li>Le certificat du serveur a été signé par une CA intermédiaire</li>
+<li>Elle-même a été signée par une CA racine (connue du système client)</li>
+</ul>
+</li>
+</ul>
+<p>Si un maillon est manquant, le client affiche une erreur de certificat non fiable.</p>
+<p>➤ <code>/etc/ssl/openssl.cnf</code></p>
+<p>C'est le fichier de configuration <strong>central pour OpenSSL</strong>. Il définit les chemins, durées de validité et l'usages autorisés. Il contient également les sections <strong>v3_ca, v3_server, v3_client</strong>. Il sert à la création et signature du certificat.</p>
+<p><strong>Exemple d'utilisation</strong> : 
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-x509<span class="w"> </span>-days<span class="w"> </span><span class="m">3650</span><span class="w"> </span>-config<span class="w"> </span>/etc/ssl/openssl.cnf<span class="w"> </span>-key<span class="w"> </span>private/ca.key<span class="w"> </span>-out<span class="w"> </span>certs/ca.crt
+</code></pre></div></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>req</code></td>
+<td>Lance une requête de certificat</td>
+</tr>
+<tr>
+<td><code>-x509</code></td>
+<td>Crée un certificat <strong>auto-signé</strong> (pas une CSR)</td>
+</tr>
+<tr>
+<td><code>-new</code></td>
+<td>Génère un nouveau certificat</td>
+</tr>
+<tr>
+<td><code>-key</code></td>
+<td>Spécifie la clé privée</td>
+</tr>
+<tr>
+<td><code>-sha256</code></td>
+<td>Algorithme de signature</td>
+</tr>
+<tr>
+<td><code>-days</code></td>
+<td>Durée de validité</td>
+</tr>
+<tr>
+<td><code>-config</code></td>
+<td>Fichier <code>openssl.cnf</code> utilisé</td>
+</tr>
+</tbody>
+</table>
+<h3 id="26-rappels-des-extensions">2.6 Rappels des extensions<a class="headerlink" href="#26-rappels-des-extensions" title="Permanent link">🔗</a></h3>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Signification</th>
+<th>Contenu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.key</code></td>
+<td>Clé privée</td>
+<td>Doit rester <strong>secrète</strong>, utilisée pour signer</td>
+</tr>
+<tr>
+<td><code>.csr</code></td>
+<td>Certificate Signing Request</td>
+<td>Demande envoyée à la CA pour obtenir un certificat</td>
+</tr>
+<tr>
+<td><code>.crt</code></td>
+<td>Certificat signé (clé publique)</td>
+<td>Contient la clé publique + signature de la CA</td>
+</tr>
+<tr>
+<td><code>.fullchain.crt</code></td>
+<td>Certificat + CA</td>
+<td>Utilisé pour les services web, inclut toute la chaîne de confiance</td>
+</tr>
+<tr>
+<td><code>.pem</code></td>
+<td>Format texte de tous les fichiers</td>
+<td>Peut contenir clé, certificat ou CRL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="27-resume-des-taches-du-pki">2.7 Résumé des tâches du <strong>PKI</strong><a class="headerlink" href="#27-resume-des-taches-du-pki" title="Permanent link">🔗</a></h3>
+<ol>
+<li>Générer une clé privée :
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>webmail.itway.fr.key<span class="w"> </span><span class="m">4096</span>
+</code></pre></div></li>
+<li>Créer une demande de certificat (CSR) :
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>webmail.itway.fr.key<span class="w"> </span>-out<span class="w"> </span>webmail.itway.fr.csr<span class="w"> </span>-config<span class="w"> </span>openssl_webmail.cnf
+</code></pre></div></li>
+<li>Signer avec la CA :
+<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-in<span class="w"> </span>webmail.itway.fr.csr<span class="w"> </span>-CA<span class="w"> </span>ca.crt<span class="w"> </span>-CAkey<span class="w"> </span>ca.key<span class="w"> </span>-CAcreateserial<span class="w"> </span>-out<span class="w"> </span>webmail.itway.fr.crt<span class="w"> </span>-days<span class="w"> </span><span class="m">3650</span><span class="w"> </span>-sha256
+</code></pre></div></li>
+<li>Créer un fullchain : 
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>webmail.itway.fr.crt<span class="w"> </span>ca.crt<span class="w"> </span>&gt;<span class="w"> </span>webmail.itway.fr.fullchain.crt
+</code></pre></div></li>
+</ol>
+<hr />
+<h2 id="3-ce-que-fait-le-serveur-srv-pki-dans-itway">3. Ce que fait le serveur SRV-PKI dans ITWay<a class="headerlink" href="#3-ce-que-fait-le-serveur-srv-pki-dans-itway" title="Permanent link">🔗</a></h2>
+<ul>
+<li>Génère la clé privée de la CA</li>
+<li>Crée et signe un certificat auto-signé</li>
+<li>Gère les demandes de certificats (CSR) internes</li>
+<li>Produit les certificats valides pour :<ul>
+<li>Web internes (HTTPS)</li>
+<li>Accès VPN</li>
+<li>Interfaces de supervision</li>
+<li>Authentification LDAPS, etc.</li>
+</ul>
+</li>
+<li>Publie la liste CRL, accessible en lecture pour les autres services</li>
+<li>Ne communique pas vers l’extérieur, sauf en consultation interne</li>
+</ul>
+<hr />
+<h2 id="4-justification-des-choix">4. Justification des choix<a class="headerlink" href="#4-justification-des-choix" title="Permanent link">🔗</a></h2>
+<ul>
+<li><strong>Outils principaux</strong> :<ul>
+<li><code>OpenSSL</code> pour la génération et la gestion des certificats,</li>
+<li><code>Ansible</code> pour le <strong>déploiement automatisé</strong> (via rôles et playbook),</li>
+</ul>
+</li>
+<li><strong>Structure</strong> conforme aux standards (arborescence OpenSSL, séparations des rôles et CRL).</li>
+</ul>
+<p><strong>Pourquoi ces choix ?</strong></p>
+<ul>
+<li>OpenSSL : open-source, complet, bien documenté.</li>
+<li>Ansible : permet l’automatisation, la reproductibilité, la cohérence des installations.</li>
+</ul>
+<hr />
+<h2 id="5-structure-du-projet-ansible">5. Structure du projet Ansible<a class="headerlink" href="#5-structure-du-projet-ansible" title="Permanent link">🔗</a></h2>
+<div class="highlight"><pre><span></span><code>├── ansible.cfg
+├── inventory/
+│   └── hosts.ini
+├── playbooks/
+│   └── setup-pki.yml
+└── roles/
+    └── srv-pki/
+        ├── files/
+        │   └── openssl_webmail.cnf     
+        ├── handlers/
+        │   └── main.yml                     
+        ├── tasks/
+        │   ├── main.yml                    
+        │   └── webmail.yml                  
+        ├── templates/
+        │   └── openssl.cnf.j2              
+        └── vars/
+            └── main.yml
+</code></pre></div>
+<hr />
+<h2 id="6-ce-que-le-playbook-execute-dans-srv-pki">6. Ce que le Playbook execute dans <code>SRV-PKI</code><a class="headerlink" href="#6-ce-que-le-playbook-execute-dans-srv-pki" title="Permanent link">🔗</a></h2>
+<h3 id="1-configuration-des-variables-pki">1. Configuration des variables PKI<a class="headerlink" href="#1-configuration-des-variables-pki" title="Permanent link">🔗</a></h3>
+<p>Pour que le playbook s'execute correctement il faut mettre en place le fichiers de variables centralisées dans (<code>vars/main.yml</code>), qui contient les paramètre qui peuvent évoluer selon le besoin.</p>
+<h3 id="2-deploiement-automatise-avec-ansible">2. Déploiement automatisé avec Ansible<a class="headerlink" href="#2-deploiement-automatise-avec-ansible" title="Permanent link">🔗</a></h3>
+<ol>
+<li>Installation des paquets nécessaires :<ul>
+<li><code>openssl</code></li>
+<li><code>ca-certificate</code></li>
+</ul>
+</li>
+<li>Création de l’arborescence PKI, répertoires : <ul>
+<li>certs, </li>
+<li>crl, </li>
+<li>newcerts, </li>
+<li>private<blockquote>
+<p>Permissions adaptées selon la sensibilité du dossier</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>Initialisation des fichiers de base :<ul>
+<li><code>index.txt</code>, </li>
+<li><code>serial</code>, </li>
+<li><code>crlnumber</code><blockquote>
+<p>Générés uniquement s’ils n’existent pas, avec valeurs par défaut (01)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>Déploiement du fichier de configuration OpenSSL : <ul>
+<li>Utilisation d’un template Jinja2 (<code>openssl.cnf.j2</code>)</li>
+<li>Inclusion de profils <code>v3_ca</code>, <code>v3_server</code>, <code>v3_client</code>, avec gestion de SAN. </li>
+</ul>
+</li>
+<li>Génération de la CA :<ul>
+<li>Clé privée : <code>ca.key</code></li>
+<li>Certificat auto-signé : <code>ca.crt</code></li>
+<li>Extensions spécifiques au rôle de CA (<code>v3_ca</code>)</li>
+<li>Sécurisation automatique des fichiers via un handler</li>
+</ul>
+</li>
+<li>Génération du fichier aléatoire OpenSSL :<ul>
+<li><code>private/.rand</code> : nécessaire pour la génération cryptographique</li>
+</ul>
+</li>
+<li>Génération du CRL initial :<ul>
+<li><code>crl.pem</code> vide, prêt à être utilisé pour la révocation</li>
+</ul>
+</li>
+<li>Vérification finale : <ul>
+<li>Affichage lisible du certificat CA et du CRL avec openssl x509 et openssl crl</li>
+</ul>
+</li>
+<li>Génération et signature d’un certificat serveur (pour Webmail) :<ol>
+<li>Génère une clé privée dédiée au service webmail (webmail.itway.fr).</li>
+<li>Copie un fichier de configuration OpenSSL spécifique au webmail sur le serveur.</li>
+<li>Crée une CSR (Certificate Signing Request) pour le domaine webmail.itway.fr à l'aide de la clé générée et du fichier de configuration.</li>
+<li>Signe la CSR avec le certificat de l'autorité de certification (CA) précédemment créée.</li>
+<li>Génère un certificat fullchain, c’est-à-dire le certificat du webmail concaténé avec celui de la CA, prêt à être utilisé sur un serveur web sécurisé.</li>
+</ol>
+</li>
+</ol>
+<hr />
+<h2 id="7-fichiers-de-configuration">7. Fichiers de configuration<a class="headerlink" href="#7-fichiers-de-configuration" title="Permanent link">🔗</a></h2>
+<p>Le fichier <code>openssl</code> est essentiel, car il dicte comment sont créés et signés les certificats.</p>
+<h4 id="ca"><code>[ ca ]</code><a class="headerlink" href="#ca" title="Permanent link">🔗</a></h4>
+<p>Il définit que la configuration par défaut de l’autorité de certification (CA) est celle nommée <code>CA_default</code>. C’est le point d’entrée global utilisé par les commandes comme <code>openssl ca</code>.
+<div class="highlight"><pre><span></span><code><span class="k">[ ca ]</span>
+<span class="na">default_ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CA_default</span>
+</code></pre></div></p>
+<h4 id="ca_default"><code>[ CA_default ]</code><a class="headerlink" href="#ca_default" title="Permanent link">🔗</a></h4>
+<p>C’est la section principale de configuration de la CA. 
+<div class="highlight"><pre><span></span><code><span class="k">[ CA_default ]</span>
+<span class="na">dir</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s">{{ pki_ca_dir }}</span>
+<span class="na">certs</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/certs</span>
+<span class="na">crl_dir</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/crl</span>
+<span class="na">new_certs_dir</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/newcerts</span>
+<span class="na">database</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/{{ pki_index_file }}</span>
+<span class="na">serial</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/{{ pki_serial_file }}</span>
+<span class="na">RANDFILE</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/private/.rand</span>
+<span class="na">private_key</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/private/{{ pki_ca_key_name }}</span>
+<span class="na">certificate</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">$dir/certs/{{ pki_ca_cert_name }}</span>
+<span class="na">default_md</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s">{{ pki_default_md }}</span>
+<span class="na">policy</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="s">policy_match</span>
+<span class="na">email_in_dn</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="na">default_days</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">{{ pki_ca_days }}</span>
+<span class="na">default_crl_days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{{ pki_crl_days }}</span>
+<span class="na">crl_days</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">{{ pki_crl_days }}</span>
+<span class="na">unique_subject</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="na">x509_extensions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">v3_ca</span>
+</code></pre></div></p>
+<p>Voici le rôle de chaque directive :</p>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dir</code></td>
+<td>Répertoire de base de la PKI (<code>/etc/pki</code>)</td>
+</tr>
+<tr>
+<td><code>certs</code></td>
+<td>Où stocker les certificats signés</td>
+</tr>
+<tr>
+<td><code>crl_dir</code></td>
+<td>Où stocker les CRL (listes de révocation)</td>
+</tr>
+<tr>
+<td><code>new_certs_dir</code></td>
+<td>Où mettre les nouveaux certificats signés (historique)</td>
+</tr>
+<tr>
+<td><code>database</code></td>
+<td>Fichier index de la CA (trace de tous les certificats)</td>
+</tr>
+<tr>
+<td><code>serial</code></td>
+<td>Fichier avec le prochain numéro de série</td>
+</tr>
+<tr>
+<td><code>RANDFILE</code></td>
+<td>Fichier d'entropie utilisé par OpenSSL pour générer des clés</td>
+</tr>
+<tr>
+<td><code>private_key</code></td>
+<td>Fichier de la clé privée de la CA</td>
+</tr>
+<tr>
+<td><code>certificate</code></td>
+<td>Fichier du certificat public de la CA</td>
+</tr>
+<tr>
+<td><code>default_md</code></td>
+<td>Algorithme de hachage par défaut (<code>sha256</code>)</td>
+</tr>
+<tr>
+<td><code>policy</code></td>
+<td>Règles de politique pour le contenu des certificats</td>
+</tr>
+<tr>
+<td><code>email_in_dn</code></td>
+<td>Ne pas inclure l’email dans le DN</td>
+</tr>
+<tr>
+<td><code>default_days</code></td>
+<td>Validité par défaut des certificats signés</td>
+</tr>
+<tr>
+<td><code>crl_days</code></td>
+<td>Durée de validité de la CRL</td>
+</tr>
+<tr>
+<td><code>x509_extensions</code></td>
+<td>Extensions à utiliser pour les certificats signés par la CA (ici <code>v3_ca</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="policy_match"><code>[ policy_match ]</code><a class="headerlink" href="#policy_match" title="Permanent link">🔗</a></h4>
+<p>Définit quelles infos doivent être présentes et valides dans les CSR (Certificate Signing Requests) :</p>
+<div class="highlight"><pre><span></span><code><span class="k">[ policy_match ]</span>
+<span class="na">countryName</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="s">match</span>
+<span class="na">stateOrProvinceName</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">match</span>
+<span class="na">organizationName</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">match</span>
+<span class="na">organizationalUnitName</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">optional</span>
+<span class="na">commonName</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="s">supplied</span>
+<span class="na">emailAddress</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s">optional</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>match</code></td>
+<td>Doit correspondre exactement à la CA</td>
+</tr>
+<tr>
+<td><code>supplied</code></td>
+<td>L'utilisateur doit le fournir</td>
+</tr>
+<tr>
+<td><code>optional</code></td>
+<td>Peut être vide</td>
+</tr>
+</tbody>
+</table>
+<h4 id="v3_ca"><code>[ v3_ca ]</code><a class="headerlink" href="#v3_ca" title="Permanent link">🔗</a></h4>
+<p>Extensions utilisées pour le certificat racine (CA) :
+<div class="highlight"><pre><span></span><code><span class="k">[ v3_ca ]</span>
+<span class="na">subjectKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">hash</span>
+<span class="na">authorityKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">keyid:always,issuer</span>
+<span class="na">basicConstraints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, CA:true</span>
+<span class="na">keyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, digitalSignature, cRLSign, keyCertSign</span>
+</code></pre></div></p>
+<ul>
+<li><code>basicConstraints = CA:true</code> → ce certificat est une autorité de certification.</li>
+<li><code>keyUsage</code> → Ce que le certificat a le droit de faire : signer d'autres certificats (<code>keyCertSign</code>), signer des CRL (<code>cRLSign</code>).</li>
+<li><code>critical</code> → L’extension est obligatoire pour que le certificat soit accepté.</li>
+</ul>
+<h4 id="v3_server"><code>[ v3_server ]</code><a class="headerlink" href="#v3_server" title="Permanent link">🔗</a></h4>
+<p>Extensions utilisées pour les certificats de serveurs (ex : HTTPS) :
+<div class="highlight"><pre><span></span><code><span class="k">[ v3_server ]</span>
+<span class="na">subjectKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">hash</span>
+<span class="na">authorityKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">keyid:always,issuer</span>
+<span class="na">basicConstraints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, CA:false</span>
+<span class="na">keyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, digitalSignature, keyEncipherment</span>
+<span class="na">extendedKeyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">serverAuth</span>
+<span class="na">subjectAltName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">DNS:itway.fr, DNS:dmz-web.itway.fr, DNS:srv-mail.itway.local, DNS:srv-mail</span>
+</code></pre></div></p>
+<ul>
+<li><code>CA:false</code> → Ce certificat ne peut pas signer d'autres certificats.</li>
+<li><code>keyEncipherment</code> → Permet le chiffrement des échanges.</li>
+<li><code>extendedKeyUsage = serverAuth</code> → Utilisable pour un serveur.</li>
+<li><code>subjectAltName</code> (SAN) → Liste les domaines que le certificat couvre.</li>
+</ul>
+<h4 id="v3_client"><code>[ v3_client ]</code><a class="headerlink" href="#v3_client" title="Permanent link">🔗</a></h4>
+<p>Pour des certificats utilisés par des clients (utilisateurs, VPN, etc.) :
+<div class="highlight"><pre><span></span><code><span class="k">[ v3_client ]</span>
+<span class="na">subjectKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">hash</span>
+<span class="na">authorityKeyIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">keyid:always,issuer</span>
+<span class="na">basicConstraints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, CA:false</span>
+<span class="na">keyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, digitalSignature</span>
+<span class="na">extendedKeyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">clientAuth</span>
+</code></pre></div></p>
+<ul>
+<li><code>clientAuth</code> → Permet l’authentification côté client (par ex. dans un VPN).</li>
+<li>Pas de SAN ici, car ce n’est pas lié à un nom de domaine.</li>
+</ul>
+<h4 id="alt_names"><code>[ alt_names ]</code><a class="headerlink" href="#alt_names" title="Permanent link">🔗</a></h4>
+<p>Liste des noms DNS alternatifs autorisés dans les certificats signés :
+<div class="highlight"><pre><span></span><code><span class="k">[ alt_names ]</span>
+<span class="na">DNS.1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">itway.fr</span>
+<span class="na">DNS.2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dmz-web.itway.fr</span>
+<span class="na">DNS.3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">srv-mail.itway.local</span>
+<span class="na">DNS.4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">srv-mail</span>
+</code></pre></div></p>
+<p>Ces noms apparaîtront dans le champ <code>Subject Alternative Name</code> du certificat, indispensable pour HTTPS moderne (le <code>CommonName</code> seul ne suffit plus).</p>
+<hr />
+<h2 id="8-securite-conformite">8. Sécurité &amp; conformité<a class="headerlink" href="#8-securite-conformite" title="Permanent link">🔗</a></h2>
+<ul>
+<li>Les clés privées sont protégées avec des permissions strictes (<code>0600</code>) dans un répertoire sécurisé (<code>0700</code>).</li>
+<li>Les fichiers sensibles (<code>serial</code>, <code>crlnumber</code>, <code>index.txt</code>) sont créés uniquement s’ils n’existent pas, évitant toute perte de données.</li>
+<li>Les certificats <code>X.509</code> sont générés avec :<ul>
+<li>Algorithme de signature : <code>SHA-256</code></li>
+<li>Longueur de clé : 4096 bits</li>
+<li>Extensions conformes (<code>v3_ca</code>, <code>v3_server</code>) avec basicConstraints et keyUsage définis.</li>
+</ul>
+</li>
+<li>Le processus est entièrement automatisé et reproductible grâce à Ansible.</li>
+<li>Accès restreint : seuls les utilisateurs autorisés (ex. : ansible, root) peuvent manipuler les fichiers clés.</li>
+</ul>
+<hr />
+<h2 id="9-problemes-rencontres-et-solutions">9. Problèmes rencontrés et solutions<a class="headerlink" href="#9-problemes-rencontres-et-solutions" title="Permanent link">🔗</a></h2>
+<h3 id="1-probleme-dencodage-yaml">1. Problème d'encodage YAML<a class="headerlink" href="#1-probleme-dencodage-yaml" title="Permanent link">🔗</a></h3>
+<ul>
+<li><strong>Erreur</strong> : <code>Unexpected Exception: 'utf-8' codec can't encode character '\udcc3'</code></li>
+<li><strong>Cause</strong> : Caractères accentués mal encodés (souvent copiés depuis Word)</li>
+<li><strong>Solution</strong> : Conversion en UTF-8 avec <code>iconv</code> :</li>
+</ul>
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.yml&quot;</span><span class="w"> </span>-exec<span class="w"> </span>iconv<span class="w"> </span>-f<span class="w"> </span>ISO-8859-1<span class="w"> </span>-t<span class="w"> </span>UTF-8<span class="w"> </span><span class="s2">&quot;{}&quot;</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;{}&quot;</span><span class="w"> </span><span class="se">\;</span>
+</code></pre></div>
+<h3 id="2-erreur-missing-sudo-password">2. Erreur <code>Missing sudo password</code><a class="headerlink" href="#2-erreur-missing-sudo-password" title="Permanent link">🔗</a></h3>
+<ul>
+<li><strong>Cause</strong> : L'utilisateur <code>ansible</code> n'avait pas les droits <code>sudo</code> sans mot de passe</li>
+<li><strong>Solution</strong> :</li>
+</ul>
+<p>Ajouter l'utilisateur dans <code>/etc/sudoers</code> :</p>
+<div class="highlight"><pre><span></span><code>ansible<span class="w"> </span><span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span><span class="w"> </span>NOPASSWD:<span class="w"> </span>ALL
+</code></pre></div>
+<h3 id="3-probleme-permissions-usrbinsudo">3. Problème permissions <code>/usr/bin/sudo</code><a class="headerlink" href="#3-probleme-permissions-usrbinsudo" title="Permanent link">🔗</a></h3>
+<ul>
+<li><strong>Erreur</strong> : <code>sudo must be owned by uid 0</code></li>
+<li><strong>Solution</strong> :</li>
+</ul>
+<div class="highlight"><pre><span></span><code>chown<span class="w"> </span>root:root<span class="w"> </span>/usr/bin/sudo
+chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>/usr/bin/sudo
+</code></pre></div>
+<h3 id="4-erreur-de-certificat-hsts-avec-dmz-smtp">4. Erreur de certificat HSTS avec DMZ-SMTP<a class="headerlink" href="#4-erreur-de-certificat-hsts-avec-dmz-smtp" title="Permanent link">🔗</a></h3>
+<p>Lors de l'accès via navigateur à un service derrière <code>dmz-smtp</code>, une erreur HSTS persistante apparaissait, empêchant toute connexion sécurisée.</p>
+<p><strong>Cause</strong> : Le champ <code>subjectAltName</code> n'était pas reconnu dans le certificat généré, bien que la section <code>[ alt_names ]</code> existait dans le fichier <code>openssl.cnf.j2</code> :
+<div class="highlight"><pre><span></span><code><span class="k">[ alt_names ]</span>
+<span class="na">DNS.1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">itway.fr</span>
+<span class="na">DNS.2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dmz-web.itway.fr</span>
+<span class="na">DNS.3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">srv-mail.itway.local</span>
+<span class="na">DNS.4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">srv-mail</span>
+</code></pre></div>
+<strong>Résolution (partielle)</strong> : Après plusieurs tentatives et recherches (24h), une solution de contournement a été de créer un fichier de configuration spécifique au service concerné (<code>openssl_webmail.cnf</code>) et de l'utiliser dans les commandes OpenSSL.</p>
+<p><strong>Solution définitive (trouvée plus tard)</strong> : Pour le serveur <code>srv-mail</code>, le problème a été trouvé et corrigé en ajoutant explicitement la ligne suivante dans la section <code>[ v3_server ]</code> du fichier <code>openssl.cnf.j2</code> :
+<div class="highlight"><pre><span></span><code><span class="na">subjectAltName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">DNS:itway.fr, DNS:dmz-web.itway.fr, DNS:srv-mail.itway.local, DNS:srv-mail</span>
+</code></pre></div>
+Cela a permis de générer un certificat fonctionnel avec les bons SANs, reconnu sans erreur HSTS par les navigateurs.</p>
+<blockquote>
+<p><strong>Remarque</strong> : Par manque de temps, cette correction n'a pas été appliquée rétroactivement au certificat dmz-smtp, qui utilise toujours le fichier dédié (<code>openssl_webmail.cnf</code>).</p>
+</blockquote>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">🔗</a></h2>
+<p>Le serveur <strong>SRV-PKI</strong> est désormais capable de :</p>
+<ul>
+<li>Générer des certificats pour tous les services internes</li>
+<li>Gérer la révocation (CRL)</li>
+<li>Garantir une sécurité forte grâce à la structure de fichiers, aux permissions strictes et à l’utilisation d’Ansible</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../ad/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: SRV-AD">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                SRV-AD
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../mail/" class="md-footer__link md-footer__link--next" aria-label="Suivant: SRV-MAIL">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                SRV-MAIL
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.annotate", "content.tabs.link", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

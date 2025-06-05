@@ -1,0 +1,2648 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Projet de fin d'année - ITWay">
+      
+      
+        <meta name="author" content="Firase JEMAA & Najet BOUKADOUR">
+      
+      
+      
+        <link rel="prev" href="../dmz/">
+      
+      
+        <link rel="next" href="../rproxy/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>DMZ-DNS - ITWay</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="lime">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#serveur-dns-dmz-dnsitwayfr" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="ITWay" class="md-header__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ITWay
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DMZ-DNS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="salte" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FirasJemaa/Projet_DSNS_playbook" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../phase1/" class="md-tabs__link">
+          
+  
+  
+  Phase 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../phase2/" class="md-tabs__link">
+          
+  
+  
+  Phase 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../phase3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Phase 3
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ITWay" class="md-nav__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ITWay
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FirasJemaa/Projet_DSNS_playbook" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accueil
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conception/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conception du projet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prérequis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Routeurs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Routeurs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../routeurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration des Routeurs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CORE-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    SRV
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            SRV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../srv/srv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../srv/ad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-AD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../srv/pki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-PKI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../srv/mail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-MAIL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    DMZ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            DMZ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dmz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    DMZ-DNS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-DNS
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dns-domain-name-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. DNS (Domain Name System)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. DNS (Domain Name System)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-cest-quoi-un-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 C'est quoi un DNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-pourquoi-on-a-besoin-du-dns-dans-le-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Pourquoi on a besoin du DNS dans le projet
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ce-que-fait-le-dmz-dns-dans-itway" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Ce que fait le DMZ-DNS dans ITWAY
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-structure-du-projet-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Structure du projet Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ce-que-le-playbook-execute-dans-dmz-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Ce que le Playbook execute dans dmz-dns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Ce que le Playbook execute dans dmz-dns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explication-du-role-du-playbook-etape-par-etape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication du rôle du playbook étape par étape
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fichiers-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Fichiers de configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Fichiers de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-namedconfoptionsj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 named.conf.options.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 named.conf.options.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-namedconflocalj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 named.conf.local.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 named.conf.local.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declarations-des-zones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Déclarations des zones :
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Déclarations des zones :">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-quun-fichier-de-zone-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qu'est-ce qu'un fichier de Zone DNS ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-fichier-namedconflocalj2-sert-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le fichier named.conf.local.j2 sert à :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-dbitwayfrj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 db.itway.fr.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3 db.itway.fr.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-contenu-du-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le contenu du fichier :
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le contenu du fichier :">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-le-serveur-dns-principal-soa" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Le serveur DNS principal (SOA)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-les-noms-et-leurs-ips-ex-mailitwayfr-1010103" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Les noms et leurs IPs (ex : mail.itway.fr → 10.10.10.3)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-dbintitwayfrj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 db.int.itway.fr.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4 db.int.itway.fr.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-quune-zone-dns-interne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qu'est-ce qu'une zone DNS interne ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-faire-un-deuxieme-fichier-au-lieu-de-tout-mettre-dans-un-seul" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pourquoi faire un deuxième fichier au lieu de tout mettre dans un seul ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-db101010revj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5 db.10.10.10.rev.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5 db.10.10.10.rev.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-quune-zone-inverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qu'est ce qu'une zone inverse ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lavantage-dune-zone-inverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'avantage d'une zone inverse ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-securite-conformite" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Sécurité &amp; conformité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-probleme-rencontre-permissions-sudo-brisees" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Problème rencontré : permissions sudo brisées
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Problème rencontré : permissions sudo brisées">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution-appliquee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution appliquée :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rproxy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RPROXY
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-WEB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-SMTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    IT
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            IT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/it/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IT-ANSIBLE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IT-GRAFANA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dns-domain-name-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. DNS (Domain Name System)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. DNS (Domain Name System)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-cest-quoi-un-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 C'est quoi un DNS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-pourquoi-on-a-besoin-du-dns-dans-le-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Pourquoi on a besoin du DNS dans le projet
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ce-que-fait-le-dmz-dns-dans-itway" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Ce que fait le DMZ-DNS dans ITWAY
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-structure-du-projet-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Structure du projet Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ce-que-le-playbook-execute-dans-dmz-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Ce que le Playbook execute dans dmz-dns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Ce que le Playbook execute dans dmz-dns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explication-du-role-du-playbook-etape-par-etape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication du rôle du playbook étape par étape
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fichiers-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Fichiers de configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Fichiers de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-namedconfoptionsj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 named.conf.options.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 named.conf.options.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-namedconflocalj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 named.conf.local.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 named.conf.local.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declarations-des-zones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Déclarations des zones :
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Déclarations des zones :">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-quun-fichier-de-zone-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qu'est-ce qu'un fichier de Zone DNS ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-fichier-namedconflocalj2-sert-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le fichier named.conf.local.j2 sert à :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-dbitwayfrj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 db.itway.fr.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3 db.itway.fr.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-contenu-du-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le contenu du fichier :
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le contenu du fichier :">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-le-serveur-dns-principal-soa" class="md-nav__link">
+    <span class="md-ellipsis">
+      A. Le serveur DNS principal (SOA)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-les-noms-et-leurs-ips-ex-mailitwayfr-1010103" class="md-nav__link">
+    <span class="md-ellipsis">
+      B. Les noms et leurs IPs (ex : mail.itway.fr → 10.10.10.3)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-dbintitwayfrj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 db.int.itway.fr.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4 db.int.itway.fr.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-quune-zone-dns-interne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qu'est-ce qu'une zone DNS interne ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-faire-un-deuxieme-fichier-au-lieu-de-tout-mettre-dans-un-seul" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pourquoi faire un deuxième fichier au lieu de tout mettre dans un seul ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-db101010revj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5 db.10.10.10.rev.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5 db.10.10.10.rev.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-quune-zone-inverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qu'est ce qu'une zone inverse ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lavantage-dune-zone-inverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'avantage d'une zone inverse ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-securite-conformite" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Sécurité &amp; conformité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-probleme-rencontre-permissions-sudo-brisees" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Problème rencontré : permissions sudo brisées
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Problème rencontré : permissions sudo brisées">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution-appliquee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution appliquée :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="serveur-dns-dmz-dnsitwayfr">Serveur DNS (<code>dmz-dns.itway.fr</code>)<a class="headerlink" href="#serveur-dns-dmz-dnsitwayfr" title="Permanent link">🔗</a></h1>
+<p><a href="https://github.com/FirasJemaa/Projet_DSNS_playbook">Playbook Ansible complet</a></p>
+<h2 id="1-objectifs">1. Objectifs<a class="headerlink" href="#1-objectifs" title="Permanent link">🔗</a></h2>
+<p>L'objectif du DNS dans le projet :</p>
+<ul>
+<li>Déployer un <strong>serveur DNS public</strong> dans la <strong>DMZ</strong> nommé <code>dmz-dns.itway.fr</code>.</li>
+<li>Ce serveur gère la <strong>résolution DNS</strong> de la zone publique <code>itway.fr</code> ainsi que de la zone interne <code>int.itway.fr</code>.</li>
+<li>La zone <strong>itway.fr</strong> doit être <strong>accessible depuis Internet</strong>.</li>
+<li>La zone <strong>int.itway.fr</strong> est strictement <strong>privée</strong>, non exposée.</li>
+<li>Aucune <strong>communication entre DNS interne et DMZ</strong> n’est autorisée.</li>
+<li>L’outil choisi est <strong>BIND9</strong>, déployé automatiquement via <strong>Ansible</strong>.</li>
+</ul>
+<hr />
+<h2 id="2-dns-domain-name-system">2. DNS (Domain Name System)<a class="headerlink" href="#2-dns-domain-name-system" title="Permanent link">🔗</a></h2>
+<h3 id="21-cest-quoi-un-dns">2.1  C'est quoi un DNS<a class="headerlink" href="#21-cest-quoi-un-dns" title="Permanent link">🔗</a></h3>
+<p>C’est le "répertoire téléphonique d’Internet".</p>
+<p>Il sert à traduire des noms de domaine lisibles par l’homme (comme google.com ou itway.fr) en adresses IP (comme 142.250.74.238), que les ordinateurs utilisent pour communiquer.</p>
+<h3 id="22-pourquoi-on-a-besoin-du-dns-dans-le-projet">2.2 Pourquoi on a besoin du DNS dans le projet<a class="headerlink" href="#22-pourquoi-on-a-besoin-du-dns-dans-le-projet" title="Permanent link">🔗</a></h3>
+<p>On doit créer un serveur DNS dans la DMZ, accessible depuis Internet et les réseaux internes de confiance.</p>
+<p>Il sert à :</p>
+<table>
+<thead>
+<tr>
+<th>Domaine demandé</th>
+<th>Ce qu’il renvoie</th>
+<th>Où ça sert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>itway.fr</code></td>
+<td>adresse IP du reverse proxy</td>
+<td>sur Internet</td>
+</tr>
+<tr>
+<td><code>webmail.itway.fr</code></td>
+<td>adresse IP du mail ou proxy</td>
+<td>sur Internet et internes</td>
+</tr>
+<tr>
+<td><code>dmz-web.int.itway.fr</code></td>
+<td>IP du serveur web privé</td>
+<td><strong>uniquement réseau interne</strong></td>
+</tr>
+<tr>
+<td><code>dmz-rt.int.itway.fr</code></td>
+<td>IP du routeur privé</td>
+<td><strong>uniquement interne</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-ce-que-fait-le-dmz-dns-dans-itway">3 Ce que fait le DMZ-DNS dans ITWAY<a class="headerlink" href="#3-ce-que-fait-le-dmz-dns-dans-itway" title="Permanent link">🔗</a></h2>
+<ol>
+<li>Répondre aux requêtes DNS publiques pour itway.fr (serveur dans DMZ)</li>
+<li>Répondre aux requêtes DNS privées pour int.itway.fr (mais uniquement pour les internes)</li>
+<li>Ne pas laisser les zones internes visibles depuis Internet</li>
+<li>Ne pas communiquer avec le DNS interne pour éviter les fuites de données</li>
+</ol>
+<hr />
+<h2 id="4-justification-des-choix">4. Justification des choix<a class="headerlink" href="#4-justification-des-choix" title="Permanent link">🔗</a></h2>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Choix effectué</th>
+<th>Raisons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serveur DNS</td>
+<td>BIND9</td>
+<td>Référence open-source, très flexible, bien documentée</td>
+</tr>
+<tr>
+<td>Automatisation</td>
+<td>Ansible + rôles + Jinja2</td>
+<td>Réutilisable, versionnable, idempotent</td>
+</tr>
+<tr>
+<td>Organisation</td>
+<td>Rôles séparés (<code>dmz-dns</code>)</td>
+<td>Isolation de la logique métier et clarté</td>
+</tr>
+<tr>
+<td>Sécurité</td>
+<td>Récursion restreinte, pas de transfert de zone, DNSSEC</td>
+<td>Réduction des vecteurs d’attaque</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-structure-du-projet-ansible">5. Structure du projet Ansible<a class="headerlink" href="#5-structure-du-projet-ansible" title="Permanent link">🔗</a></h2>
+<div class="highlight"><pre><span></span><code>.
+├── inventory/
+│   └── hosts.ini
+├── playbooks/
+│   └── setup-dmz-dns.yml
+└── roles/
+    └── dmz-dns/
+        ├── tasks/
+        │   └── main.yml
+        ├── handlers/
+        │   └── main.yml
+        ├── templates/
+        │   ├── named.conf.local.j2
+        │   ├── named.conf.options.j2
+        │   ├── db.itway.fr.j2
+        │   ├── db.int.itway.fr.j2
+        │   └── db.10.10.10.rev.j2
+</code></pre></div>
+<hr />
+<h2 id="6-ce-que-le-playbook-execute-dans-dmz-dns">6. Ce que le Playbook execute dans <code>dmz-dns</code><a class="headerlink" href="#6-ce-que-le-playbook-execute-dans-dmz-dns" title="Permanent link">🔗</a></h2>
+<p>Vous pouvez visiter les playbook <a href="link">ici</a>.</p>
+<h3 id="explication-du-role-du-playbook-etape-par-etape">Explication du rôle du playbook étape par étape<a class="headerlink" href="#explication-du-role-du-playbook-etape-par-etape" title="Permanent link">🔗</a></h3>
+<ol>
+<li><strong>Installation de Bind9 :</strong> Installer Bind9 et les paquets nécessaires.</li>
+<li><strong>Déploiement de la configuration locale :</strong> Déclarer les zones DNS à gérer. <a href="#namedconflocalj2">(Plus en détail)</a></li>
+<li><strong>Déploiement des options globales :</strong> Configurer les forwarders, la récursion, les IPs autorisées, etc. <a href="#namedconfoptionsj2">(Plus en détail)</a></li>
+<li><strong>Fichiers de zone :</strong> Configurer le fichier de zone (SOA, CNAME, MX, TXT). <a href="#dbitwayfrj2">(Plus en détail)</a></li>
+<li><strong>Zone interne (privée) :</strong>  Configurer le fichier de zone interne "Intranet" (SOA, CNAME, MX, TXT). <a href="#-dbintitwayfrj2">(Plus en détail)</a></li>
+<li><strong>Zone de résolution inversée</strong> <a href="#-db101010revj2">(Plus en détail)</a></li>
+<li><strong>Vérification de Bind9 :</strong> Vérifier que Bind9 tourne correctement.</li>
+<li><strong>Démarrage conditionnel :</strong> Redémarrage de Bind9</li>
+</ol>
+<hr />
+<h2 id="7-fichiers-de-configuration">7. Fichiers de configuration<a class="headerlink" href="#7-fichiers-de-configuration" title="Permanent link">🔗</a></h2>
+<h3 id="71-namedconfoptionsj2">7.1 <code>named.conf.options.j2</code><a class="headerlink" href="#71-namedconfoptionsj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier <code>named.conf.options.j2</code> définit les options globales de configuration du serveur BIND.
+Il est utilisé pour régler des paramètres généraux comme :</p>
+<ul>
+<li>Où se trouve le cache,</li>
+<li>Quels serveurs DNS sont utilisés comme relais (forwarders),</li>
+<li>Qui est autorisé à poser des questions récursives (récursion DNS),</li>
+<li>Les comportements réseau (interfaces, IPv6, sécurité, etc.).</li>
+</ul>
+<h4 id="contenu-du-fichiers">Contenu du fichiers<a class="headerlink" href="#contenu-du-fichiers" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code>options {
+    directory &quot;/var/cache/bind&quot;;
+
+    // Forward DNS non gérés vers l’extérieur
+    forwarders { 8.8.8.8; 8.8.4.4; };
+
+    // Autoriser la récursion UNIQUEMENT à nos réseaux internes :
+    allow-recursion {
+        10.10.10.0/28;      // DMZ
+        172.16.10.0/27;     // IT           
+        172.16.50.0/29;     // SRV         
+        172.16.85.0/27;     // NET-SRV   
+        10.11.11.0/30;      // STORM-NET 
+        192.168.20.0/28;    // VLAN 20   
+        192.168.30.0/28;    // VLAN 30   
+        192.168.40.0/26;    // VLAN 40   
+    };
+
+    recursion yes;               // mais uniquement pour les réseaux listés
+    allow-transfer { none; };    // bloque les transferts de zones (sécurité)
+    dnssec-validation auto;      // active la validation DNSSEC (si utilisé)
+    listen-on { any; };          // écoute toutes les interfaces IPv4
+    listen-on-v6 { any; };       // écoute toutes les interfaces IPv6
+};
+</code></pre></div>
+<h4 id="explication">Explication<a class="headerlink" href="#explication" title="Permanent link">🔗</a></h4>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Élément</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>directory "/var/cache/bind";</code></td>
+<td>Cache DNS</td>
+<td>Emplacement où BIND stocke son cache de requêtes DNS.</td>
+</tr>
+<tr>
+<td><code>forwarders { 8.8.8.8; 8.8.4.4; };</code></td>
+<td>Redirecteurs DNS</td>
+<td>Si le serveur ne connaît pas la réponse, il la demande à ces serveurs DNS (Google DNS).</td>
+</tr>
+<tr>
+<td><code>allow-recursion { ... };</code></td>
+<td>Contrôle d'accès</td>
+<td><strong>Limite les requêtes récursives</strong> aux adresses IP internes uniquement. Cela évite que le serveur soit utilisé comme un DNS ouvert (faille de sécurité).</td>
+</tr>
+<tr>
+<td><code>recursion yes;</code></td>
+<td>Récursion activée</td>
+<td>Autorise la récursion DNS (nécessaire pour les clients internes), mais <strong>seulement pour les IP listées ci-dessus</strong>.</td>
+</tr>
+<tr>
+<td><code>allow-transfer { none; };</code></td>
+<td>Sécurité zone DNS</td>
+<td>Interdit les <strong>transferts de zone</strong> (AXFR) aux autres serveurs DNS → protection contre la copie de données.</td>
+</tr>
+<tr>
+<td><code>dnssec-validation auto;</code></td>
+<td>Sécurité DNSSEC</td>
+<td>Active automatiquement la validation de DNSSEC (si disponible). Cela permet de vérifier l'authenticité des réponses DNS.</td>
+</tr>
+<tr>
+<td><code>listen-on { any; };</code></td>
+<td>Interfaces IPv4</td>
+<td>Le serveur DNS écoute sur <strong>toutes les interfaces réseau IPv4</strong>.</td>
+</tr>
+<tr>
+<td><code>listen-on-v6 { any; };</code></td>
+<td>Interfaces IPv6</td>
+<td>Idem pour IPv6.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-namedconflocalj2">7.2 <code>named.conf.local.j2</code><a class="headerlink" href="#72-namedconflocalj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier <code>named.conf.local.j2</code> contient la déclaration des zones DNS dont le serveur BIND est maître (master).
+C’est ici qu'on lies chaque domaine DNS à son fichier de données (fichier de zone).</p>
+<p><strong>Il joue un rôle fondamental</strong> : sans ce fichier, le serveur DNS ne saurait pas quelles zones il doit gérer, ni où trouver leurs enregistrements.</p>
+<p>Ce fichier est un template Ansible (.j2), qui sera transformé à l’exécution en <code>/etc/bind/named.conf.local</code>.</p>
+<h4 id="contenu">Contenu<a class="headerlink" href="#contenu" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="x">//</span>
+<span class="x">// named.conf.local</span>
+<span class="x">//</span>
+
+<span class="x">// Vue publique (zone exposée)</span>
+<span class="x">zone &quot;itway.fr&quot; {</span>
+<span class="x">    type master;</span>
+<span class="x">    file &quot;/etc/bind/db.itway.fr&quot;;</span>
+<span class="x">    allow-transfer { none; };</span>
+<span class="x">};</span>
+
+<span class="x">// Interne uniquement (zone privée)</span>
+<span class="x">zone &quot;int.itway.fr&quot; {</span>
+<span class="x">    type master;</span>
+<span class="x">    file &quot;/etc/bind/db.int.itway.fr&quot;;</span>
+<span class="x">    allow-transfer { none; };</span>
+<span class="x">};</span>
+
+<span class="x">zone &quot;10.10.10.in-addr.arpa&quot; {</span>
+<span class="x">    type master;</span>
+<span class="x">    file &quot;/etc/bind/db.10.10.10.rev&quot;;</span>
+<span class="x">    allow-transfer { none; };</span>
+<span class="x">};</span>
+</code></pre></div>
+<h4 id="declarations-des-zones">Déclarations des zones :<a class="headerlink" href="#declarations-des-zones" title="Permanent link">🔗</a></h4>
+<h5 id="quest-ce-quun-fichier-de-zone-dns">Qu'est-ce qu'un fichier de Zone DNS ?<a class="headerlink" href="#quest-ce-quun-fichier-de-zone-dns" title="Permanent link">🔗</a></h5>
+<p>Un fichier de zone décrit tous les enregistrements DNS pour un domaine donné.
+Par exemple : <strong>db.itway.fr</strong> est le fichier de zone pour le domaine <strong>itway.fr</strong>.</p>
+<ul>
+<li><strong>Publique</strong> <code>itway.fr</code> :</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zone "itway.fr"</code></td>
+<td>Déclare que le serveur gère la zone <code>itway.fr</code></td>
+</tr>
+<tr>
+<td><code>type master;</code></td>
+<td>Le serveur est <strong>maître</strong> (responsable principal) pour cette zone</td>
+</tr>
+<tr>
+<td><code>file "/etc/bind/db.itway.fr"</code></td>
+<td>Le fichier de zone contenant les enregistrements se trouve à cette adresse</td>
+</tr>
+<tr>
+<td><code>allow-transfer { none; };</code></td>
+<td>Interdit tout <strong>transfert de zone</strong> à d'autres serveurs DNS (protection contre la copie ou les fuites DNS)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Cette zone est publique : elle contient des noms accessibles depuis Internet (www.itway.fr, mail.itway.fr, etc.).</p>
+</blockquote>
+<ul>
+<li><strong>Privée</strong> <code>int.itway.fr</code> :</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zone "int.itway.fr"</code></td>
+<td>Déclare la zone DNS <strong>privée</strong> interne</td>
+</tr>
+<tr>
+<td><code>type master;</code></td>
+<td>Le serveur est aussi maître ici</td>
+</tr>
+<tr>
+<td><code>file "/etc/bind/db.int.itway.fr"</code></td>
+<td>Fichier contenant les noms internes (<code>dmz-web.int.itway.fr</code>, etc.)</td>
+</tr>
+<tr>
+<td><code>allow-transfer { none; };</code></td>
+<td>Toujours interdit, pour sécuriser la zone</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Cette zone est interne uniquement : elle contient des noms non visibles sur Internet, pour éviter de dévoiler des détails de l’infrastructure</p>
+</blockquote>
+<ul>
+<li><strong>Reverse DNS</strong> <code>10.10.10.in-addr.arpa</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zone "10.10.10.in-addr.arpa"</code></td>
+<td>Zone DNS <strong>inverse</strong>, utilisée pour traduire une IP → nom</td>
+</tr>
+<tr>
+<td><code>file "/etc/bind/db.10.10.10.rev"</code></td>
+<td>Fichier contenant les enregistrements PTR</td>
+</tr>
+<tr>
+<td><code>type master</code> et <code>allow-transfer { none; };</code></td>
+<td>Identique aux autres zones : autorité principale et sécurité</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Cette zone est essentielle pour la résolution inverse DNS : elle permet, par exemple, à 10.10.10.3 de répondre qu’il s’agit de mail.itway.fr.</p>
+</blockquote>
+<h4 id="le-fichier-namedconflocalj2-sert-a">Le fichier <code>named.conf.local.j2</code> sert à :<a class="headerlink" href="#le-fichier-namedconflocalj2-sert-a" title="Permanent link">🔗</a></h4>
+<ul>
+<li>Déclarer quelles zones le serveur DNS va gérer (itway.fr, int.itway.fr, reverse DNS),</li>
+<li>Associer chaque zone à son fichier de données DNS,</li>
+<li>Interdire les transferts de zone, pour des raisons de sécurité.</li>
+<li>Il est indispensable pour que BIND sache comment et quoi servir en tant que DNS maître.</li>
+</ul>
+<h3 id="73-dbitwayfrj2">7.3 <code>db.itway.fr.j2</code><a class="headerlink" href="#73-dbitwayfrj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier <code>db.itway.fr.j2</code> est un élément central dans la configuration DNS. </p>
+<h5 id="le-contenu-du-fichier">Le contenu du fichier :<a class="headerlink" href="#le-contenu-du-fichier" title="Permanent link">🔗</a></h5>
+<h6 id="a-le-serveur-dns-principal-soa">A. Le serveur DNS principal (SOA)<a class="headerlink" href="#a-le-serveur-dns-principal-soa" title="Permanent link">🔗</a></h6>
+<blockquote>
+<p>SOA = Start of Authority</p>
+</blockquote>
+<p>C’est le premier enregistrement obligatoire dans un fichier de zone DNS.
+Il indique qui est l’autorité principale pour cette zone, et comment elle se gère (temps, rafraîchissement, etc.).</p>
+<p>Il déclare le serveur DNS maître pour cette zone et définit des paramètres de gestion comme : </p>
+<ul>
+<li>Quand les DNS secondaires doivent se synchroniser,</li>
+<li>Quel est le contact admin,</li>
+<li>Quel est le numéro de version de la zone (sérial).</li>
+</ul>
+<p>SOA définit dans le playbook : 
+<div class="highlight"><pre><span></span><code><span class="x">$TTL 1h</span>
+<span class="x">@   IN  SOA ns1.itway.fr. admin.itway.fr. (</span>
+<span class="x">        2025052905 ; Serial auto</span>
+<span class="x">        1h   ; Refresh</span>
+<span class="x">        15m  ; Retry</span>
+<span class="x">        1w   ; Expire</span>
+<span class="x">        1h ) ; Neg TTL</span>
+</code></pre></div></p>
+<p><strong>Explication</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@</code></td>
+<td>Représente le domaine courant (<code>itway.fr</code>)</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td>Classe Internet</td>
+</tr>
+<tr>
+<td><code>SOA</code></td>
+<td>Début d’autorité</td>
+</tr>
+<tr>
+<td><code>ns1.itway.fr.</code></td>
+<td>Nom du serveur DNS maître (serveur principal)</td>
+</tr>
+<tr>
+<td><code>admin.itway.fr.</code></td>
+<td>Contact admin (→ <code>admin@itway.fr</code>)</td>
+</tr>
+<tr>
+<td><code>2025052901</code></td>
+<td><strong>Serial</strong> = version du fichier de zone</td>
+</tr>
+<tr>
+<td><code>1h</code> (Refresh)</td>
+<td>Tous les 1h, un esclave vérifie si la zone a changé</td>
+</tr>
+<tr>
+<td><code>15m</code> (Retry)</td>
+<td>Si l’esclave échoue, il réessaie dans 15 minutes</td>
+</tr>
+<tr>
+<td><code>1w</code> (Expire)</td>
+<td>Si aucune maj en 1 semaine, il considère la zone invalide</td>
+</tr>
+<tr>
+<td><code>1h</code> (Negative TTL)</td>
+<td>Durée pour laquelle une réponse "non trouvée" est gardée en cache</td>
+</tr>
+</tbody>
+</table>
+<h6 id="b-les-noms-et-leurs-ips-ex-mailitwayfr-1010103">B. Les noms et leurs IPs (ex : mail.itway.fr → 10.10.10.3)<a class="headerlink" href="#b-les-noms-et-leurs-ips-ex-mailitwayfr-1010103" title="Permanent link">🔗</a></h6>
+<p>C’est ici que l’on associe les noms des machines (hostnames) à leurs adresses IP. Cela permet au serveur DNS de répondre aux clients en traduisant un nom de domaine en adresse IP.</p>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Nom du paramètre</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ns1</code></td>
+<td><strong>Nom</strong> (ou label)</td>
+<td>C’est le nom de l’hôte (dans ce cas, <code>ns1.itway.fr</code>)</td>
+</tr>
+<tr>
+<td><code>IN</code></td>
+<td><strong>Classe</strong></td>
+<td>Signifie "Internet" (valeur presque toujours <code>IN</code>)</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td><strong>Type</strong></td>
+<td>Type d’enregistrement DNS : ici, un <code>A</code> pour une adresse IPv4</td>
+</tr>
+<tr>
+<td><code>10.10.10.4</code></td>
+<td><strong>Valeur</strong></td>
+<td>C’est l’adresse IP associée au nom <code>ns1</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>@</code> : est un raccourci qui représente le nom de domaine racine de la zone (ici, itway.fr). L’enregistrement MX indique à quel serveur envoyer les emails destinés au domaine.</li>
+<li><code>ns1</code> : ns1.itway.fr pointe vers l’IP 10.10.10.4</li>
+<li><code>CNAME</code> : signifie que <strong>www.itway.fr</strong> redirige vers ce que rproxy.itway.fr pointe (donc évite la redondance).</li>
+<li><code>TXT</code> : Un enregistrement TXT (Text) permet d’ajouter du texte libre dans une zone DNS. Il est souvent utilisé pour la sécurité (SPF, DKIM, DMARC), la vérification de domaine, ou des informations spécifiques aux services.
+<strong>Exemple dans le projet :</strong>
+<div class="highlight"><pre><span></span><code>@   IN  TXT &quot;v=spf1 mx -all&quot;
+</code></pre></div>
+<code>v=spf1 mx -all</code> → contenu du texte, ici une politique SPF<blockquote>
+<p>SPF = Sender Policy Framework
+C’est un mécanisme de protection contre le spoofing (falsification d’expéditeur dans les emails). Il indique quels serveurs ont le droit d’envoyer des emails au nom du domaine.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="74-dbintitwayfrj2">7.4 <code>db.int.itway.fr.j2</code><a class="headerlink" href="#74-dbintitwayfrj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier <strong>db.int.itway.fr.j2</strong> définit une zone DNS privée, non accessible depuis Internet.
+Il est utilisé pour la résolution des noms internes à l’entreprise, notamment ceux qui ne doivent être visibles que depuis les réseaux internes de confiance.</p>
+<h4 id="quest-ce-quune-zone-dns-interne">Qu'est-ce qu'une zone DNS interne ?<a class="headerlink" href="#quest-ce-quune-zone-dns-interne" title="Permanent link">🔗</a></h4>
+<p>C’est un fichier de zone qui décrit des noms et adresses IP internes, souvent associés à des services ou infrastructures non publics.
+Dans notre cas, cette zone couvre le domaine <strong>int.itway.fr</strong>, utilisé pour désigner des machines internes de la DMZ.</p>
+<h4 id="contenu-du-fichier">Contenu du fichier :<a class="headerlink" href="#contenu-du-fichier" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="x">$TTL 1h</span>
+<span class="x">@   IN  SOA ns1.int.itway.fr. admin.itway.fr. (</span>
+<span class="x">        </span><span class="cp">{{</span> <span class="nv">ansible_date_time.date</span> <span class="o">|</span> <span class="nf">regex_replace</span><span class="o">(</span><span class="s1">&#39;-&#39;</span><span class="o">,</span> <span class="s1">&#39;&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">01 ; Serial</span>
+<span class="x">        1h   ; Refresh</span>
+<span class="x">        15m  ; Retry</span>
+<span class="x">        1w   ; Expire</span>
+<span class="x">        1h ) ; Neg TTL</span>
+
+<span class="x">    IN  NS  ns1.int.itway.fr.</span>
+
+<span class="x">ns1         IN  A   10.10.10.4</span>
+<span class="x">dmz-web     IN  A   10.10.10.2</span>
+<span class="x">dmz-rt      IN  A   10.10.10.1</span>
+<span class="x">dmz-rproxy  IN  A   10.10.10.5</span>
+</code></pre></div>
+<h4 id="pourquoi-faire-un-deuxieme-fichier-au-lieu-de-tout-mettre-dans-un-seul">Pourquoi faire un deuxième fichier au lieu de tout mettre dans un seul ?<a class="headerlink" href="#pourquoi-faire-un-deuxieme-fichier-au-lieu-de-tout-mettre-dans-un-seul" title="Permanent link">🔗</a></h4>
+<p>Parce que itway.fr est une zone publique mais int.itway.fr est une zone privée (interne). Ce sont deux zones DNS distinctes, avec des usages, des accès et des contraintes de sécurité différents. </p>
+<p>La séparation permet une meilleure sécurité, une meilleure organisation, et respecte le fonctionnement technique de Bind9.</p>
+<blockquote>
+<p>Il ne faut pas oublier qu'on à déclarer deux zones dans <a href="#namedconflocalj2"><code>named.conf.local.j2</code></a> et on limite les requêtes récursives dans dans <a href="#namedconfoptionsj2"><code>named.conf.options.j2</code></a>.</p>
+</blockquote>
+<h3 id="75-db101010revj2">7.5 <code>db.10.10.10.rev.j2</code><a class="headerlink" href="#75-db101010revj2" title="Permanent link">🔗</a></h3>
+<p>Ce fichier est une zone de résolution inverse (reverse DNS).
+Il permet de faire l’inverse de ce que fait un enregistrement A :
+Au lieu de traduire un nom en IP, il traduit une IP en nom.</p>
+<h4 id="quest-ce-quune-zone-inverse">Qu'est ce qu'une zone inverse ?<a class="headerlink" href="#quest-ce-quune-zone-inverse" title="Permanent link">🔗</a></h4>
+<p>Quand une machine connaît l’IP (ex. 10.10.10.3) et veut connaître le nom de domaine associé, elle effectue une requête PTR (Pointer Record) via une zone dite inverse.</p>
+<p>Cette zone est toujours associée à des IPs et suit le format :
+x.x.x.in-addr.arpa
+<div class="highlight"><pre><span></span><code><span class="x">    2   IN  PTR dmz-web.itway.fr.</span>
+<span class="x">    3   IN  PTR mail.itway.fr.</span>
+<span class="x">    4   IN  PTR ns1.itway.fr.</span>
+<span class="x">    5   IN  PTR rproxy.itway.fr.</span>
+</code></pre></div></p>
+<h4 id="lavantage-dune-zone-inverse">L'avantage d'une zone inverse ?<a class="headerlink" href="#lavantage-dune-zone-inverse" title="Permanent link">🔗</a></h4>
+<ul>
+<li>Certains serveurs refusent des connexions SMTP s’il n’y a pas de PTR valide.</li>
+<li>Cela améliore la légitimité DNS de tes services aux yeux d’Internet.</li>
+<li>Utile pour l’analyse de logs réseau.</li>
+</ul>
+<hr />
+<h2 id="7-securite-conformite">7. Sécurité &amp; conformité<a class="headerlink" href="#7-securite-conformite" title="Permanent link">🔗</a></h2>
+<table>
+<thead>
+<tr>
+<th>Sécurité appliquée</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Récursion filtrée</td>
+<td><code>allow-recursion</code> restreint aux réseaux internes</td>
+</tr>
+<tr>
+<td>Pas de transfert</td>
+<td><code>allow-transfer { none; }</code> pour éviter vol de zones</td>
+</tr>
+<tr>
+<td>Zone interne privée</td>
+<td><code>int.itway.fr</code> non exposée via firewall et config</td>
+</tr>
+<tr>
+<td>Pas de communication avec DNS interne</td>
+<td>Isolation réseau stricte</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-probleme-rencontre-permissions-sudo-brisees">8. Problème rencontré : permissions <code>sudo</code> brisées<a class="headerlink" href="#8-probleme-rencontre-permissions-sudo-brisees" title="Permanent link">🔗</a></h2>
+<h3 id="solution-appliquee">Solution appliquée :<a class="headerlink" href="#solution-appliquee" title="Permanent link">🔗</a></h3>
+<div class="highlight"><pre><span></span><code>chown<span class="w"> </span>root:root<span class="w"> </span>/usr/bin/sudo
+chmod<span class="w"> </span><span class="m">4755</span><span class="w"> </span>/usr/bin/sudo
+</code></pre></div>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">🔗</a></h2>
+<p>Ce projet met en place un serveur DNS sécurisé et bien segmenté :</p>
+<ul>
+<li>Zones publiques et internes distinctes.</li>
+<li>Isolation DMZ/infrastructure.</li>
+<li>Ansible pour fiabilité et industrialisation.</li>
+<li>Conforme au cahier des charges.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../dmz/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Objectif">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Objectif
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../rproxy/" class="md-footer__link md-footer__link--next" aria-label="Suivant: DMZ-RPROXY">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                DMZ-RPROXY
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.annotate", "content.tabs.link", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

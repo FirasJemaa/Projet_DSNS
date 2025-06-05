@@ -1,0 +1,2654 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Projet de fin d'année - ITWay">
+      
+      
+        <meta name="author" content="Firase JEMAA & Najet BOUKADOUR">
+      
+      
+      
+        <link rel="prev" href="../dns/">
+      
+      
+        <link rel="next" href="../web/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>DMZ-RPROXY - ITWay</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="lime">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#serveur-rproxy-reverse-proxy" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="ITWay" class="md-header__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ITWay
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DMZ-RPROXY
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="salte" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FirasJemaa/Projet_DSNS_playbook" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../phase1/" class="md-tabs__link">
+          
+  
+  
+  Phase 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../phase2/" class="md-tabs__link">
+          
+  
+  
+  Phase 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../phase3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Phase 3
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ITWay" class="md-nav__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ITWay
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FirasJemaa/Projet_DSNS_playbook" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accueil
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conception/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conception du projet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prérequis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Routeurs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Routeurs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../routeurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration des Routeurs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CORE-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    SRV
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            SRV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../srv/srv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../srv/ad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-AD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../srv/pki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-PKI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../srv/mail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-MAIL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    DMZ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            DMZ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dmz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-DNS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RPROXY
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RPROXY
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-reverse-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Reverse Proxy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Reverse Proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-cest-quoi-un-reverse-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 C'est quoi un Reverse Proxy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctionnement :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avantages :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-structure-du-projet-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Structure du projet Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gestion-du-certificat-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Gestion du certificat TLS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-configuration-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Configuration Nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Configuration Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-nginxconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 nginx.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 nginx.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-1-parametres-globaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 1 : Paramètres globaux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-2-gestion-des-connexions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 2 : Gestion des connexions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-3-bloc-http-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 3 : Bloc HTTP principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-defaultconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 default.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 default.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-1-redirection-http-vers-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 1 : Redirection HTTP vers HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-2-definition-du-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 2 : Définition du backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-3-serveur-principal-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 3 : Serveur principal HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-webmailconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 webmail.conf.j2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-securite-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Sécurité HTTPS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Sécurité HTTPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-ssl_paramsconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 ssl_params.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 ssl_params.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-quoi-sert-ce-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      À quoi sert ce fichier ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-security_headersconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 security_headers.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 security_headers.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-quoi-sert-ce-fichier_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      À quoi sert ce fichier ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-tests-fonctionnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Tests fonctionnels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Tests fonctionnels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redirection-http-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirection HTTP ➜ HTTPS :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test HTTPS :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-https-webmailitwayfr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test HTTPS webmail.itway.fr :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-en-externe-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test en externe (Internet)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Liens utiles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-resume-du-role-de-dmz-rproxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Résumé du rôle de DMZ-RPROXY
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-WEB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-SMTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    IT
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            IT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/it/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IT-ANSIBLE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IT-GRAFANA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-reverse-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Reverse Proxy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Reverse Proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-cest-quoi-un-reverse-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 C'est quoi un Reverse Proxy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonctionnement :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avantages :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-structure-du-projet-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Structure du projet Ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gestion-du-certificat-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Gestion du certificat TLS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-configuration-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Configuration Nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Configuration Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-nginxconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 nginx.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 nginx.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-1-parametres-globaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 1 : Paramètres globaux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-2-gestion-des-connexions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 2 : Gestion des connexions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-3-bloc-http-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 3 : Bloc HTTP principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-defaultconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 default.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 default.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-1-redirection-http-vers-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 1 : Redirection HTTP vers HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-2-definition-du-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 2 : Définition du backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explication-bloc-3-serveur-principal-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explication Bloc 3 : Serveur principal HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-webmailconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 webmail.conf.j2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-securite-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Sécurité HTTPS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Sécurité HTTPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-ssl_paramsconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 ssl_params.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 ssl_params.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-quoi-sert-ce-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      À quoi sert ce fichier ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-security_headersconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 security_headers.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 security_headers.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-quoi-sert-ce-fichier_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      À quoi sert ce fichier ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-tests-fonctionnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Tests fonctionnels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Tests fonctionnels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redirection-http-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirection HTTP ➜ HTTPS :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test HTTPS :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-https-webmailitwayfr" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test HTTPS webmail.itway.fr :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-en-externe-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test en externe (Internet)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Liens utiles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-resume-du-role-de-dmz-rproxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Résumé du rôle de DMZ-RPROXY
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="serveur-rproxy-reverse-proxy">Serveur RPROXY (Reverse Proxy)<a class="headerlink" href="#serveur-rproxy-reverse-proxy" title="Permanent link">🔗</a></h1>
+<hr />
+<h2 id="1-objectifs">1. Objectifs<a class="headerlink" href="#1-objectifs" title="Permanent link">🔗</a></h2>
+<p>Mettre en place un <strong>serveur Reverse Proxy sécurisé (DMZ-RPROXY)</strong> dans la DMZ, accessible depuis :</p>
+<ul>
+<li><strong>Internet</strong></li>
+<li><strong>Tous les réseaux internes de confiance</strong></li>
+</ul>
+<p>Ce serveur a pour mission de :</p>
+<ul>
+<li><strong>Exposer les services web</strong> internes de manière sécurisée via HTTPS :<ul>
+<li><code>itway.fr</code></li>
+<li><code>webmail.itway.fr</code></li>
+</ul>
+</li>
+<li><strong>Rediriger</strong> les requêtes vers les serveurs internes correspondants :<ul>
+<li><code>DMZ-WEB</code> (ex : 10.10.10.2)</li>
+<li><code>Serveur mail/webmail</code> (ex : 10.10.10.3)</li>
+</ul>
+</li>
+<li><strong>Gérer les certificats SSL/TLS</strong> via une <strong>PKI interne</strong> (<code>SRV-PKI</code>)</li>
+<li>Appliquer des <strong>règles de sécurité avancées</strong> (headers, protocoles, ciphers)</li>
+</ul>
+<hr />
+<h2 id="2-reverse-proxy">2. Reverse Proxy<a class="headerlink" href="#2-reverse-proxy" title="Permanent link">🔗</a></h2>
+<h3 id="21-cest-quoi-un-reverse-proxy">2.1 C'est quoi un Reverse Proxy<a class="headerlink" href="#21-cest-quoi-un-reverse-proxy" title="Permanent link">🔗</a></h3>
+<p>Un <strong>reverse proxy</strong> est un serveur <strong>intermédiaire</strong> entre un client (navigateur) et un ou plusieurs serveurs d'application.</p>
+<h3 id="fonctionnement">Fonctionnement :<a class="headerlink" href="#fonctionnement" title="Permanent link">🔗</a></h3>
+<ol>
+<li>Le client se connecte au reverse proxy.</li>
+<li>Le proxy <strong>reçoit la requête</strong>, la <strong>redirige vers le bon serveur</strong> (en DMZ ou LAN).</li>
+<li>Il <strong>reçoit la réponse</strong> et la renvoie <strong>au client comme si elle venait de lui</strong>.</li>
+</ol>
+<h3 id="avantages">Avantages :<a class="headerlink" href="#avantages" title="Permanent link">🔗</a></h3>
+<table>
+<thead>
+<tr>
+<th>Bénéfice</th>
+<th>Détail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sécurité</strong></td>
+<td>Les serveurs réels sont masqués</td>
+</tr>
+<tr>
+<td><strong>HTTPS centralisé</strong></td>
+<td>Un seul point de gestion du chiffrement</td>
+</tr>
+<tr>
+<td><strong>Load balancing possible</strong></td>
+<td>Peut répartir les requêtes entre plusieurs backends</td>
+</tr>
+<tr>
+<td><strong>Contrôle du trafic</strong></td>
+<td>Possibilité de filtrer, journaliser, réécrire les requêtes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-justification-des-choix">3. Justification des choix<a class="headerlink" href="#3-justification-des-choix" title="Permanent link">🔗</a></h2>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Choix effectué</th>
+<th>Justification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reverse Proxy</td>
+<td><strong>Nginx</strong></td>
+<td>Léger, rapide, facile à configurer</td>
+</tr>
+<tr>
+<td>SSL/TLS</td>
+<td>Certificat signé par <strong>SRV-PKI</strong></td>
+<td>Sécurité, intégration dans ton infrastructure</td>
+</tr>
+<tr>
+<td>Automatisation</td>
+<td><strong>Ansible</strong> + rôles</td>
+<td>Déploiement reproductible et versionné</td>
+</tr>
+<tr>
+<td>Séparation des domaines</td>
+<td><code>itway.fr</code>, <code>webmail.itway.fr</code></td>
+<td>Permet une gestion claire des services</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-structure-du-projet-ansible">4. Structure du projet Ansible<a class="headerlink" href="#4-structure-du-projet-ansible" title="Permanent link">🔗</a></h2>
+<div class="highlight"><pre><span></span><code>roles/
+└── dmz-rproxy/
+    ├── tasks/
+    │   ├── main.yml
+    │   └── cert.yml
+    ├── templates/
+    │   ├── nginx.conf.j2
+    │   ├── default.conf.j2
+    │   ├── webmail.conf.j2
+    │   ├── ssl_params.conf.j2
+    │   └── security_headers.conf.j2
+    ├── vars/
+    │   └── main.yml
+    └── handlers/
+        └── main.yml
+</code></pre></div>
+<hr />
+<h2 id="5-gestion-du-certificat-tls">5. Gestion du certificat TLS<a class="headerlink" href="#5-gestion-du-certificat-tls" title="Permanent link">🔗</a></h2>
+<p>Le certificat TLS est :</p>
+<ul>
+<li><strong>Généré localement</strong> sur DMZ-RPROXY (<code>.key</code>)</li>
+<li>Une <strong>CSR</strong> est créée (<code>.csr</code>)</li>
+<li>Elle est envoyée et <strong>signée par <code>SRV-PKI</code></strong></li>
+<li>Le certificat signé (<code>.crt</code>) + la CA (<code>ca.crt</code>) sont récupérés</li>
+<li>Un fichier <code>fullchain.crt</code> est assemblé</li>
+</ul>
+<blockquote>
+<p>Ceci est <strong>entièrement automatisé</strong> via Ansible (<code>tasks/cert.yml</code>)</p>
+</blockquote>
+<hr />
+<h2 id="6-configuration-nginx">6. Configuration Nginx<a class="headerlink" href="#6-configuration-nginx" title="Permanent link">🔗</a></h2>
+<h3 id="61-nginxconfj2">6.1 <code>nginx.conf.j2</code><a class="headerlink" href="#61-nginxconfj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier nginx.conf.j2 est le fichier de configuration principal de Nginx.
+Il est déployé automatiquement via Ansible grâce au template .j2.</p>
+<p>Ce fichier configure les comportements globaux de Nginx :</p>
+<ul>
+<li>Utilisateur système</li>
+<li>Nombre de processus</li>
+<li>Gestion des connexions</li>
+<li>Fichiers de logs</li>
+<li>Chargement des fichiers de configuration supplémentaires</li>
+</ul>
+<h4 id="explication-bloc-1-parametres-globaux">Explication Bloc 1 : Paramètres globaux<a class="headerlink" href="#explication-bloc-1-parametres-globaux" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">user</span><span class="w"> </span><span class="s">www-data</span><span class="p">;</span>
+<span class="k">worker_processes</span><span class="w"> </span><span class="s">auto</span><span class="p">;</span>
+<span class="k">pid</span><span class="w"> </span><span class="s">/run/nginx.pid</span><span class="p">;</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user www-data;</code></td>
+<td>Définit l’utilisateur système pour Nginx (par défaut sur Debian : <code>www-data</code>)</td>
+</tr>
+<tr>
+<td><code>worker_processes auto;</code></td>
+<td>Nombre de processus = auto-adapté selon les cœurs CPU disponibles</td>
+</tr>
+<tr>
+<td><code>pid /run/nginx.pid;</code></td>
+<td>Fichier contenant le PID principal de Nginx (utilisé pour la gestion du service)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="explication-bloc-2-gestion-des-connexions">Explication Bloc 2 : Gestion des connexions<a class="headerlink" href="#explication-bloc-2-gestion-des-connexions" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">events</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">worker_connections</span><span class="w"> </span><span class="mi">1024</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>worker_connections 1024;</code></td>
+<td>Chaque worker peut accepter jusqu’à 1024 connexions simultanées</td>
+</tr>
+</tbody>
+</table>
+<h4 id="explication-bloc-3-bloc-http-principal">Explication Bloc 3 : Bloc HTTP principal<a class="headerlink" href="#explication-bloc-3-bloc-http-principal" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">http</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="s">/etc/nginx/mime.types</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">default_type</span><span class="w"> </span><span class="s">application/octet-stream</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">sendfile</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">keepalive_timeout</span><span class="w"> </span><span class="mi">65</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">access_log</span><span class="w"> </span><span class="s">/var/log/nginx/access.log</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">error_log</span><span class="w">  </span><span class="s">/var/log/nginx/error.log</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="s">/etc/nginx/conf.d/*.conf</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="s">/etc/nginx/sites-enabled/*</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>include /etc/nginx/mime.types;</code></td>
+<td>Charge la liste des types MIME (text/html, image/png...)</td>
+</tr>
+<tr>
+<td><code>default_type application/octet-stream;</code></td>
+<td>Type de fichier par défaut si non reconnu (binaire générique)</td>
+</tr>
+<tr>
+<td><code>sendfile on;</code></td>
+<td>Utilise une méthode optimisée pour envoyer les fichiers statiques</td>
+</tr>
+<tr>
+<td><code>keepalive_timeout 65;</code></td>
+<td>Garde les connexions HTTP ouvertes pendant 65 secondes (timeout)</td>
+</tr>
+<tr>
+<td><code>access_log /var/log/nginx/access.log;</code></td>
+<td>Journalise toutes les requêtes reçues</td>
+</tr>
+<tr>
+<td><code>error_log /var/log/nginx/error.log;</code></td>
+<td>Journalise les erreurs rencontrées</td>
+</tr>
+<tr>
+<td><code>include /etc/nginx/conf.d/*.conf;</code></td>
+<td>Charge les fichiers de configuration globaux (certificats, headers, etc.)</td>
+</tr>
+<tr>
+<td><code>include /etc/nginx/sites-enabled/*;</code></td>
+<td>Charge les vhosts activés (itway.fr, webmail.itway.fr, etc.)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-defaultconfj2">6.2 <code>default.conf.j2</code><a class="headerlink" href="#62-defaultconfj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier <code>default.conf.j2</code> est un template Ansible qui génère la configuration Nginx pour le site principal itway.fr.
+Il définit :</p>
+<ul>
+<li>Une redirection automatique de HTTP vers HTTPS,</li>
+<li>Une configuration sécurisée pour le reverse proxy en HTTPS,</li>
+<li>La connexion sécurisée vers le backend web_front (le serveur web interne),</li>
+<li>L’intégration de la sécurité TLS (certificats, headers).</li>
+</ul>
+<p>Vhost principal pour :</p>
+<ul>
+<li><code>itway.fr</code> (redirection HTTP ➜ HTTPS)</li>
+<li>Reverse proxy vers <code>10.10.10.2</code></li>
+</ul>
+<h4 id="explication-bloc-1-redirection-http-vers-https">Explication Bloc 1 : Redirection HTTP vers HTTPS<a class="headerlink" href="#explication-bloc-1-redirection-http-vers-https" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Redirection HTTP → HTTPS</span>
+<span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="s">[::]:80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">itway.fr</span><span class="w"> </span><span class="s">www.itway.fr</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">return</span><span class="w"> </span><span class="mi">301</span><span class="w"> </span><span class="s">https://</span><span class="nv">$host$request_uri</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listen 80;</code></td>
+<td>Nginx écoute sur le port 80 (HTTP)</td>
+</tr>
+<tr>
+<td><code>listen [::]:80;</code></td>
+<td>Idem pour IPv6</td>
+</tr>
+<tr>
+<td><code>server_name itway.fr www.itway.fr;</code></td>
+<td>Ce bloc concerne ces domaines</td>
+</tr>
+<tr>
+<td><code>return 301 https://$host$request_uri;</code></td>
+<td>Redirige toutes les requêtes HTTP vers HTTPS (code 301 = redirection permanente)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>But : forcer tous les utilisateurs à passer par une connexion sécurisée.</p>
+</blockquote>
+<h4 id="explication-bloc-2-definition-du-backend">Explication Bloc 2 : Définition du backend<a class="headerlink" href="#explication-bloc-2-definition-du-backend" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Bloc principal HTTPS</span>
+<span class="k">upstream</span><span class="w"> </span><span class="s">web_front</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="n">10.10.10.2</span><span class="p">:</span><span class="mi">443</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>upstream web_front</code></td>
+<td>Définit un groupe de serveurs backend, ici appelé <code>web_front</code></td>
+</tr>
+<tr>
+<td><code>server 10.10.10.2:443;</code></td>
+<td>Ce backend est le <strong>serveur DMZ-WEB</strong> interne, écoutant en HTTPS</td>
+</tr>
+</tbody>
+</table>
+<h4 id="explication-bloc-3-serveur-principal-https">Explication Bloc 3 : Serveur principal HTTPS<a class="headerlink" href="#explication-bloc-3-serveur-principal-https" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="s">[::]:443</span><span class="w"> </span><span class="s">ssl</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">itway.fr</span><span class="w"> </span><span class="s">www.itway.fr</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">           </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_ssl_dir</span><span class="w"> </span><span class="err">}}</span><span class="s">/</span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_fullchain_filename</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w">       </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_ssl_dir</span><span class="w"> </span><span class="err">}}</span><span class="s">/</span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_key_filename</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">ssl_trusted_certificate</span><span class="w">   </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_ssl_dir</span><span class="w"> </span><span class="err">}}</span><span class="s">/</span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_ca_filename</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_nginx_snippet_dir</span><span class="w"> </span><span class="err">}}</span><span class="s">/ssl_params.conf</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">include</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_nginx_snippet_dir</span><span class="w"> </span><span class="err">}}</span><span class="s">/security_headers.conf</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">https://web_front</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_ssl_verify</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_read_timeout</span><span class="w"> </span><span class="s">30s</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Ligne</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listen 443 ssl http2;</code></td>
+<td>Le serveur écoute en HTTPS sur IPv4</td>
+</tr>
+<tr>
+<td><code>listen [::]:443 ssl http2;</code></td>
+<td>Idem pour IPv6</td>
+</tr>
+<tr>
+<td><code>server_name ...</code></td>
+<td>Ce serveur s’applique à <code>itway.fr</code> et <code>www.itway.fr</code></td>
+</tr>
+<tr>
+<td><code>ssl_certificate</code></td>
+<td>Le certificat TLS (signé par ta PKI)</td>
+</tr>
+<tr>
+<td><code>ssl_certificate_key</code></td>
+<td>La clé privée associée</td>
+</tr>
+<tr>
+<td><code>ssl_trusted_certificate</code></td>
+<td>La chaîne de confiance (CA) pour vérification côté client</td>
+</tr>
+<tr>
+<td><code>Host</code></td>
+<td>Nom de domaine original</td>
+</tr>
+<tr>
+<td><code>X-Real-IP</code></td>
+<td>Adresse IP du client</td>
+</tr>
+<tr>
+<td><code>X-Forwarded-For</code></td>
+<td>Historique des proxys traversés</td>
+</tr>
+<tr>
+<td><code>X-Forwarded-Proto</code></td>
+<td>Protocole utilisé (http/https)</td>
+</tr>
+<tr>
+<td><code>proxy_pass</code></td>
+<td>Redirige les requêtes vers <code>https://web_front</code> (défini plus haut)</td>
+</tr>
+<tr>
+<td><code>proxy_ssl_verify off</code></td>
+<td>Désactive la vérification TLS côté backend (car c’est un certif interne non public)</td>
+</tr>
+<tr>
+<td><code>proxy_read_timeout 30s</code></td>
+<td>Timeout de lecture des réponses (au-delà de 30s → erreur)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-webmailconfj2">6.3 <code>webmail.conf.j2</code><a class="headerlink" href="#63-webmailconfj2" title="Permanent link">🔗</a></h3>
+<p>Même principe que <code>default.itway.fr</code> pour <code>webmail.itway.fr</code> ➜ vers <code>10.10.10.3</code> (SMTP).</p>
+<hr />
+<h2 id="7-securite-https">7. Sécurité HTTPS<a class="headerlink" href="#7-securite-https" title="Permanent link">🔗</a></h2>
+<h3 id="71-ssl_paramsconfj2">7.1 <code>ssl_params.conf.j2</code><a class="headerlink" href="#71-ssl_paramsconfj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier ssl_params.conf.j2 est un fichier de configuration inclus dans chaque server HTTPS de Nginx.
+Il est utilisé pour configurer la sécurité TLS/SSL du reverse proxy.
+On y définit les protocoles autorisés, les chiffrements (ciphers), et des protections comme OCSP Stapling ou HSTS.</p>
+<h4 id="a-quoi-sert-ce-fichier">À quoi sert ce fichier ?<a class="headerlink" href="#a-quoi-sert-ce-fichier" title="Permanent link">🔗</a></h4>
+<p>Il permet de :</p>
+<ul>
+<li>Sécuriser la connexion HTTPS</li>
+<li>Empêcher l’utilisation de protocoles obsolètes</li>
+<li>Définir quelles suites de chiffrement (ciphers) le serveur doit accepter</li>
+<li>Améliorer la vitesse et la fiabilité avec OCSP stapling</li>
+<li>Protéger les utilisateurs avec HSTS (forcer HTTPS sur longue durée)</li>
+</ul>
+<h4 id="contenu-du-fichier">Contenu du fichier<a class="headerlink" href="#contenu-du-fichier" title="Permanent link">🔗</a></h4>
+<ul>
+<li>
+<p>Activer uniquement les protocoles TLS spécifiés dans les variables Ansible :
+<div class="highlight"><pre><span></span><code><span class="k">ssl_protocols</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_ssl_protocols</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Permettre au client (navigateur) de choisir le chiffrement préférée parmi celles proposées :
+<div class="highlight"><pre><span></span><code><span class="k">ssl_prefer_server_ciphers</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Définir les ciphers autorisés (suites de chiffrement TLS) :
+<div class="highlight"><pre><span></span><code><span class="k">ssl_ciphers</span><span class="w"> </span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_ssl_ciphers</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span>
+</code></pre></div></p>
+<blockquote>
+<p>Objectif : accepter uniquement les ciphers modernes, sûrs, et résistants aux attaques (ex : ECDHE-RSA-AES256-GCM-SHA384)</p>
+</blockquote>
+</li>
+<li>
+<p>OSCP Stapling :
+<div class="highlight"><pre><span></span><code><span class="k">ssl_stapling</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+<span class="k">ssl_stapling_verify</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+</code></pre></div></p>
+<ul>
+<li>
+<p><code>ssl_stapling on;</code> : Permet de fournir une preuve que le certificat est valide (revocation check rapide)</p>
+</li>
+<li>
+<p><code>ssl_stapling_verify on;</code> : Vérifie la signature de cette preuve</p>
+</li>
+</ul>
+</li>
+<li>
+<p>HSTS – Force HTTPS côté client :
+<div class="highlight"><pre><span></span><code><span class="k">{%</span><span class="w"> </span><span class="s">if</span><span class="w"> </span><span class="s">rproxy_hsts_max_age|int</span><span class="w"> </span><span class="s">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="s">%</span><span class="err">}</span>
+<span class="s">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">&quot;max-age=</span><span class="p">{</span><span class="kn">{</span><span class="w"> </span><span class="s">rproxy_hsts_max_age</span><span class="w"> </span><span class="err">}}</span><span class="p">;</span><span class="w"> </span><span class="kn">includeSubDomains&quot;</span><span class="p">;</span>
+<span class="kn">{%</span><span class="w"> </span><span class="s">endif</span><span class="w"> </span><span class="s">%</span><span class="err">}</span>
+</code></pre></div></p>
+</li>
+</ul>
+<blockquote>
+<p>Active HSTS (HTTP Strict Transport Security) uniquement si rproxy_hsts_max_age &gt; 0 et envoie un header au client pour forcer l’usage de HTTPS pour une durée définie</p>
+</blockquote>
+<h3 id="72-security_headersconfj2">7.2 <code>security_headers.conf.j2</code><a class="headerlink" href="#72-security_headersconfj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier security_headers.conf.j2 est un fichier inclus dans la configuration Nginx HTTPS, servant à appliquer des en-têtes HTTP de sécurité.</p>
+<p>L'objectif est de renforcer la sécurité côté client en envoyant des instructions supplémentaires au navigateur via des HTTP headers.
+Ces headers ne modifient pas le contenu des pages mais imposent des règles de sécurité.</p>
+<h4 id="a-quoi-sert-ce-fichier_1">À quoi sert ce fichier ?<a class="headerlink" href="#a-quoi-sert-ce-fichier_1" title="Permanent link">🔗</a></h4>
+<p>Ce fichier configure les en-têtes HTTP de sécurité que le serveur Nginx va ajouter à chaque réponse.</p>
+<p>Il est inclus dans chaque bloc server HTTPS pour renforcer la protection des clients (navigateurs) contre :</p>
+<ul>
+<li>Les attaques XSS (Cross-Site Scripting)</li>
+<li>Le clickjacking</li>
+<li>L’injection de contenu malveillant</li>
+<li>La fuite d’informations sensibles</li>
+</ul>
+<blockquote>
+<p>Il améliore la posture de sécurité du site sans toucher au code applicatif.</p>
+</blockquote>
+<h4 id="contenu-du-fichier_1">Contenu du fichier<a class="headerlink" href="#contenu-du-fichier_1" title="Permanent link">🔗</a></h4>
+<ul>
+<li>
+<p>Empêcher le site d’être chargé dans une iframe depuis un autre domaine :
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">X-Frame-Options</span><span class="w"> </span><span class="s">&quot;SAMEORIGIN&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+</code></pre></div></p>
+<blockquote>
+<p>Protège contre le clickjacking (attaques qui piègent l’utilisateur avec des boutons invisibles).</p>
+</blockquote>
+</li>
+<li>
+<p>Empêcher le navigateur d’interpréter le type de contenu différemment de celui annoncé par le serveur :
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">X-Content-Type-Options</span><span class="w"> </span><span class="s">&quot;nosniff&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+</code></pre></div></p>
+<blockquote>
+<p>Protège contre les attaques MIME-type sniffing.</p>
+</blockquote>
+</li>
+<li>
+<p>Contrôler ce que le navigateur envoie comme en-tête Referer lors d’un lien vers un autre site :
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Referrer-Policy</span><span class="w"> </span><span class="s">&quot;strict-origin-when-cross-origin&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+</code></pre></div></p>
+<blockquote>
+<p>Protège la vie privée de l’utilisateur et limite les fuites d’URL internes.</p>
+</blockquote>
+</li>
+<li>
+<p>Politique CSP : elle définit ce que le navigateur a le droit de charger et d’afficher
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Content-Security-Policy</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">frame-ancestors</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">upgrade-insecure-requests&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+</code></pre></div></p>
+<blockquote>
+<p>Empêche les scripts externes non autorisés (contre XSS) et force l’usage du HTTPS.</p>
+</blockquote>
+</li>
+<li>
+<p>Contrôler les API sensibles du navigateur (géolocalisation, micro, etc.)
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Permissions-Policy</span><span class="w"> </span><span class="s">&quot;geolocation=(),</span><span class="w"> </span><span class="s">microphone=()&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+</code></pre></div></p>
+<blockquote>
+<p>Limite les fonctions dangereuses et protège la vie privée.</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>A Savoir</strong> :</p>
+<p><code>always</code> : ajoute l'en-tête même si le code HTTP n’est pas 200 OK (utile pour erreurs 404, redirections, etc.)</p>
+<hr />
+<h2 id="8-tests-fonctionnels">8. Tests fonctionnels<a class="headerlink" href="#8-tests-fonctionnels" title="Permanent link">🔗</a></h2>
+<h3 id="redirection-http-https">Redirection HTTP ➜ HTTPS :<a class="headerlink" href="#redirection-http-https" title="Permanent link">🔗</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span>http://itway.fr
+<span class="c1"># HTTP/1.1 301 Moved Permanently</span>
+</code></pre></div>
+<h3 id="test-https">Test HTTPS :<a class="headerlink" href="#test-https" title="Permanent link">🔗</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-k<span class="w"> </span>https://itway.fr
+<span class="c1"># Affiche la page web servie par DMZ-RPROXY</span>
+</code></pre></div>
+<h3 id="test-https-webmailitwayfr">Test HTTPS <code>webmail.itway.fr</code> :<a class="headerlink" href="#test-https-webmailitwayfr" title="Permanent link">🔗</a></h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-vk<span class="w"> </span>https://webmail.itway.fr
+<span class="c1"># Connexion TLS OK</span>
+</code></pre></div>
+<hr />
+<h3 id="test-en-externe-internet">Test en externe (Internet)<a class="headerlink" href="#test-en-externe-internet" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Via <code>nslookup</code>, j'obtiens :</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Name:<span class="w"> </span>itway.fr
+Address:<span class="w"> </span><span class="m">10</span>.10.10.5
+</code></pre></div>
+<blockquote>
+<p>En testant depuis l’extérieur :</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-vk<span class="w"> </span>https://192.168.122.24
+</code></pre></div>
+<blockquote>
+<p>Résultat obtenu : connexion TLS valide, contenu HTML renvoyé</p>
+</blockquote>
+<hr />
+<hr />
+<h2 id="9-liens-utiles">9. Liens utiles<a class="headerlink" href="#9-liens-utiles" title="Permanent link">🔗</a></h2>
+<ul>
+<li><a href="#structure-du-projet-ansible">Playbook complet Ansible et rôles</a></li>
+<li><a href="https://nginx.org/en/docs/http/configuring_https_servers.html">Référence officielle Nginx TLS</a></li>
+</ul>
+<hr />
+<h2 id="10-resume-du-role-de-dmz-rproxy">10. Résumé du rôle de DMZ-RPROXY<a class="headerlink" href="#10-resume-du-role-de-dmz-rproxy" title="Permanent link">🔗</a></h2>
+<table>
+<thead>
+<tr>
+<th>Étape</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Le client (navigateur) appelle <code>https://itway.fr</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td>DMZ-RPROXY répond avec son certificat SSL</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Il <strong>redirige la requête en interne</strong> vers <code>10.10.10.2</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Le contenu est renvoyé au client via DMZ-RPROXY</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">🔗</a></h2>
+<p>La mise en place du serveur DMZ-RPROXY joue un rôle crucial dans l'architecture réseau de l’entreprise. Il sert de point d’entrée sécurisé entre les utilisateurs (internes ou externes) et les services web de l’infrastructure, notamment itway.fr et webmail.itway.fr.</p>
+<p>Grâce à l’utilisation de Nginx comme reverse proxy, cette solution permet de :</p>
+<ul>
+<li>Centraliser la gestion du protocole HTTPS et des certificats TLS,</li>
+<li>Protéger les serveurs backend en les rendant inaccessibles directement depuis Internet,</li>
+<li>Appliquer des règles de sécurité strictes à toutes les connexions HTTP/HTTPS (headers, HSTS, chiffrement moderne),</li>
+<li>Et assurer une compatibilité, une performance et une maintenabilité élevées via un déploiement automatisé avec Ansible.</li>
+</ul>
+<p>Le reverse proxy constitue donc un composant fondamental de la DMZ, garantissant à la fois la sécurité, la disponibilité et la transparence des services web exposés.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../dns/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: DMZ-DNS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                DMZ-DNS
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../web/" class="md-footer__link md-footer__link--next" aria-label="Suivant: DMZ-WEB">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                DMZ-WEB
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.annotate", "content.tabs.link", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

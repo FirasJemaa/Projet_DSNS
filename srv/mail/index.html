@@ -1,0 +1,3239 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Projet de fin d'année - ITWay">
+      
+      
+        <meta name="author" content="Firase JEMAA & Najet BOUKADOUR">
+      
+      
+      
+        <link rel="prev" href="../pki/">
+      
+      
+        <link rel="next" href="../../dmz/dmz/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>SRV-MAIL - ITWay</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="lime">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#srv-mail-srv-mailitwaylocal" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="ITWay" class="md-header__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ITWay
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SRV-MAIL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="salte" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FirasJemaa/Projet_DSNS_playbook" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../phase1/" class="md-tabs__link">
+          
+  
+  
+  Phase 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../phase2/" class="md-tabs__link">
+          
+  
+  
+  Phase 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../phase3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Phase 3
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ITWay" class="md-nav__button md-logo" aria-label="ITWay" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ITWay
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FirasJemaa/Projet_DSNS_playbook" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Accueil
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phase 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phase 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Présentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conception/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conception du projet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Prérequis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Routeurs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Routeurs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../routeurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration des Routeurs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CORE-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz-rt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    SRV
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            SRV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../srv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-AD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-PKI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    SRV-MAIL
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    SRV-MAIL
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-presentation-du-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Présentation du service
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Présentation du service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-quest-ce-quun-serveur-mail" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Qu’est-ce qu’un serveur mail ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-les-services-utilises-dans-le-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Les services utilisés dans le projet
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Les services utilisés dans le projet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-postfix-mda" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Postfix (MDA)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dovecot-imappop" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Dovecot (IMAP/POP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mariadb-backend-des-comptes-mails" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. MariaDB (Backend des comptes mails)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-postfixadmin-interface-web-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. PostfixAdmin (interface Web PHP)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-schema-simplifie-de-fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Schéma simplifié de fonctionnement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-role-dans-linfrastructure-itway" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Rôle dans l'infrastructure ITWay
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-structure-du-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Structure du projet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ce-que-fait-le-playbook-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Ce que fait le Playbook Ansible
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Ce que fait le Playbook Ansible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resume-global-des-taches-du-role-srv-mail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Résumé global des tâches du rôle srv-mail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-installation-des-paquets-necessaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Installation des paquets nécessaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-generation-et-deploiement-du-certificat-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Génération et déploiement du certificat SSL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configuration-de-postfix" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Configuration de Postfix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configuration-de-dovecot" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configuration de Dovecot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-configuration-de-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Configuration de MariaDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-configuration-de-postfixadmin-interface-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Configuration de PostfixAdmin (interface web)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fichiers-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Fichiers de configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Fichiers de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dovecot-ldapconfextj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      dovecot-ldap.conf.ext.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dovecot-ldap.conf.ext.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-parametres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des paramètres
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dovecotconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      dovecot.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dovecot.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-parametres_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des paramètres :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maincfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      main.cf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="main.cf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-parametres_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des paramètres
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section TLS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restrictions-dacces-et-securite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restrictions d'accès et sécurité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mastercfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      master.cf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="master.cf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-blocs-de-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des blocs de service :
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Description des blocs de service :">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-smtp-port-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. SMTP (port 25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-smtps-port-465" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. SMTPS (port 465)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-submission-port-587" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Submission (port 587)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postfixadmin-sslconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      postfixadmin-ssl.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="postfixadmin-ssl.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des directives
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-securite-conformite" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Sécurité &amp; conformité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-problemes-rencontres-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Problèmes rencontrés &amp; solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Problèmes rencontrés &amp; solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#probleme-1-resolution-dns-de-srv-mailitwaylocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 1 : Résolution DNS de srv-mail.itway.local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probleme-2-port-465-smtps-inaccessible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 2 : Port 465 (SMTPS) inaccessible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probleme-3-postfix-ne-demarre-pas-dans-le-conteneur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 3 : Postfix ne démarre pas dans le conteneur
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    DMZ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            DMZ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/dmz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-DNS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/rproxy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-RPROXY
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-WEB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dmz/smtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DMZ-SMTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_8" id="__nav_3_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    IT
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            IT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/it/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Objectif
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/ansible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IT-ANSIBLE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../it/grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    IT-GRAFANA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phase3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Objectifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-presentation-du-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Présentation du service
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Présentation du service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-quest-ce-quun-serveur-mail" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Qu’est-ce qu’un serveur mail ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-les-services-utilises-dans-le-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Les services utilisés dans le projet
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Les services utilisés dans le projet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-postfix-mda" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Postfix (MDA)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dovecot-imappop" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Dovecot (IMAP/POP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mariadb-backend-des-comptes-mails" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. MariaDB (Backend des comptes mails)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-postfixadmin-interface-web-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. PostfixAdmin (interface Web PHP)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-schema-simplifie-de-fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Schéma simplifié de fonctionnement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-role-dans-linfrastructure-itway" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Rôle dans l'infrastructure ITWay
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-justification-des-choix" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Justification des choix
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-structure-du-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Structure du projet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ce-que-fait-le-playbook-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Ce que fait le Playbook Ansible
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Ce que fait le Playbook Ansible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resume-global-des-taches-du-role-srv-mail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Résumé global des tâches du rôle srv-mail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-installation-des-paquets-necessaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Installation des paquets nécessaires
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-generation-et-deploiement-du-certificat-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Génération et déploiement du certificat SSL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configuration-de-postfix" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Configuration de Postfix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configuration-de-dovecot" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configuration de Dovecot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-configuration-de-mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Configuration de MariaDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-configuration-de-postfixadmin-interface-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Configuration de PostfixAdmin (interface web)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fichiers-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Fichiers de configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Fichiers de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dovecot-ldapconfextj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      dovecot-ldap.conf.ext.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dovecot-ldap.conf.ext.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-parametres" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des paramètres
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dovecotconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      dovecot.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dovecot.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-parametres_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des paramètres :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maincfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      main.cf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="main.cf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-parametres_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des paramètres
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Section TLS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restrictions-dacces-et-securite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restrictions d'accès et sécurité
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mastercfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      master.cf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="master.cf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-blocs-de-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des blocs de service :
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Description des blocs de service :">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-smtp-port-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. SMTP (port 25)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-smtps-port-465" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. SMTPS (port 465)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-submission-port-587" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Submission (port 587)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postfixadmin-sslconfj2" class="md-nav__link">
+    <span class="md-ellipsis">
+      postfixadmin-ssl.conf.j2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="postfixadmin-ssl.conf.j2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contenu-du-fichier_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contenu du fichier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#description-des-directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Description des directives
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-securite-conformite" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Sécurité &amp; conformité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-problemes-rencontres-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Problèmes rencontrés &amp; solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Problèmes rencontrés &amp; solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#probleme-1-resolution-dns-de-srv-mailitwaylocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 1 : Résolution DNS de srv-mail.itway.local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probleme-2-port-465-smtps-inaccessible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 2 : Port 465 (SMTPS) inaccessible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probleme-3-postfix-ne-demarre-pas-dans-le-conteneur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problème 3 : Postfix ne démarre pas dans le conteneur
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="srv-mail-srv-mailitwaylocal"><strong>SRV-MAIL</strong> (<code>srv-mail.itway.local</code>)<a class="headerlink" href="#srv-mail-srv-mailitwaylocal" title="Permanent link">🔗</a></h1>
+<p><a href="https://github.com/FirasJemaa/Projet_DSNS_playbook">Playbook Ansible complet</a></p>
+<h2 id="1-objectifs">1. Objectifs<a class="headerlink" href="#1-objectifs" title="Permanent link">🔗</a></h2>
+<p>Le serveur <strong>SRV-MAIL</strong> agit comme <strong>MDA (Mail Delivery Agent)</strong> et <strong>serveur IMAP/POP</strong>.
+Il est chargé de :</p>
+<ul>
+<li>Stocker les mails des utilisateurs dans des boîtes aux lettres locales,</li>
+<li>Permettre leur consultation via IMAP/POP (par des clients comme Thunderbird),</li>
+<li>Recevoir les messages transmis par la passerelle SMTP externe (DMZ-SMTP),</li>
+<li>Centraliser la gestion des utilisateurs via une base MariaDB.</li>
+</ul>
+<h2 id="2-presentation-du-service">2. Présentation du service<a class="headerlink" href="#2-presentation-du-service" title="Permanent link">🔗</a></h2>
+<p>Le rôle de SRV-MAIL est d’assurer la <strong>réception, la consultation et l’archivage sécurisé</strong> des mails internes à l’entreprise.
+Il comprend plusieurs briques essentielles :</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Postfix</strong></td>
+<td>MDA local (réception et distribution de mail vers les boîtes)</td>
+</tr>
+<tr>
+<td><strong>Dovecot</strong></td>
+<td>Serveur IMAP/POP (consultation des mails par les clients)</td>
+</tr>
+<tr>
+<td><strong>MariaDB</strong></td>
+<td>Stockage des comptes, domaines, et mots de passe</td>
+</tr>
+<tr>
+<td><strong>PostfixAdmin</strong></td>
+<td>Interface web d’administration pour Postfix et Dovecot</td>
+</tr>
+</tbody>
+</table>
+<p>Le serveur n’envoie <strong>pas de mails directement vers l’extérieur</strong>. Ce rôle est délégué au <a href="../../dmz/smtp/"><strong>serveur DMZ-SMTP</strong></a>.</p>
+<h3 id="21-quest-ce-quun-serveur-mail">2.1 Qu’est-ce qu’un serveur mail ?<a class="headerlink" href="#21-quest-ce-quun-serveur-mail" title="Permanent link">🔗</a></h3>
+<p>Un <strong>serveur mail</strong> est une machine qui gère l’envoi, la réception, la distribution et la consultation des courriels.</p>
+<p>On distingue <strong>plusieurs rôles</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>Rôle</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MTA</strong> (<em>Mail Transfer Agent</em>)</td>
+<td>Transfère les mails entre serveurs (SMTP)</td>
+</tr>
+<tr>
+<td><strong>MDA</strong> (<em>Mail Delivery Agent</em>)</td>
+<td>Dépose les mails dans les boîtes locales</td>
+</tr>
+<tr>
+<td><strong>IMAP/POP</strong></td>
+<td>Permet aux clients (Thunderbird, Outlook…) de consulter leurs mails</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="22-les-services-utilises-dans-le-projet">2.2 Les services utilisés dans le projet<a class="headerlink" href="#22-les-services-utilises-dans-le-projet" title="Permanent link">🔗</a></h3>
+<h4 id="1-postfix-mda">1. <strong>Postfix</strong> (MDA)<a class="headerlink" href="#1-postfix-mda" title="Permanent link">🔗</a></h4>
+<ul>
+<li><strong>Fonction</strong> : reçoit les mails (en provenance de DMZ-SMTP) et les dépose dans les boîtes locales sur <code>/home/vmail/</code>.</li>
+<li><strong>Il agit aussi comme MTA (envoi sortant)</strong>, mais <strong>dans le projet, ce rôle est délégué à DMZ-SMTP</strong>.</li>
+<li><strong>Fichier principal</strong> : <code>/etc/postfix/main.cf</code></li>
+</ul>
+<p><strong>Ports utilisés</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Protocole</th>
+<th>Utilisation</th>
+<th>TLS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25</td>
+<td>SMTP</td>
+<td>Standard MTA (inbound mail)</td>
+<td>Pas de TLS obligatoire</td>
+</tr>
+<tr>
+<td>465</td>
+<td>SMTPS</td>
+<td>SMTP chiffré directement</td>
+<td>TLS dès la connexion</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Postfix est surtout sollicité <strong>en interne</strong> (port 25 entre DMZ-SMTP → SRV-MAIL).</p>
+</blockquote>
+<hr />
+<h4 id="2-dovecot-imappop">2. <strong>Dovecot</strong> (IMAP/POP)<a class="headerlink" href="#2-dovecot-imappop" title="Permanent link">🔗</a></h4>
+<ul>
+<li><strong>Fonction</strong> : permet aux utilisateurs de <strong>lire leurs mails</strong> (messages déposés par Postfix)</li>
+<li>Supporte :<ul>
+<li><strong>IMAP</strong> (synchronisation des mails sur plusieurs appareils)</li>
+<li><strong>POP3</strong> (téléchargement local des mails, sans conservation sur le serveur)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Ports utilisés</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Protocole</th>
+<th>Utilisation</th>
+<th>TLS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>143</td>
+<td>IMAP</td>
+<td>IMAP classique</td>
+<td>STARTTLS</td>
+</tr>
+<tr>
+<td>993</td>
+<td>IMAPS</td>
+<td>IMAP avec TLS direct</td>
+<td>TLS</td>
+</tr>
+<tr>
+<td>110</td>
+<td>POP3</td>
+<td>POP non sécurisé</td>
+<td>Aucun</td>
+</tr>
+<tr>
+<td>995</td>
+<td>POP3S</td>
+<td>POP sécurisé</td>
+<td>TLS</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Dans une config sécurisée, <strong>on privilégie IMAP sur TLS (993)</strong>.</p>
+</blockquote>
+<hr />
+<h4 id="3-mariadb-backend-des-comptes-mails">3. <strong>MariaDB</strong> (Backend des comptes mails)<a class="headerlink" href="#3-mariadb-backend-des-comptes-mails" title="Permanent link">🔗</a></h4>
+<ul>
+<li><strong>Fonction</strong> : stocke les utilisateurs, mots de passe, domaines, etc.</li>
+<li>Utilisé par :<ul>
+<li>Postfix (pour savoir "cet utilisateur existe-t-il ?")</li>
+<li>Dovecot (pour valider l’authentification IMAP)</li>
+<li>PostfixAdmin (interface de gestion)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Les mots de passe y sont stockés <strong>hachés</strong> (SHA512 ou MD5).</p>
+</blockquote>
+<hr />
+<h4 id="4-postfixadmin-interface-web-php">4. <strong>PostfixAdmin</strong> (interface Web PHP)<a class="headerlink" href="#4-postfixadmin-interface-web-php" title="Permanent link">🔗</a></h4>
+<ul>
+<li>
+<p><strong>Fonction</strong> : permet à l’admin de :</p>
+</li>
+<li>
+<p>créer des utilisateurs</p>
+</li>
+<li>gérer les domaines</li>
+<li>ajouter des redirections, alias, etc.</li>
+<li><strong>Fonctionne avec Apache2</strong> ou Nginx, en PHP</li>
+</ul>
+<hr />
+<h3 id="23-schema-simplifie-de-fonctionnement">2.3 Schéma simplifié de fonctionnement<a class="headerlink" href="#23-schema-simplifie-de-fonctionnement" title="Permanent link">🔗</a></h3>
+<div class="highlight"><pre><span></span><code>+----------------+           +-------------+            +--------------+
+| Utilisateur    |  IMAP     |   Dovecot   |            |              |
+| (Thunderbird)  +---------&gt; | (IMAP/POP)  | &lt;--------+ | /home/vmail/ |
++----------------+           +-------------+            +--------------+
+                                                             ▲
+                                                             |  
+                                                   (Maildir = boîtes locales)
+                                                             ▲
++------------------+    SMTP     +------------+              |
+| DMZ-SMTP         +-----------&gt; |  Postfix   +--------------+
+| (relais d’entrée)|             |  (MDA)     |
++------------------+             +------------+
+                                        |
+                          Utilise MySQL/MariaDB pour comptes
+</code></pre></div>
+<hr />
+<h2 id="3-role-dans-linfrastructure-itway">3. Rôle dans l'infrastructure ITWay<a class="headerlink" href="#3-role-dans-linfrastructure-itway" title="Permanent link">🔗</a></h2>
+<p>Dans l’infrastructure <strong>ITWay</strong>, le <strong>serveur SRV-MAIL</strong> joue un rôle <strong>essentiel dans la gestion des courriels internes</strong>. Voici une explication claire de <strong>ce qu’il fait précisément</strong> :</p>
+<ol>
+<li><strong>Réception des mails internes et externes</strong><ul>
+<li>Il reçoit les mails <strong>depuis DMZ-SMTP</strong> (le relais en DMZ),</li>
+<li>Et il les distribue aux boîtes mail des utilisateurs.</li>
+</ul>
+</li>
+<li><strong>Stockage des messages</strong><ul>
+<li>Les mails sont <strong>conservés en base de données</strong> et accessibles à tout moment via <strong>IMAP sécurisé (port 993)</strong>.</li>
+</ul>
+</li>
+<li><strong>Distribution aux clients mail</strong><ul>
+<li>Il sert les mails aux clients (Roundcube) via <strong>Dovecot</strong> (IMAP),</li>
+<li>Les utilisateurs accèdent à leurs mails en toute sécurité, depuis leur poste.</li>
+</ul>
+</li>
+<li>
+<p><strong>Gestion des utilisateurs et domaines</strong></p>
+<ul>
+<li>Grâce à <strong>PostfixAdmin</strong>, l’administrateur peut créer/modifier :<div class="codehilite"><pre><span></span><code>  - les adresses mail,
+  - les domaines,
+  - les boîtes aux lettres virtuelles.
+</code></pre></div>
+
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Utilisation de bases SQL (MySQL/MariaDB)</strong></p>
+<ul>
+<li>Les comptes et mots de passe sont <strong>stockés dans une base sécurisée</strong>,</li>
+<li>Cela permet une gestion <strong>souple, automatisée et évolutive</strong> des utilisateurs.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="4-justification-des-choix">4. Justification des choix<a class="headerlink" href="#4-justification-des-choix" title="Permanent link">🔗</a></h2>
+<ul>
+<li><strong>MTA/MDA</strong> : Postfix (mode boîte aux lettres locales)</li>
+<li><strong>IMAP/POP</strong> : Dovecot (accès aux messages)</li>
+<li><strong>Base de données</strong> : MariaDB (authentification, boîtes)</li>
+<li><strong>Interface web</strong> : PostfixAdmin</li>
+<li><strong>Outils</strong> : Ansible pour l'automatisation</li>
+</ul>
+<p><strong>Pourquoi ces choix ?</strong></p>
+<ul>
+<li>Compatibilité entre services (Postfix + Dovecot + PostfixAdmin),</li>
+<li>Open-source, documenté, standard,</li>
+</ul>
+<hr />
+<h2 id="5-structure-du-projet">5. Structure du projet<a class="headerlink" href="#5-structure-du-projet" title="Permanent link">🔗</a></h2>
+<div class="highlight"><pre><span></span><code>├── ansible.cfg
+├── inventory/
+│   ├── hosts.ini
+|   └── group_vars/
+|       └── srv-mail/
+|           ├── main.yml
+|           └── vault.yml
+├── playbooks/
+│   └── setup-mail.yml
+└── roles/
+    └── srv-mail/
+        ├── handlers/
+        │   └── main.yml
+        ├── tasks/
+        │   ├── main.yml
+        |   ├── apache_https.yml
+        |   ├── cert.yml
+        |   ├── dovecot-ldap.yml
+        |   ├── dovecot-sql.yml
+        |   ├── mysql_setup.yml
+        |   └── postfixadmin.yml
+        └── templates/
+            ├── dovecot-ldap.conf.ext.j2 
+            ├── dovecot-sql.conf.ext.j2
+            ├── dovecot.conf.j2
+            ├── postfixadmin-ssl.conf.j2
+            ├── main.cf.j2
+            └── master.cf.j2 
+</code></pre></div>
+<hr />
+<h2 id="6-ce-que-fait-le-playbook-ansible">6. Ce que fait le Playbook Ansible<a class="headerlink" href="#6-ce-que-fait-le-playbook-ansible" title="Permanent link">🔗</a></h2>
+<h3 id="resume-global-des-taches-du-role-srv-mail">Résumé global des tâches du rôle <code>srv-mail</code><a class="headerlink" href="#resume-global-des-taches-du-role-srv-mail" title="Permanent link">🔗</a></h3>
+<p>Le rôle <code>srv-mail</code> automatise l'installation complète d’un <strong>serveur de messagerie sécurisé</strong>, incluant Postfix, Dovecot, MariaDB, LDAP, PostfixAdmin et HTTPS.</p>
+<h3 id="1-installation-des-paquets-necessaires">1. Installation des paquets nécessaires<a class="headerlink" href="#1-installation-des-paquets-necessaires" title="Permanent link">🔗</a></h3>
+<p>Les composants principaux :</p>
+<ul>
+<li><strong>Postfix</strong> (serveur SMTP)</li>
+<li><strong>Dovecot</strong> (serveur IMAP/POP3)</li>
+<li><strong>MariaDB</strong> (base de données)</li>
+<li><strong>PostfixAdmin</strong> (interface web de gestion)</li>
+<li><strong>Modules LDAP &amp; SQL</strong> pour l'authentification</li>
+</ul>
+<hr />
+<h3 id="2-generation-et-deploiement-du-certificat-ssl">2. Génération et déploiement du certificat SSL<a class="headerlink" href="#2-generation-et-deploiement-du-certificat-ssl" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Création de la <strong>clé privée</strong> et de la <strong>CSR</strong> sur SRV-MAIL</li>
+<li>Envoi de la CSR vers SRV-PKI pour <strong>signature</strong></li>
+<li>Récupération et déploiement du certificat <strong>signé</strong> + <strong>CA</strong></li>
+</ul>
+<blockquote>
+<p>Permet de chiffrer les connexions (IMAPS/SMTPS/HTTPS)</p>
+</blockquote>
+<hr />
+<h3 id="3-configuration-de-postfix">3. Configuration de Postfix<a class="headerlink" href="#3-configuration-de-postfix" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Déploiement des fichiers <code>main.cf</code> et <code>master.cf</code> via templates</li>
+<li>Redémarrage automatique de Postfix en cas de modification</li>
+</ul>
+<hr />
+<h3 id="4-configuration-de-dovecot">4. Configuration de Dovecot<a class="headerlink" href="#4-configuration-de-dovecot" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Déploiement de <code>10-ssl.conf</code> (connexion sécurisée)</li>
+<li>Support de l'<strong>authentification LDAP</strong> via <code>dovecot-ldap.yml</code></li>
+<li><em>(Commenté)</em> Auth SQL si activé via <code>dovecot-sql.yml</code></li>
+<li>Sécurisation du fichier <code>10-auth.conf</code> (authentification stricte)</li>
+<li>Ajout d’un socket partagé pour compatibilité avec PostfixAdmin</li>
+</ul>
+<hr />
+<h3 id="5-configuration-de-mariadb">5. Configuration de MariaDB<a class="headerlink" href="#5-configuration-de-mariadb" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Installation de MariaDB + client + dépendance Python</li>
+<li>Lancement manuel en environnement conteneurisé (sans systemd)</li>
+<li>
+<p>Création des bases de données et utilisateurs :</p>
+<ul>
+<li><code>roundcube</code> (webmail)</li>
+<li><code>postfixadmin</code> (interface admin)</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="6-configuration-de-postfixadmin-interface-web">6. Configuration de PostfixAdmin (interface web)<a class="headerlink" href="#6-configuration-de-postfixadmin-interface-web" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Préparation du cache (<code>templates_c</code>)</li>
+<li>Lien symbolique vers le répertoire de cache</li>
+<li>Création de la base et de l'utilisateur SQL</li>
+<li>
+<p>Activation de la configuration HTTPS via Apache :</p>
+<ul>
+<li>Module SSL</li>
+<li>Fichier <code>postfixadmin-ssl.conf</code></li>
+<li>Site Apache sécurisé activé (<code>a2ensite</code>)</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="7-fichiers-de-configuration">7. Fichiers de configuration<a class="headerlink" href="#7-fichiers-de-configuration" title="Permanent link">🔗</a></h2>
+<h3 id="dovecot-ldapconfextj2"><code>dovecot-ldap.conf.ext.j2</code><a class="headerlink" href="#dovecot-ldapconfextj2" title="Permanent link">🔗</a></h3>
+<p>Ce fichier configure Dovecot pour l’authentification des utilisateurs via un annuaire LDAP.
+Au lieu de stocker les utilisateurs localement ou dans une base SQL, Dovecot va interroger un serveur LDAP (comme Active Directory) pour :</p>
+<p>vérifier les identifiants de connexion des utilisateurs,</p>
+<p>récupérer des informations comme leur répertoire de mails (maildir) et leur UID/GID système.</p>
+<p>Ce mode est particulièrement utilisé dans les infrastructures où l’identité des utilisateurs est centralisée (par ex. : un seul compte pour mail, VPN, intranet…).</p>
+<h4 id="contenu-du-fichier">Contenu du fichier<a class="headerlink" href="#contenu-du-fichier" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="na">uris</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{{ dovecot_ldap_uri }}</span>
+
+<span class="na">dn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{{ dovecot_ldap_bind_dn }}</span>
+<span class="na">dnpass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{{ dovecot_ldap_bind_pw }}</span>
+
+<span class="na">auth_bind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">ldap_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3</span>
+
+<span class="na">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{{ dovecot_ldap_base }}</span>
+<span class="na">scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">subtree</span>
+
+<span class="na">user_attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>\
+<span class="w">  </span><span class="s">=home=/var/vmail/%d/%n, </span>\
+<span class="w">  </span><span class="s">=mail=maildir:/var/vmail/%d/%n/Maildir, </span>\
+<span class="w">  </span><span class="s">=uid=vmail, </span>\
+<span class="w">  </span><span class="s">=gid=vmail</span>
+
+<span class="na">user_filter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(&amp;(objectClass=user)(sAMAccountName=%n))</span>
+<span class="na">pass_filter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(&amp;(objectClass=user)(sAMAccountName=%n))</span>
+</code></pre></div>
+<h4 id="description-des-parametres">Description des paramètres<a class="headerlink" href="#description-des-parametres" title="Permanent link">🔗</a></h4>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uris</code></td>
+<td>L'<strong>adresse du serveur LDAP</strong>, au format <code>ldap://&lt;hôte&gt;:&lt;port&gt;</code> (ex : <code>ldap://ldap.itway.local</code>) — c’est ici que Dovecot va se connecter pour interroger l’annuaire.</td>
+</tr>
+<tr>
+<td><code>dn</code></td>
+<td>Le <strong>Distinguished Name (DN)</strong> du compte utilisé pour se connecter à LDAP (souvent un compte de service).</td>
+</tr>
+<tr>
+<td><code>dnpass</code></td>
+<td>Le <strong>mot de passe</strong> associé au DN ci-dessus.</td>
+</tr>
+<tr>
+<td><code>auth_bind</code></td>
+<td>Active la liaison dynamique : l’utilisateur LDAP s’authentifie avec ses propres identifiants (et non ceux du service).</td>
+</tr>
+<tr>
+<td><code>ldap_version</code></td>
+<td>Version du protocole LDAP utilisée (3 = la plus récente, standard).</td>
+</tr>
+<tr>
+<td><code>base</code></td>
+<td>Le DN de base de recherche dans LDAP (ex : <code>dc=itway,dc=local</code>).</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>Étendue de la recherche (<code>subtree</code> = recherche récursive dans tous les sous-niveaux du DN de base).</td>
+</tr>
+<tr>
+<td><code>user_attrs</code></td>
+<td>Attributs LDAP mappés vers les attributs internes de Dovecot (chemin maildir, UID, GID, etc.).</td>
+</tr>
+<tr>
+<td><code>user_filter</code></td>
+<td>Filtre LDAP pour retrouver l’utilisateur, basé sur son <code>sAMAccountName</code>. <code>%n</code> = login sans domaine.</td>
+</tr>
+<tr>
+<td><code>pass_filter</code></td>
+<td>Même chose, mais pour trouver le mot de passe correspondant.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dovecotconfj2"><code>dovecot.conf.j2</code><a class="headerlink" href="#dovecotconfj2" title="Permanent link">🔗</a></h3>
+<p>Ce fichier permet de configurer la sécurité TLS/SSL de Dovecot, le serveur IMAP/POP3 utilisé pour accéder aux boîtes mail.
+Il assure que toutes les connexions entre les clients de messagerie (Thunderbird, Roundcube…) et le serveur passent par une connexion chiffrée grâce à un certificat signé par une autorité de certification (CA).</p>
+<blockquote>
+<p>Sans ce fichier ou sans configuration SSL, les mots de passe des utilisateurs peuvent transiter en clair.</p>
+</blockquote>
+<h4 id="contenu-du-fichier_1">Contenu du fichier :<a class="headerlink" href="#contenu-du-fichier_1" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="na">ssl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">required</span>
+<span class="na">ssl_cert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;{{ ssl_dir }}/{{ crt_filename }}</span>
+<span class="na">ssl_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;{{ ssl_dir }}/{{ key_filename }}</span>
+<span class="na">ssl_ca</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;{{ ssl_dir }}/{{ ca_filename }}</span>
+</code></pre></div>
+<hr />
+<h4 id="description-des-parametres_1">Description des paramètres :<a class="headerlink" href="#description-des-parametres_1" title="Permanent link">🔗</a></h4>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssl = required</code></td>
+<td>Force l’utilisation de <strong>SSL/TLS</strong> pour toutes les connexions (empêche les connexions non sécurisées).</td>
+</tr>
+<tr>
+<td><code>ssl_cert</code></td>
+<td>Chemin vers le <strong>fichier de certificat SSL/TLS</strong> du serveur Dovecot, signé par la CA (<code>srv-mail.crt</code>).</td>
+</tr>
+<tr>
+<td><code>ssl_key</code></td>
+<td>Chemin vers la <strong>clé privée</strong> du certificat (<code>srv-mail.key</code>). Ce fichier doit rester confidentiel.</td>
+</tr>
+<tr>
+<td><code>ssl_ca</code></td>
+<td>Chemin vers le <strong>certificat de l’autorité de certification (CA)</strong> qui a signé le certificat serveur. Permet aux clients de <strong>vérifier l’authenticité</strong> de la connexion.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="maincfj2"><code>main.cf.j2</code><a class="headerlink" href="#maincfj2" title="Permanent link">🔗</a></h3>
+<p>Ce fichier est le <strong>fichier principal de configuration de Postfix</strong>.<br />
+Il définit :</p>
+<ul>
+<li>
+<p>l’identité du serveur,</p>
+</li>
+<li>
+<p>comment il envoie/reçoit des e-mails,</p>
+</li>
+<li>
+<p>comment il gère la sécurité TLS/SSL,</p>
+</li>
+<li>
+<p>et quelles sont les restrictions d’accès pour éviter d’être utilisé comme relais ouvert (SPAM).</p>
+</li>
+</ul>
+<h4 id="contenu-du-fichier_2">Contenu du fichier<a class="headerlink" href="#contenu-du-fichier_2" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="na">myhostname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{{ mail_fqdn }}</span>
+<span class="na">mydomain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">itway.local</span>
+<span class="na">myorigin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">$mydomain</span>
+<span class="na">inet_interfaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">all</span>
+<span class="na">mydestination</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">$myhostname, localhost.$mydomain, localhost</span>
+<span class="na">relayhost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[mail.itway.fr]:25</span>
+
+<span class="c1"># TLS</span>
+<span class="na">smtpd_tls_cert_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{{ ssl_dir }}/{{ crt_filename }}</span>
+<span class="na">smtpd_tls_key_file</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">{{ ssl_dir }}/{{ key_filename }}</span>
+<span class="na">smtpd_tls_CAfile</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">{{ ssl_dir }}/{{ ca_filename }}</span>
+<span class="na">smtpd_use_tls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">smtpd_tls_security_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">encrypt</span>
+
+<span class="c1"># Restrictions d&#39;accès</span>
+<span class="na">smtpd_relay_restrictions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">permit_mynetworks permit_sasl_authenticated defer_unauth_destination</span>
+
+<span class="c1"># Sécurité supplémentaire</span>
+<span class="na">disable_vrfy_command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">smtpd_helo_required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">smtpd_tls_auth_only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="c1">#smtpd_tls_loglevel = 1</span>
+<span class="na">tls_random_source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dev:/dev/urandom</span>
+</code></pre></div>
+<hr />
+<h4 id="description-des-parametres_2">Description des paramètres<a class="headerlink" href="#description-des-parametres_2" title="Permanent link">🔗</a></h4>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>myhostname</code></td>
+<td>Nom FQDN du serveur mail (ex. <code>srv-mail.itway.local</code>).</td>
+</tr>
+<tr>
+<td><code>mydomain</code></td>
+<td>Domaine auquel appartient le serveur (souvent identique à <code>itway.local</code>).</td>
+</tr>
+<tr>
+<td><code>myorigin</code></td>
+<td>Domaine utilisé pour les mails sortants (ex : <code>user@itway.local</code>).</td>
+</tr>
+<tr>
+<td><code>inet_interfaces = all</code></td>
+<td>Postfix écoute sur toutes les interfaces réseau (utile pour VM/conteneurs).</td>
+</tr>
+<tr>
+<td><code>mydestination</code></td>
+<td>Liste des noms que le serveur considère comme locaux (il accepte les mails pour ces domaines).</td>
+</tr>
+<tr>
+<td><code>relayhost</code></td>
+<td>La directive <code>relayhost = [mail.itway.fr]:25</code> permet de rediriger tous les mails sortants du serveur interne vers le relais SMTP situé en DMZ (DMZ-SMTP), configuré en passerelle sécurisée vers Internet.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="section-tls">Section TLS<a class="headerlink" href="#section-tls" title="Permanent link">🔗</a></h4>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smtpd_tls_cert_file</code></td>
+<td>Chemin vers le certificat SSL public.</td>
+</tr>
+<tr>
+<td><code>smtpd_tls_key_file</code></td>
+<td>Chemin vers la clé privée du serveur.</td>
+</tr>
+<tr>
+<td><code>smtpd_tls_CAfile</code></td>
+<td>Certificat de la CA utilisée pour valider les connexions.</td>
+</tr>
+<tr>
+<td><code>smtpd_use_tls</code></td>
+<td>Active le TLS pour les connexions entrantes (clients ou autres serveurs SMTP).</td>
+</tr>
+<tr>
+<td><code>smtpd_tls_security_level = encrypt</code></td>
+<td>Imposera le chiffrement (TLS) lors des échanges.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="restrictions-dacces-et-securite">Restrictions d'accès et sécurité<a class="headerlink" href="#restrictions-dacces-et-securite" title="Permanent link">🔗</a></h4>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smtpd_relay_restrictions</code></td>
+<td>Règles de relais : n'autorise l'envoi de mails <strong>qu'à partir du réseau local ou si l'utilisateur est authentifié</strong>.</td>
+</tr>
+<tr>
+<td><code>disable_vrfy_command</code></td>
+<td>Désactive la commande SMTP <code>VRFY</code> pour empêcher la détection de comptes valides par les bots.</td>
+</tr>
+<tr>
+<td><code>smtpd_helo_required</code></td>
+<td>Oblige les clients SMTP à s'identifier avec <code>HELO</code>.</td>
+</tr>
+<tr>
+<td><code>smtpd_tls_auth_only</code></td>
+<td>Refuse l’authentification en clair si TLS n’est pas activé.</td>
+</tr>
+<tr>
+<td><code>tls_random_source</code></td>
+<td>Source d’aléa utilisée pour générer des clés de session TLS.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="mastercfj2"><code>master.cf.j2</code><a class="headerlink" href="#mastercfj2" title="Permanent link">🔗</a></h3>
+<p>Le fichier <code>master.cf</code> complète la configuration de Postfix.<br />
+Il définit les <strong>services de transport réseau</strong> que Postfix propose, notamment :</p>
+<ul>
+<li>
+<p>le <strong>SMTP standard</strong> (port 25),</p>
+</li>
+<li>
+<p>le <strong>SMTPS</strong> (port 465),</p>
+</li>
+<li>
+<p>et le <strong>Submission</strong> (port 587).</p>
+</li>
+</ul>
+<p>Chaque service peut avoir ses propres options, notamment en ce qui concerne le <strong>chiffrement TLS</strong>, l’<strong>authentification SASL</strong>, et le mode de fonctionnement (wrapper vs starttls).</p>
+<blockquote>
+<p>Ce fichier est crucial pour permettre aux <strong>clients mail externes</strong> (Thunderbird, Roundcube, etc.) d’envoyer des messages via un <strong>canal sécurisé</strong>.</p>
+</blockquote>
+<h4 id="contenu-du-fichier_3">Contenu du fichier<a class="headerlink" href="#contenu-du-fichier_3" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="na">smtp      inet  n       -       y       -       -       smtpd</span>
+<span class="w">  </span><span class="na">-o smtpd_tls_security_level</span><span class="o">=</span><span class="s">may</span>
+
+<span class="na">smtps     inet  n       -       y       -       -       smtpd</span>
+<span class="w">  </span><span class="na">-o smtpd_tls_wrappermode</span><span class="o">=</span><span class="s">yes</span>
+<span class="w">  </span><span class="na">-o smtpd_sasl_auth_enable</span><span class="o">=</span><span class="s">yes</span>
+<span class="w">  </span><span class="na">-o smtpd_tls_security_level</span><span class="o">=</span><span class="s">encrypt</span>
+
+<span class="na">submission inet n       -       y       -       -       smtpd</span>
+<span class="w">  </span><span class="na">-o smtpd_tls_security_level</span><span class="o">=</span><span class="s">encrypt</span>
+<span class="w">  </span><span class="na">-o smtpd_sasl_auth_enable</span><span class="o">=</span><span class="s">yes</span>
+</code></pre></div>
+<h4 id="description-des-blocs-de-service">Description des blocs de service :<a class="headerlink" href="#description-des-blocs-de-service" title="Permanent link">🔗</a></h4>
+<h5 id="1-smtp-port-25">1. <strong>SMTP (port 25)</strong><a class="headerlink" href="#1-smtp-port-25" title="Permanent link">🔗</a></h5>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Valeur</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smtp</code></td>
+<td><code>inet</code></td>
+<td>Active le service SMTP sur le port standard 25.</td>
+</tr>
+<tr>
+<td><code>smtpd_tls_security_level=may</code></td>
+<td>-</td>
+<td>Le chiffrement TLS est <strong>optionnel</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="2-smtps-port-465">2. <strong>SMTPS (port 465)</strong><a class="headerlink" href="#2-smtps-port-465" title="Permanent link">🔗</a></h5>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Valeur</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>smtps</code></td>
+<td><code>inet</code></td>
+<td>Active le SMTPS sur le port 465.</td>
+</tr>
+<tr>
+<td><code>smtpd_tls_wrappermode=yes</code></td>
+<td>-</td>
+<td>TLS est actif <strong>dès le début de la connexion</strong> (pas de STARTTLS, c’est un tunnel TLS direct).</td>
+</tr>
+<tr>
+<td><code>smtpd_sasl_auth_enable=yes</code></td>
+<td>-</td>
+<td>Active l’authentification pour les clients mail.</td>
+</tr>
+<tr>
+<td><code>smtpd_tls_security_level=encrypt</code></td>
+<td>-</td>
+<td>Le chiffrement est <strong>obligatoire</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3-submission-port-587">3. <strong>Submission (port 587)</strong><a class="headerlink" href="#3-submission-port-587" title="Permanent link">🔗</a></h5>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Valeur</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>submission</code></td>
+<td><code>inet</code></td>
+<td>Port recommandé pour les <strong>clients authentifiés</strong> (ex : webmail, Outlook).</td>
+</tr>
+<tr>
+<td><code>smtpd_tls_security_level=encrypt</code></td>
+<td>-</td>
+<td>TLS obligatoire (via STARTTLS).</td>
+</tr>
+<tr>
+<td><code>smtpd_sasl_auth_enable=yes</code></td>
+<td>-</td>
+<td>Authentification activée.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>C’est le <strong>standard moderne</strong> pour l’envoi de mails authentifiés par les utilisateurs.</p>
+</blockquote>
+<hr />
+<h3 id="postfixadmin-sslconfj2"><code>postfixadmin-ssl.conf.j2</code><a class="headerlink" href="#postfixadmin-sslconfj2" title="Permanent link">🔗</a></h3>
+<p>Ce fichier est un <strong>fichier de configuration Apache (VirtualHost)</strong> destiné à activer le <strong>site web sécurisé PostfixAdmin</strong> sur le serveur <code>srv-mail.itway.local</code>, via HTTPS (port 443).</p>
+<ul>
+<li>
+<p><strong>PostfixAdmin</strong> est une interface web de gestion des utilisateurs, domaines et alias pour Postfix.</p>
+</li>
+<li>
+<p>Cette configuration permet d’<strong>exposer l’interface en HTTPS</strong> avec des certificats signés par la CA interne.</p>
+</li>
+<li>
+<p>Le fichier est utilisé avec la commande <code>a2ensite</code> pour l’activer.</p>
+</li>
+</ul>
+<h4 id="contenu-du-fichier_4">Contenu du fichier<a class="headerlink" href="#contenu-du-fichier_4" title="Permanent link">🔗</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:443</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>srv-mail.itway.local
+
+<span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/usr/share/postfixadmin</span>
+<span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/postfixadmin</span><span class="w"> </span><span class="sx">/usr/share/postfixadmin/public</span>
+
+<span class="w">    </span><span class="nb">SSLEngine</span><span class="w"> </span><span class="k">on</span>
+<span class="w">    </span><span class="nb">SSLCertificateFile</span><span class="w">    </span><span class="sx">/etc/postfix/ssl/srv-mail.crt</span>
+<span class="w">    </span><span class="nb">SSLCertificateKeyFile</span><span class="w"> </span><span class="sx">/etc/postfix/ssl/srv-mail.key</span>
+<span class="w">    </span><span class="nb">SSLCACertificateFile</span><span class="w">  </span><span class="sx">/etc/postfix/ssl/ca.crt</span>
+
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/usr/share/postfixadmin/public</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">Options</span><span class="w"> </span>FollowSymLinks
+<span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">All</span>
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span>ip<span class="w"> </span><span class="m">172.16.10.0/29</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+
+<span class="w">    </span><span class="nb">ErrorLog</span><span class="w"> </span>${APACHE_LOG_DIR}/postfixadmin_error.log
+<span class="w">    </span><span class="nb">CustomLog</span><span class="w"> </span>${APACHE_LOG_DIR}/postfixadmin_access.log<span class="w"> </span>combined
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div>
+<h4 id="description-des-directives">Description des directives<a class="headerlink" href="#description-des-directives" title="Permanent link">🔗</a></h4>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;VirtualHost *:443&gt;</code></td>
+<td>Déclare un site écoutant sur le port 443 (HTTPS).</td>
+</tr>
+<tr>
+<td><code>ServerName srv-mail.itway.local</code></td>
+<td>Nom DNS utilisé pour accéder au site.</td>
+</tr>
+<tr>
+<td><code>DocumentRoot</code></td>
+<td>Répertoire principal du site PostfixAdmin.</td>
+</tr>
+<tr>
+<td><code>Alias /postfixadmin</code></td>
+<td>Permet d'accéder à l'interface via <code>https://srv-mail.itway.local/postfixadmin</code>.</td>
+</tr>
+<tr>
+<td><code>SSLEngine on</code></td>
+<td>Active le SSL/TLS pour ce site.</td>
+</tr>
+<tr>
+<td><code>SSLCertificateFile</code></td>
+<td>Chemin vers le <strong>certificat public</strong> du serveur.</td>
+</tr>
+<tr>
+<td><code>SSLCertificateKeyFile</code></td>
+<td>Clé privée associée au certificat (doit rester confidentielle).</td>
+</tr>
+<tr>
+<td><code>SSLCACertificateFile</code></td>
+<td>Certificat de l’autorité de certification utilisée (CA interne).</td>
+</tr>
+<tr>
+<td><code>&lt;Directory&gt;</code></td>
+<td>Contrôle les droits d’accès et le comportement du répertoire contenant l’interface web.</td>
+</tr>
+<tr>
+<td><code>AllowOverride All</code></td>
+<td>Autorise l’usage de <code>.htaccess</code> pour modifier dynamiquement certaines règles Apache.</td>
+</tr>
+<tr>
+<td><code>Require ip 172.16.10.0/29</code></td>
+<td>Permet l’accès seulement au VLAN <strong>IT NETWORK</strong>.</td>
+</tr>
+<tr>
+<td><code>ErrorLog</code>, <code>CustomLog</code></td>
+<td>Chemins vers les fichiers de logs spécifiques pour PostfixAdmin.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A savoir :</strong>
+Ce fichier s’active avec <code>a2ensite postfixadmin-ssl.conf</code>, puis <code>service apache2 restart</code>.</p>
+<hr />
+<h2 id="8-securite-conformite">8. Sécurité &amp; conformité<a class="headerlink" href="#8-securite-conformite" title="Permanent link">🔗</a></h2>
+<ul>
+<li>Chiffrement TLS activé pour Postfix, Dovecot et l’interface web PostfixAdmin (certificats signés par une CA interne).</li>
+<li>Accès à PostfixAdmin restreint au réseau interne (option via <code>Require ip</code> dans Apache).</li>
+<li>Authentification sécurisée (via LDAP ou SQL) avec mots de passe chiffrés en <code>SHA512-CRYPT</code>.</li>
+<li>Rejet des connexions non sécurisées (auth impossible sans TLS, <code>disable_plaintext_auth = yes</code>).</li>
+<li>Permissions strictes sur les fichiers sensibles (clés privées, configs).</li>
+<li>Relais SMTP contrôlé : seuls les utilisateurs internes ou authentifiés peuvent envoyer des mails.</li>
+</ul>
+<hr />
+<h2 id="9-problemes-rencontres-solutions">9. Problèmes rencontrés &amp; solutions<a class="headerlink" href="#9-problemes-rencontres-solutions" title="Permanent link">🔗</a></h2>
+<h3 id="probleme-1-resolution-dns-de-srv-mailitwaylocal"><strong>Problème 1</strong> : Résolution DNS de <code>srv-mail.itway.local</code><a class="headerlink" href="#probleme-1-resolution-dns-de-srv-mailitwaylocal" title="Permanent link">🔗</a></h3>
+<ul>
+<li><strong>Symptôme</strong> : <code>Name or service not known</code> lors d’une tentative de connexion TLS (<code>openssl s_client</code>).</li>
+<li><strong>Cause</strong> : Le serveur <strong>DMZ-SMTP ne parvenait pas à résoudre</strong> le nom du serveur interne.</li>
+<li><strong>Solution</strong> : Ajout d’une entrée manuelle dans <code>/etc/hosts</code> sur le serveur DMZ :</li>
+</ul>
+<div class="highlight"><pre><span></span><code>172.16.50.4 srv-mail.itway.local
+</code></pre></div>
+<hr />
+<h3 id="probleme-2-port-465-smtps-inaccessible"><strong>Problème 2</strong> : Port 465 (SMTPS) inaccessible<a class="headerlink" href="#probleme-2-port-465-smtps-inaccessible" title="Permanent link">🔗</a></h3>
+<ul>
+<li><strong>Symptôme</strong> : <code>Connection refused</code> en testant avec <code>openssl s_client -connect srv-mail.itway.local:465</code>.</li>
+<li><strong>Cause</strong> : Le service <strong>Postfix n’écoutait pas sur le port SMTPS (465)</strong>.</li>
+<li>
+<p><strong>Solution</strong> :</p>
+<ul>
+<li>Vérification de la configuration dans <code>master.cf</code>.</li>
+<li>Ajout du bloc <code>smtps</code> avec <code>smtpd_tls_wrappermode=yes</code>.</li>
+<li>Redémarrage de Postfix.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="probleme-3-postfix-ne-demarre-pas-dans-le-conteneur"><strong>Problème 3</strong> : Postfix ne démarre pas dans le conteneur<a class="headerlink" href="#probleme-3-postfix-ne-demarre-pas-dans-le-conteneur" title="Permanent link">🔗</a></h3>
+<ul>
+<li>
+<p><strong>Erreurs</strong> :</p>
+</li>
+<li>
+<p><code>System has not been booted with systemd</code></p>
+</li>
+<li>
+<p><code>postsuper: Permission denied on /var/spool/postfix/...</code></p>
+</li>
+<li>
+<p><strong>Causes</strong> :</p>
+<ul>
+<li>Le serveur SRV-MAIL tourne dans un <strong>conteneur sans <code>systemd</code></strong>.</li>
+<li>Les <strong>permissions de <code>/var/spool/postfix/</code> avaient été modifiées</strong> (probablement par des tâches Ansible).</li>
+<li>Tous les fichiers appartenaient à <code>ubuntu:ubuntu</code> au lieu de <code>postfix:postfix</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Solution</strong> :</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>postfix:postfix<span class="w"> </span>/var/spool/postfix
+postfix<span class="w"> </span>start
+</code></pre></div>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">🔗</a></h2>
+<p>Le serveur <strong>SRV-MAIL</strong> remplit son rôle de serveur de <strong>distribution interne des courriers électroniques</strong>.
+En s’appuyant sur un stack open-source éprouvé (Postfix + Dovecot + MariaDB), il offre :</p>
+<ul>
+<li>Une solution <strong>robuste</strong> et sécurisée,</li>
+<li>Un <strong>accès simple et centralisé</strong> à la messagerie des utilisateurs,</li>
+<li>Une <strong>interface d’administration conviviale</strong> (PostfixAdmin),</li>
+<li>Une <strong>intégration propre avec la passerelle SMTP DMZ</strong>.</li>
+</ul>
+<p><strong>Manquant</strong> : 
+Mettre pop3s et sans supprimé les données du serveur.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../pki/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: SRV-PKI">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                SRV-PKI
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../dmz/dmz/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Objectif">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Objectif
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "content.code.annotate", "content.tabs.link", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
