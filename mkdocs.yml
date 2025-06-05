@@ -73,7 +73,7 @@ nav:
     - IT:
         - Objectif: ./it/it.md
         - IT-ANSIBLE: ./it/ansible.md
-        - IT-GRAFANA: ./it/granfana.md
+        - IT-GRAFANA: ./it/grafana.md
   - Phase 3:
     Phase 3: phase3.md
 

@@ -19,19 +19,3 @@ $
 
 source venv/bin/activate
 deactivate
-
-
-code vault ansible : LzcnwwLsu3$ZD7l@
-passe db : fwldY4z3Rz7&X$2P
-admin wordpress : SOXSUj1xeIa!vN#1
-mariadb : bEpq3o7Tvum&?S9F
-
-wp_db_pass: "fwldY4z3Rz7&X$2P"
-wp_admin_pass: "SOXSUj1xeIa!vN#1"
-mariadb_admin_user: "ansible"
-mariadb_admin_pass: "bEpq3o7Tvum&?S9F"
-
-wp_db_pass: "***"
-wp_admin_pass: "***"
-mariadb_admin_user: "ansible"
-mariadb_admin_pass: "***"
