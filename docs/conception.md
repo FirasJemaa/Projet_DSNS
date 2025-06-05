@@ -21,7 +21,7 @@ Nous avons travaillé en binôme, avec une répartition des responsabilités cla
     - Conception de l’architecture réseau
     - Configuration des routeurs, des VLAN et du plan d’adressage
     - Mise en place de la sécurité réseau (pare-feu, filtrage, VPN)
-    - Supervision (Grafana, Prometheus)
+    - Supervision (Grafana)
     - Déploiement du service PKI
     - Rédaction de la documentation technique des services réseau
 
@@ -34,7 +34,7 @@ Nous avons travaillé en binôme, avec une répartition des responsabilités cla
 - **Najet BOUKADOUR**
     - Déploiement de l’Active Directory et configuration du DNS interne
     - Mise en place des stratégies de groupe (GPO) et des unités d'organisations (OU)
-    - Développement du site intranet avec authentification LDAP
+    - Déploiement du serveur Grafana et Wazuh
     - Rédaction de la documentation
 
 
